@@ -8,12 +8,35 @@
 
 /* Begin PBXBuildFile section */
 		8958562D1F116A2B00BEB595 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958562C1F116A2B00BEB595 /* AppDelegate.swift */; };
-		8958562F1F116A2B00BEB595 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958562E1F116A2B00BEB595 /* ViewController.swift */; };
 		895856321F116A2B00BEB595 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 895856301F116A2B00BEB595 /* Main.storyboard */; };
-		895856351F116A2B00BEB595 /* RayTracer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 895856331F116A2B00BEB595 /* RayTracer.xcdatamodeld */; };
 		895856371F116A2B00BEB595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895856361F116A2B00BEB595 /* Assets.xcassets */; };
 		8958563A1F116A2B00BEB595 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 895856381F116A2B00BEB595 /* LaunchScreen.storyboard */; };
 		895856451F116A2B00BEB595 /* RayTracerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856441F116A2B00BEB595 /* RayTracerTests.swift */; };
+		895856631F116B2D00BEB595 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856501F116B2D00BEB595 /* Double.swift */; };
+		895856641F116B2D00BEB595 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856511F116B2D00BEB595 /* UIImage.swift */; };
+		895856651F116B2D00BEB595 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856531F116B2D00BEB595 /* Color.swift */; };
+		895856661F116B2D00BEB595 /* Finish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856541F116B2D00BEB595 /* Finish.swift */; };
+		895856671F116B2D00BEB595 /* Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856551F116B2D00BEB595 /* Frame.swift */; };
+		895856681F116B2D00BEB595 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856561F116B2D00BEB595 /* Image.swift */; };
+		895856691F116B2D00BEB595 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856571F116B2D00BEB595 /* Light.swift */; };
+		8958566A1F116B2D00BEB595 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856581F116B2D00BEB595 /* Point.swift */; };
+		8958566B1F116B2D00BEB595 /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856591F116B2D00BEB595 /* Ray.swift */; };
+		8958566C1F116B2D00BEB595 /* RayTracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958565A1F116B2D00BEB595 /* RayTracer.swift */; };
+		8958566D1F116B2D00BEB595 /* Sphere+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958565B1F116B2D00BEB595 /* Sphere+CoreDataClass.swift */; };
+		8958566E1F116B2D00BEB595 /* Sphere+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958565C1F116B2D00BEB595 /* Sphere+CoreDataProperties.swift */; };
+		8958566F1F116B2D00BEB595 /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958565D1F116B2D00BEB595 /* Sphere.swift */; };
+		895856701F116B2D00BEB595 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958565E1F116B2D00BEB595 /* Utilities.swift */; };
+		895856711F116B2D00BEB595 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958565F1F116B2D00BEB595 /* Vector.swift */; };
+		895856721F116B2D00BEB595 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856611F116B2D00BEB595 /* ImageViewController.swift */; };
+		895856731F116B2D00BEB595 /* SpheresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856621F116B2D00BEB595 /* SpheresTableViewController.swift */; };
+		895856761F116DA700BEB595 /* RayTracer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 895856741F116DA700BEB595 /* RayTracer.xcdatamodeld */; };
+		8958567F1F116E3C00BEB595 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856771F116E3C00BEB595 /* CoreDataHelpers.swift */; };
+		895856801F116E3C00BEB595 /* Sphere+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856791F116E3C00BEB595 /* Sphere+Testing.swift */; };
+		895856811F116E3C00BEB595 /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958567A1F116E3C00BEB595 /* PointTests.swift */; };
+		895856821F116E3C00BEB595 /* RayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958567B1F116E3C00BEB595 /* RayTests.swift */; };
+		895856831F116E3C00BEB595 /* SphereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958567C1F116E3C00BEB595 /* SphereTests.swift */; };
+		895856841F116E3C00BEB595 /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958567D1F116E3C00BEB595 /* UtilitiesTests.swift */; };
+		895856851F116E3C00BEB595 /* VectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958567E1F116E3C00BEB595 /* VectorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,15 +52,38 @@
 /* Begin PBXFileReference section */
 		895856291F116A2B00BEB595 /* RayTracer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayTracer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8958562C1F116A2B00BEB595 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8958562E1F116A2B00BEB595 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		895856311F116A2B00BEB595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		895856341F116A2B00BEB595 /* RayTracer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RayTracer.xcdatamodel; sourceTree = "<group>"; };
 		895856361F116A2B00BEB595 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		895856391F116A2B00BEB595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8958563B1F116A2B00BEB595 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		895856401F116A2B00BEB595 /* RayTracerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RayTracerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		895856441F116A2B00BEB595 /* RayTracerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracerTests.swift; sourceTree = "<group>"; };
 		895856461F116A2B00BEB595 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		895856501F116B2D00BEB595 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		895856511F116B2D00BEB595 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		895856531F116B2D00BEB595 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		895856541F116B2D00BEB595 /* Finish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Finish.swift; sourceTree = "<group>"; };
+		895856551F116B2D00BEB595 /* Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Frame.swift; sourceTree = "<group>"; };
+		895856561F116B2D00BEB595 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		895856571F116B2D00BEB595 /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
+		895856581F116B2D00BEB595 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		895856591F116B2D00BEB595 /* Ray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
+		8958565A1F116B2D00BEB595 /* RayTracer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RayTracer.swift; sourceTree = "<group>"; };
+		8958565B1F116B2D00BEB595 /* Sphere+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sphere+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8958565C1F116B2D00BEB595 /* Sphere+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sphere+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8958565D1F116B2D00BEB595 /* Sphere.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
+		8958565E1F116B2D00BEB595 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		8958565F1F116B2D00BEB595 /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		895856611F116B2D00BEB595 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		895856621F116B2D00BEB595 /* SpheresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpheresTableViewController.swift; sourceTree = "<group>"; };
+		895856751F116DA700BEB595 /* RayTracer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RayTracer.xcdatamodel; sourceTree = "<group>"; };
+		895856771F116E3C00BEB595 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
+		895856791F116E3C00BEB595 /* Sphere+Testing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sphere+Testing.swift"; sourceTree = "<group>"; };
+		8958567A1F116E3C00BEB595 /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
+		8958567B1F116E3C00BEB595 /* RayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RayTests.swift; sourceTree = "<group>"; };
+		8958567C1F116E3C00BEB595 /* SphereTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereTests.swift; sourceTree = "<group>"; };
+		8958567D1F116E3C00BEB595 /* UtilitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesTests.swift; sourceTree = "<group>"; };
+		8958567E1F116E3C00BEB595 /* VectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,13 +125,14 @@
 		8958562B1F116A2B00BEB595 /* RayTracer */ = {
 			isa = PBXGroup;
 			children = (
+				895856601F116B2D00BEB595 /* View Controllers */,
+				895856521F116B2D00BEB595 /* Models */,
+				8958564F1F116B2D00BEB595 /* Extensions */,
 				8958562C1F116A2B00BEB595 /* AppDelegate.swift */,
-				8958562E1F116A2B00BEB595 /* ViewController.swift */,
 				895856301F116A2B00BEB595 /* Main.storyboard */,
 				895856361F116A2B00BEB595 /* Assets.xcassets */,
 				895856381F116A2B00BEB595 /* LaunchScreen.storyboard */,
 				8958563B1F116A2B00BEB595 /* Info.plist */,
-				895856331F116A2B00BEB595 /* RayTracer.xcdatamodeld */,
 			);
 			path = RayTracer;
 			sourceTree = "<group>";
@@ -94,9 +141,63 @@
 			isa = PBXGroup;
 			children = (
 				895856441F116A2B00BEB595 /* RayTracerTests.swift */,
+				895856771F116E3C00BEB595 /* CoreDataHelpers.swift */,
+				8958567A1F116E3C00BEB595 /* PointTests.swift */,
+				8958567B1F116E3C00BEB595 /* RayTests.swift */,
+				8958567C1F116E3C00BEB595 /* SphereTests.swift */,
+				8958567D1F116E3C00BEB595 /* UtilitiesTests.swift */,
+				8958567E1F116E3C00BEB595 /* VectorTests.swift */,
+				895856781F116E3C00BEB595 /* Extensions */,
 				895856461F116A2B00BEB595 /* Info.plist */,
 			);
 			path = RayTracerTests;
+			sourceTree = "<group>";
+		};
+		8958564F1F116B2D00BEB595 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				895856501F116B2D00BEB595 /* Double.swift */,
+				895856511F116B2D00BEB595 /* UIImage.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		895856521F116B2D00BEB595 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				895856531F116B2D00BEB595 /* Color.swift */,
+				895856541F116B2D00BEB595 /* Finish.swift */,
+				895856551F116B2D00BEB595 /* Frame.swift */,
+				895856561F116B2D00BEB595 /* Image.swift */,
+				895856571F116B2D00BEB595 /* Light.swift */,
+				895856581F116B2D00BEB595 /* Point.swift */,
+				895856591F116B2D00BEB595 /* Ray.swift */,
+				8958565A1F116B2D00BEB595 /* RayTracer.swift */,
+				8958565B1F116B2D00BEB595 /* Sphere+CoreDataClass.swift */,
+				8958565C1F116B2D00BEB595 /* Sphere+CoreDataProperties.swift */,
+				8958565D1F116B2D00BEB595 /* Sphere.swift */,
+				8958565E1F116B2D00BEB595 /* Utilities.swift */,
+				8958565F1F116B2D00BEB595 /* Vector.swift */,
+				895856741F116DA700BEB595 /* RayTracer.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		895856601F116B2D00BEB595 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				895856611F116B2D00BEB595 /* ImageViewController.swift */,
+				895856621F116B2D00BEB595 /* SpheresTableViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		895856781F116E3C00BEB595 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				895856791F116E3C00BEB595 /* Sphere+Testing.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,8 +305,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				895856351F116A2B00BEB595 /* RayTracer.xcdatamodeld in Sources */,
-				8958562F1F116A2B00BEB595 /* ViewController.swift in Sources */,
+				895856691F116B2D00BEB595 /* Light.swift in Sources */,
+				895856681F116B2D00BEB595 /* Image.swift in Sources */,
+				8958566C1F116B2D00BEB595 /* RayTracer.swift in Sources */,
+				895856641F116B2D00BEB595 /* UIImage.swift in Sources */,
+				8958566F1F116B2D00BEB595 /* Sphere.swift in Sources */,
+				895856711F116B2D00BEB595 /* Vector.swift in Sources */,
+				895856701F116B2D00BEB595 /* Utilities.swift in Sources */,
+				895856661F116B2D00BEB595 /* Finish.swift in Sources */,
+				8958566E1F116B2D00BEB595 /* Sphere+CoreDataProperties.swift in Sources */,
+				895856721F116B2D00BEB595 /* ImageViewController.swift in Sources */,
+				895856631F116B2D00BEB595 /* Double.swift in Sources */,
+				8958566D1F116B2D00BEB595 /* Sphere+CoreDataClass.swift in Sources */,
+				8958566A1F116B2D00BEB595 /* Point.swift in Sources */,
+				895856671F116B2D00BEB595 /* Frame.swift in Sources */,
+				895856651F116B2D00BEB595 /* Color.swift in Sources */,
+				8958566B1F116B2D00BEB595 /* Ray.swift in Sources */,
+				895856761F116DA700BEB595 /* RayTracer.xcdatamodeld in Sources */,
+				895856731F116B2D00BEB595 /* SpheresTableViewController.swift in Sources */,
 				8958562D1F116A2B00BEB595 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,6 +331,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				895856811F116E3C00BEB595 /* PointTests.swift in Sources */,
+				895856821F116E3C00BEB595 /* RayTests.swift in Sources */,
+				895856851F116E3C00BEB595 /* VectorTests.swift in Sources */,
+				895856801F116E3C00BEB595 /* Sphere+Testing.swift in Sources */,
+				895856841F116E3C00BEB595 /* UtilitiesTests.swift in Sources */,
+				8958567F1F116E3C00BEB595 /* CoreDataHelpers.swift in Sources */,
+				895856831F116E3C00BEB595 /* SphereTests.swift in Sources */,
 				895856451F116A2B00BEB595 /* RayTracerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +542,7 @@
 				8958564B1F116A2B00BEB595 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8958564C1F116A2B00BEB595 /* Build configuration list for PBXNativeTarget "RayTracerTests" */ = {
 			isa = XCConfigurationList;
@@ -426,16 +551,17 @@
 				8958564E1F116A2B00BEB595 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		895856331F116A2B00BEB595 /* RayTracer.xcdatamodeld */ = {
+		895856741F116DA700BEB595 /* RayTracer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				895856341F116A2B00BEB595 /* RayTracer.xcdatamodel */,
+				895856751F116DA700BEB595 /* RayTracer.xcdatamodel */,
 			);
-			currentVersion = 895856341F116A2B00BEB595 /* RayTracer.xcdatamodel */;
+			currentVersion = 895856751F116DA700BEB595 /* RayTracer.xcdatamodel */;
 			path = RayTracer.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
