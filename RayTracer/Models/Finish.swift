@@ -10,7 +10,7 @@ import Foundation
 
 
 /// Describes how an object interacts with light.
-public class Finish: NSObject {
+public class Finish: NSObject, NSCoding {
 
     /// The percentage of ambient light reflected by the finish.
     public var ambient: Double
@@ -38,10 +38,28 @@ public class Finish: NSObject {
         self.specular = specular
         self.roughness = roughness
     }
+
+    private enum CodingKey: String {
+        case ambient, diffuse, specular, roughness
+    }
+
+    public required convenience init?(coder aDecoder: NSCoder) {
+        let ambient = aDecoder.decodeDouble(forKey: CodingKey.ambient.rawValue)
+        let diffuse = aDecoder.decodeDouble(forKey: CodingKey.diffuse.rawValue)
+        let specular = aDecoder.decodeDouble(forKey: CodingKey.specular.rawValue)
+        let roughness = aDecoder.decodeDouble(forKey: CodingKey.roughness.rawValue)
+        self.init(ambient: ambient, diffuse: diffuse, specular: specular, roughness: roughness)
+    }
+
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.ambient, forKey: CodingKey.ambient.rawValue)
+        aCoder.encode(self.diffuse, forKey: CodingKey.diffuse.rawValue)
+        aCoder.encode(self.specular, forKey: CodingKey.specular.rawValue)
+        aCoder.encode(self.roughness, forKey: CodingKey.roughness.rawValue)
+    }
 }
 
 
-// MARK: - Equatability
 extension Finish {
     public static func == (lhs: Finish, rhs: Finish) -> Bool {
         return lhs.ambient == rhs.ambient &&
@@ -52,7 +70,6 @@ extension Finish {
 }
 
 
-// MARK: - Description
 extension Finish {
     override public var description: String {
         return "Finish(ambient: \(self.ambient), diffuse: \(self.diffuse), specular: \(self.specular), roughness: \(self.roughness)))"

@@ -6,13 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Image-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ImageViewController" customModule="RayTracer_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ImageViewController" customModule="RayTracer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -21,6 +22,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="d5L-pe-oed">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBf-to-ugF">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
@@ -44,7 +48,9 @@
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VBf-to-ugF" secondAttribute="bottom" id="5A1-be-JQF"/>
                             <constraint firstItem="VBf-to-ugF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9BL-Ic-F8f"/>
+                            <constraint firstItem="d5L-pe-oed" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ijS-Ws-TjN"/>
                             <constraint firstAttribute="trailing" secondItem="VBf-to-ugF" secondAttribute="trailing" id="sG1-Et-UKV"/>
+                            <constraint firstItem="d5L-pe-oed" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wjY-Pr-lUi"/>
                             <constraint firstItem="VBf-to-ugF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="x2V-Kx-q25"/>
                         </constraints>
                     </view>
@@ -56,6 +62,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="d5L-pe-oed" id="xH9-en-RFR"/>
                         <outlet property="scrollView" destination="VBf-to-ugF" id="bSI-S1-yhS"/>
                         <outlet property="spheresImageView" destination="Ngz-Lf-FfR" id="a2d-kX-YMF"/>
                         <outlet property="spheresImageViewHeightConstraint" destination="Ld4-W9-kOX" id="oJ4-Fs-Idx"/>
@@ -85,22 +92,51 @@
             </objects>
             <point key="canvasLocation" x="996" y="138.98050974512745"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Spheres-->
         <scene sceneID="M5c-H4-tSN">
             <objects>
-                <tableViewController id="hwj-b7-Haf" customClass="SpheresTableViewController" customModule="RayTracer_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="hwj-b7-Haf" customClass="SpheresTableViewController" customModule="RayTracer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Sz-52-OIu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vgV-HT-M5I">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SphereTableViewCell" id="vgV-HT-M5I" customClass="SphereTableViewCell" customModule="RayTracer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vgV-HT-M5I" id="UZw-Zt-ISK">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hG4-nk-mVF">
+                                            <rect key="frame" x="340" y="0.0" width="35" height="44"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="35" id="L8z-ag-wHD"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Px-7S-l8y">
+                                            <rect key="frame" x="8" y="8" width="322" height="27.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="hG4-nk-mVF" secondAttribute="trailing" id="7dp-bL-ATs"/>
+                                        <constraint firstItem="9Px-7S-l8y" firstAttribute="leading" secondItem="UZw-Zt-ISK" secondAttribute="leadingMargin" id="HBd-9m-tJt"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="9Px-7S-l8y" secondAttribute="bottom" id="UDp-9d-X12"/>
+                                        <constraint firstItem="9Px-7S-l8y" firstAttribute="top" secondItem="UZw-Zt-ISK" secondAttribute="topMargin" id="bvF-Y7-yF1"/>
+                                        <constraint firstItem="hG4-nk-mVF" firstAttribute="leading" secondItem="9Px-7S-l8y" secondAttribute="trailing" constant="10" id="myx-B8-dbh"/>
+                                        <constraint firstItem="hG4-nk-mVF" firstAttribute="top" secondItem="UZw-Zt-ISK" secondAttribute="top" id="nVi-Hd-Qc1"/>
+                                        <constraint firstAttribute="bottom" secondItem="hG4-nk-mVF" secondAttribute="bottom" id="zwg-Sm-fNq"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="colorView" destination="hG4-nk-mVF" id="s6v-HG-sga"/>
+                                    <outlet property="equationLabel" destination="9Px-7S-l8y" id="pR6-NS-673"/>
+                                    <segue destination="lAC-aH-YI6" kind="show" identifier="EditSphere" id="3lC-LT-r87"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -108,11 +144,36 @@
                             <outlet property="delegate" destination="hwj-b7-Haf" id="HfX-EH-9dm"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="4hJ-H7-nc0"/>
+                    <navigationItem key="navigationItem" title="Spheres" id="4hJ-H7-nc0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eVN-rx-Vdy">
+                            <connections>
+                                <segue destination="lAC-aH-YI6" kind="show" identifier="AddSphere" id="0m6-sq-8aM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPY-I4-8Zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1234" y="879"/>
+            <point key="canvasLocation" x="1232.8" y="878.41079460269873"/>
+        </scene>
+        <!--Add Edit Sphere Table View Controller-->
+        <scene sceneID="KzP-SR-mDN">
+            <objects>
+                <tableViewController id="lAC-aH-YI6" customClass="AddEditSphereTableViewController" customModule="RayTracer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="5I3-ya-eyD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="lAC-aH-YI6" id="XRO-8b-mxI"/>
+                            <outlet property="delegate" destination="lAC-aH-YI6" id="pjS-h5-DhV"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VUk-ed-Q3h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2034" y="878"/>
         </scene>
         <!--Spheres-->
         <scene sceneID="6uD-jg-z7j">
@@ -137,6 +198,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="tjY-M5-Rrt" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="66J-AQ-X9E">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -150,4 +212,7 @@
             <point key="canvasLocation" x="56.799999999999997" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3lC-LT-r87"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -63,10 +63,15 @@ extension Sphere {
         let finish = Finish(ambient: components[7], diffuse: components[8], specular: components[9], roughness: components[10])
         self.init(center: center, radius: radius, color: color, finish: finish, context: context)
     }
+
+    /// The equation form of the sphere.
+    public var equation: String {
+        let base = "(x - \(self.center.x))² + (y - \(self.center.y))² + (z - \(self.center.z))² = \(self.radius)"
+        return base.replacingOccurrences(of: "- -", with: "+ ")
+    }
 }
 
 
-// MARK: - Equatability
 extension Sphere {
     public static func == (lhs: Sphere, rhs: Sphere) -> Bool {
         return lhs.center == rhs.center &&

@@ -16,19 +16,33 @@ class ImageViewController: UIViewController {
     @IBOutlet weak var spheresImageView: UIImageView!
     @IBOutlet weak var spheresImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var spheresImageViewWidthConstraint: NSLayoutConstraint!
-
-    var container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        activityIndicatorView.startAnimating()
+        processImage()
+//        activityIndicatorView.stopAnimating()
+        activityIndicatorView.isHidden = true
+        setupScrollView()
+//        setZoomScale()
+//        centerScrollViewContents()
+    }
 
-        let managedObjectContext = container.viewContext
-        let sphereDataString = "1.0 1.0 0.0 2.0 1.0 0.0 1.0 0.2 0.4 0.5 0.05\n8.0 -10.0 110.0 100.0 0.2 0.2 0.6 0.4 0.8 0.0 0.05"
+    override func viewDidAppear(_ animated: Bool) {
+        setZoomScale()
+        centerScrollViewContents()
+    }
+
+    private func processImage() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
         var spheres: [Sphere] = []
-        for sphereString in sphereDataString.components(separatedBy: "\n") {
-            if let sphere = Sphere(string: sphereString, context: managedObjectContext) {
-                spheres.append(sphere)
-            }
+        do {
+            spheres = try context.fetch(fetchRequest)
+        } catch {
+            print("Error fetching sphere data")
         }
 
         let frame = RayTracer.Defaults.frame
@@ -40,12 +54,6 @@ class ImageViewController: UIViewController {
         spheresImageViewHeightConstraint.constant = CGFloat(frame.height)
         spheresImageViewWidthConstraint.constant = CGFloat(frame.width)
         spheresImageView.image = UIImage(image)
-
-        setupScrollView()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        setZoomScale()
     }
 
     private func setupScrollView() {
@@ -67,6 +75,7 @@ class ImageViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setZoomScale()
+        centerScrollViewContents()
     }
 
     fileprivate func setZoomScale() {
@@ -77,6 +86,14 @@ class ImageViewController: UIViewController {
 
         scrollView.minimumZoomScale = min(widthScale, heightScale)
         scrollView.zoomScale = 1.0
+    }
+
+    fileprivate func centerScrollViewContents() {
+        let imageViewSize = spheresImageView.frame.size
+        let scrollViewSize = scrollView.bounds.size
+        let verticalPadding = max(0, (scrollViewSize.height - imageViewSize.height) / 2)
+        let horizontalPadding = max(0, (scrollViewSize.width - imageViewSize.width) / 2)
+        scrollView.contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
     }
 
     @IBAction func shareImage(_ sender: UIBarButtonItem) {
@@ -92,11 +109,7 @@ extension ImageViewController: UIScrollViewDelegate {
     }
 
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        let imageViewSize = spheresImageView.frame.size
-        let scrollViewSize = scrollView.bounds.size
-        let verticalPadding = max(0, (scrollViewSize.height - imageViewSize.height) / 2)
-        let horizontalPadding = max(0, (scrollViewSize.width - imageViewSize.width) / 2)
-        scrollView.contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
+        centerScrollViewContents()
     }
 }
 

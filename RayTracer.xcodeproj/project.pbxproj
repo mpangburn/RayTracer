@@ -37,6 +37,21 @@
 		895856831F116E3C00BEB595 /* SphereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958567C1F116E3C00BEB595 /* SphereTests.swift */; };
 		895856841F116E3C00BEB595 /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958567D1F116E3C00BEB595 /* UtilitiesTests.swift */; };
 		895856851F116E3C00BEB595 /* VectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958567E1F116E3C00BEB595 /* VectorTests.swift */; };
+		895856871F1173E300BEB595 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856861F1173E300BEB595 /* UIColor.swift */; };
+		895856891F1175F300BEB595 /* SphereTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856881F1175F300BEB595 /* SphereTableViewCell.swift */; };
+		8958568C1F11794000BEB595 /* IdentifiableClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958568B1F11794000BEB595 /* IdentifiableClass.swift */; };
+		8958568E1F11795100BEB595 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958568D1F11795100BEB595 /* UITableViewCell.swift */; };
+		895856901F11A02B00BEB595 /* AddEditSphereTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958568F1F11A02B00BEB595 /* AddEditSphereTableViewController.swift */; };
+		895856931F11A21000BEB595 /* PointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856911F11A21000BEB595 /* PointTableViewCell.swift */; };
+		895856941F11A21000BEB595 /* PointTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 895856921F11A21000BEB595 /* PointTableViewCell.xib */; };
+		895856961F11A2D900BEB595 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856951F11A2D900BEB595 /* NibLoadable.swift */; };
+		895856991F11CF5E00BEB595 /* ColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856971F11CF5E00BEB595 /* ColorTableViewCell.swift */; };
+		8958569A1F11CF5E00BEB595 /* ColorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 895856981F11CF5E00BEB595 /* ColorTableViewCell.xib */; };
+		89CEA6DB1F1203040008B05B /* Expandable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DA1F1203040008B05B /* Expandable.swift */; };
+		89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */; };
+		89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */; };
+		89E568E51F11EE7B003E782C /* ColorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E568E41F11EE7B003E782C /* ColorView.xib */; };
+		89E568E71F11EF16003E782C /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E568E61F11EF16003E782C /* ColorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +99,21 @@
 		8958567C1F116E3C00BEB595 /* SphereTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereTests.swift; sourceTree = "<group>"; };
 		8958567D1F116E3C00BEB595 /* UtilitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesTests.swift; sourceTree = "<group>"; };
 		8958567E1F116E3C00BEB595 /* VectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorTests.swift; sourceTree = "<group>"; };
+		895856861F1173E300BEB595 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		895856881F1175F300BEB595 /* SphereTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SphereTableViewCell.swift; path = Views/SphereTableViewCell.swift; sourceTree = "<group>"; };
+		8958568B1F11794000BEB595 /* IdentifiableClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifiableClass.swift; sourceTree = "<group>"; };
+		8958568D1F11795100BEB595 /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
+		8958568F1F11A02B00BEB595 /* AddEditSphereTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditSphereTableViewController.swift; sourceTree = "<group>"; };
+		895856911F11A21000BEB595 /* PointTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointTableViewCell.swift; path = Views/PointTableViewCell.swift; sourceTree = "<group>"; };
+		895856921F11A21000BEB595 /* PointTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PointTableViewCell.xib; path = Views/PointTableViewCell.xib; sourceTree = "<group>"; };
+		895856951F11A2D900BEB595 /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		895856971F11CF5E00BEB595 /* ColorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorTableViewCell.swift; path = Views/ColorTableViewCell.swift; sourceTree = "<group>"; };
+		895856981F11CF5E00BEB595 /* ColorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ColorTableViewCell.xib; path = Views/ColorTableViewCell.xib; sourceTree = "<group>"; };
+		89CEA6DA1F1203040008B05B /* Expandable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Expandable.swift; path = Views/Expandable.swift; sourceTree = "<group>"; };
+		89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleValueTableViewCell.swift; path = Views/SingleValueTableViewCell.swift; sourceTree = "<group>"; };
+		89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SingleValueTableViewCell.xib; path = Views/SingleValueTableViewCell.xib; sourceTree = "<group>"; };
+		89E568E41F11EE7B003E782C /* ColorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ColorView.xib; path = Views/ColorView.xib; sourceTree = "<group>"; };
+		89E568E61F11EF16003E782C /* ColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorView.swift; path = Views/ColorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				895856601F116B2D00BEB595 /* View Controllers */,
+				8958568A1F11760000BEB595 /* Views */,
 				895856521F116B2D00BEB595 /* Models */,
 				8958564F1F116B2D00BEB595 /* Extensions */,
 				8958562C1F116A2B00BEB595 /* AppDelegate.swift */,
@@ -141,12 +172,12 @@
 			isa = PBXGroup;
 			children = (
 				895856441F116A2B00BEB595 /* RayTracerTests.swift */,
-				895856771F116E3C00BEB595 /* CoreDataHelpers.swift */,
 				8958567A1F116E3C00BEB595 /* PointTests.swift */,
 				8958567B1F116E3C00BEB595 /* RayTests.swift */,
 				8958567C1F116E3C00BEB595 /* SphereTests.swift */,
 				8958567D1F116E3C00BEB595 /* UtilitiesTests.swift */,
 				8958567E1F116E3C00BEB595 /* VectorTests.swift */,
+				895856771F116E3C00BEB595 /* CoreDataHelpers.swift */,
 				895856781F116E3C00BEB595 /* Extensions */,
 				895856461F116A2B00BEB595 /* Info.plist */,
 			);
@@ -157,7 +188,11 @@
 			isa = PBXGroup;
 			children = (
 				895856501F116B2D00BEB595 /* Double.swift */,
+				8958568B1F11794000BEB595 /* IdentifiableClass.swift */,
+				895856951F11A2D900BEB595 /* NibLoadable.swift */,
+				895856861F1173E300BEB595 /* UIColor.swift */,
 				895856511F116B2D00BEB595 /* UIImage.swift */,
+				8958568D1F11795100BEB595 /* UITableViewCell.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -186,8 +221,9 @@
 		895856601F116B2D00BEB595 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				895856611F116B2D00BEB595 /* ImageViewController.swift */,
 				895856621F116B2D00BEB595 /* SpheresTableViewController.swift */,
+				8958568F1F11A02B00BEB595 /* AddEditSphereTableViewController.swift */,
+				895856611F116B2D00BEB595 /* ImageViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -198,6 +234,23 @@
 				895856791F116E3C00BEB595 /* Sphere+Testing.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8958568A1F11760000BEB595 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				89E568E61F11EF16003E782C /* ColorView.swift */,
+				89E568E41F11EE7B003E782C /* ColorView.xib */,
+				895856971F11CF5E00BEB595 /* ColorTableViewCell.swift */,
+				895856981F11CF5E00BEB595 /* ColorTableViewCell.xib */,
+				89CEA6DA1F1203040008B05B /* Expandable.swift */,
+				895856911F11A21000BEB595 /* PointTableViewCell.swift */,
+				895856921F11A21000BEB595 /* PointTableViewCell.xib */,
+				89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */,
+				89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */,
+				895856881F1175F300BEB595 /* SphereTableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,9 +338,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				895856941F11A21000BEB595 /* PointTableViewCell.xib in Resources */,
 				8958563A1F116A2B00BEB595 /* LaunchScreen.storyboard in Resources */,
+				89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */,
+				89E568E51F11EE7B003E782C /* ColorView.xib in Resources */,
 				895856371F116A2B00BEB595 /* Assets.xcassets in Resources */,
 				895856321F116A2B00BEB595 /* Main.storyboard in Resources */,
+				8958569A1F11CF5E00BEB595 /* ColorTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,24 +362,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8958568E1F11795100BEB595 /* UITableViewCell.swift in Sources */,
 				895856691F116B2D00BEB595 /* Light.swift in Sources */,
+				89CEA6DB1F1203040008B05B /* Expandable.swift in Sources */,
+				89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */,
 				895856681F116B2D00BEB595 /* Image.swift in Sources */,
 				8958566C1F116B2D00BEB595 /* RayTracer.swift in Sources */,
 				895856641F116B2D00BEB595 /* UIImage.swift in Sources */,
 				8958566F1F116B2D00BEB595 /* Sphere.swift in Sources */,
+				895856901F11A02B00BEB595 /* AddEditSphereTableViewController.swift in Sources */,
+				895856871F1173E300BEB595 /* UIColor.swift in Sources */,
 				895856711F116B2D00BEB595 /* Vector.swift in Sources */,
 				895856701F116B2D00BEB595 /* Utilities.swift in Sources */,
 				895856661F116B2D00BEB595 /* Finish.swift in Sources */,
+				895856961F11A2D900BEB595 /* NibLoadable.swift in Sources */,
 				8958566E1F116B2D00BEB595 /* Sphere+CoreDataProperties.swift in Sources */,
 				895856721F116B2D00BEB595 /* ImageViewController.swift in Sources */,
 				895856631F116B2D00BEB595 /* Double.swift in Sources */,
 				8958566D1F116B2D00BEB595 /* Sphere+CoreDataClass.swift in Sources */,
+				89E568E71F11EF16003E782C /* ColorView.swift in Sources */,
 				8958566A1F116B2D00BEB595 /* Point.swift in Sources */,
 				895856671F116B2D00BEB595 /* Frame.swift in Sources */,
 				895856651F116B2D00BEB595 /* Color.swift in Sources */,
+				895856931F11A21000BEB595 /* PointTableViewCell.swift in Sources */,
 				8958566B1F116B2D00BEB595 /* Ray.swift in Sources */,
 				895856761F116DA700BEB595 /* RayTracer.xcdatamodeld in Sources */,
+				895856891F1175F300BEB595 /* SphereTableViewCell.swift in Sources */,
+				895856991F11CF5E00BEB595 /* ColorTableViewCell.swift in Sources */,
 				895856731F116B2D00BEB595 /* SpheresTableViewController.swift in Sources */,
+				8958568C1F11794000BEB595 /* IdentifiableClass.swift in Sources */,
 				8958562D1F116A2B00BEB595 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,7 +481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -458,7 +526,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
