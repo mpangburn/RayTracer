@@ -11,28 +11,28 @@ import UIKit
 
 protocol Expandable: class {
     var isExpanded: Bool { get set }
-    var viewForDeterminingHeight: UIView { get set }
-    var expandedHeight: CGFloat { get set }
-    var heightLayoutConstraint: NSLayoutConstraint { get set }
+//    var viewForDeterminingHeight: UIView { get set }
+//    var expandedHeight: CGFloat { get set }
+//    var heightLayoutConstraint: NSLayoutConstraint { get set }
 }
 
 
-extension Expandable {
-    var isExpanded: Bool {
-        get {
-            return viewForDeterminingHeight.alpha == 1
-        }
-        set {
-            if newValue {
-                UIView.animate(withDuration: 1) {
-                    self.viewForDeterminingHeight.alpha = 1
-                    self.heightLayoutConstraint.constant = self.expandedHeight
-                }
-
-            } else {
-                viewForDeterminingHeight.alpha = 0
-                heightLayoutConstraint.constant = 0
-            }
-        }
-    }
-}
+//extension Expandable {
+//    var isExpanded: Bool {
+//        get {
+//            return viewForDeterminingHeight.alpha == 1
+//        }
+//        set {
+//            if newValue {
+//                UIView.animate(withDuration: 1) {
+//                    self.viewForDeterminingHeight.alpha = 1
+//                    self.heightLayoutConstraint.constant = self.expandedHeight
+//                }
+//
+//            } else {
+//                viewForDeterminingHeight.alpha = 0
+//                heightLayoutConstraint.constant = 0
+//            }
+//        }
+//    }
+//}

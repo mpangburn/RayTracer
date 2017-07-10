@@ -13,6 +13,9 @@ protocol PointTableViewCellDelegate: class {
     func pointTableViewCellPointDidChange(_ cell: PointTableViewCell)
 }
 
+enum PointType {
+    case eye, light
+}
 
 class PointTableViewCell: UITableViewCell {
 
@@ -33,6 +36,9 @@ class PointTableViewCell: UITableViewCell {
         }
     }
 
+    var pointType: PointType?
+
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var coordinatesLabel: UILabel!
     @IBOutlet weak var coordinateDetailWrapperView: UIView!
     @IBOutlet weak var coordinateDetailWrapperViewHeightConstraint: NSLayoutConstraint!
@@ -62,6 +68,7 @@ class PointTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        titleLabel.text = NSLocalizedString("Position", comment: "The title text for the position editing cell")
         coordinateDetailStackViewExpandedHeight = coordinateDetailWrapperViewHeightConstraint.constant
         isExpanded = false
     }
@@ -75,6 +82,7 @@ class PointTableViewCell: UITableViewCell {
     }
 
     private func updateCoordinatesLabel() {
+        let point = self.point
         coordinatesLabel.text = "(\(point.x), \(point.y), \(point.z))"
     }
     

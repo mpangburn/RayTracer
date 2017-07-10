@@ -21,9 +21,3 @@ extension Sphere {
     }
 }
 
-extension Finish {
-    static var none: Finish {
-        return Finish(ambient: 0, diffuse: 0, specular: 0, roughness: 0)
-    }
-}
-

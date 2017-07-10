@@ -13,6 +13,9 @@ protocol ColorTableViewCellDelegate: class {
     func colorTableViewCellColorDidChange(_ cell: ColorTableViewCell)
 }
 
+enum ColorType {
+    case light, ambient
+}
 
 class ColorTableViewCell: UITableViewCell {
 
@@ -30,14 +33,15 @@ class ColorTableViewCell: UITableViewCell {
         }
     }
 
+    var colorType: ColorType?
+
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var colorView: UIView!   //ColorView!
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
     @IBOutlet weak var colorSliderWrapperView: UIView!
     @IBOutlet weak var colorSliderWrapperViewHeightConstraint: NSLayoutConstraint!
-//    @IBOutlet weak var colorSliderStackView: UIStackView!
-//    @IBOutlet weak var colorSliderStackViewHeightConstraint: NSLayoutConstraint!
 
     private var colorSliderStackViewExpandedHeight: CGFloat = 0
 
@@ -61,6 +65,9 @@ class ColorTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        titleLabel.text = NSLocalizedString("Color", comment: "The title text for the color editing cell")
+        colorView.layer.borderColor = UIColor.black.cgColor
+        colorView.layer.borderWidth = 1.0
         colorSliderStackViewExpandedHeight = colorSliderWrapperViewHeightConstraint.constant
         isExpanded = false
     }
@@ -83,7 +90,6 @@ class ColorTableViewCell: UITableViewCell {
     }
 
     private func updateColorView() {
-//        colorView.color = UIColor(color)
         colorView.backgroundColor = UIColor(color)
     }
     

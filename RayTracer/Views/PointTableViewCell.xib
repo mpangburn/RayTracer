@@ -152,6 +152,7 @@
                 <outlet property="coordinateDetailWrapperView" destination="z7L-8V-Cy2" id="7rJ-xn-Qlw"/>
                 <outlet property="coordinateDetailWrapperViewHeightConstraint" destination="6oH-Ie-Fmf" id="218-bV-Da8"/>
                 <outlet property="coordinatesLabel" destination="fXr-SY-KNo" id="faf-ex-OdQ"/>
+                <outlet property="titleLabel" destination="hLI-8f-OW6" id="oLl-Nf-xhh"/>
                 <outlet property="xTextField" destination="ULD-O3-2Wb" id="Qdz-yJ-2pD"/>
                 <outlet property="yTextField" destination="AOa-NB-wrz" id="g6l-d3-k1c"/>
                 <outlet property="zTextField" destination="AOn-vV-jYf" id="IfW-1Z-eeu"/>

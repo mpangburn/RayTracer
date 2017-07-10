@@ -21,7 +21,7 @@ public class Finish: NSObject, NSCoding {
     /// The percentage of specular light reflected by the finish.
     public var specular: Double
 
-    /// The modeled roughness of the finish.
+    /// The modeled roughness of the finish, which affects the spread of the specular light across the object.
     public var roughness: Double
 
     /**
@@ -56,6 +56,16 @@ public class Finish: NSObject, NSCoding {
         aCoder.encode(self.diffuse, forKey: CodingKey.diffuse.rawValue)
         aCoder.encode(self.specular, forKey: CodingKey.specular.rawValue)
         aCoder.encode(self.roughness, forKey: CodingKey.roughness.rawValue)
+    }
+}
+
+
+// MARK: - Finish constants
+extension Finish {
+
+    /// No finish.
+    public static var none: Finish {
+        return Finish(ambient: 0, diffuse: 0, specular: 0, roughness: 0)
     }
 }
 

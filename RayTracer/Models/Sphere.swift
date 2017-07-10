@@ -65,8 +65,13 @@ extension Sphere {
     }
 
     /// The equation form of the sphere.
-    public var equation: String {
-        let base = "(x - \(self.center.x))² + (y - \(self.center.y))² + (z - \(self.center.z))² = \(self.radius)"
+    public func equation(usingIntegers: Bool) -> String {
+        let base: String
+        if usingIntegers {
+            base = "(x - \(Int(self.center.x)))² + (y - \(Int(self.center.y)))² + (z - \(Int(self.center.z)))² = \(Int(self.radius))"
+        } else {
+            base = "(x - \(self.center.x))² + (y - \(self.center.y))² + (z - \(self.center.z))² = \(self.radius)"
+        }
         return base.replacingOccurrences(of: "- -", with: "+ ")
     }
 }

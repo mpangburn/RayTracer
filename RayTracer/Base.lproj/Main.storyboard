@@ -92,6 +92,42 @@
             </objects>
             <point key="canvasLocation" x="996" y="138.98050974512745"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="ZrC-QT-F9T">
+            <objects>
+                <tableViewController title="Settings" id="kKf-qE-nKB" customClass="SettingsTableViewController" customModule="RayTracer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="kGT-oy-MkT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="kKf-qE-nKB" id="Thh-cQ-MQ8"/>
+                            <outlet property="delegate" destination="kKf-qE-nKB" id="St6-Tx-H0r"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="h01-WA-Sw8"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2PK-K0-xAQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2015" y="889"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="wRC-3a-alq">
+            <objects>
+                <navigationController id="4ZE-Ce-XFR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" id="xPB-6G-Yuf"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qnw-YB-ieR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="kKf-qE-nKB" kind="relationship" relationship="rootViewController" id="tT6-cJ-Qt6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yoq-87-gHg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="996" y="890"/>
+        </scene>
         <!--Spheres-->
         <scene sceneID="M5c-H4-tSN">
             <objects>
@@ -116,15 +152,15 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Px-7S-l8y">
-                                            <rect key="frame" x="8" y="8" width="322" height="27.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="16" y="8" width="314" height="27.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="hG4-nk-mVF" secondAttribute="trailing" id="7dp-bL-ATs"/>
-                                        <constraint firstItem="9Px-7S-l8y" firstAttribute="leading" secondItem="UZw-Zt-ISK" secondAttribute="leadingMargin" id="HBd-9m-tJt"/>
+                                        <constraint firstItem="9Px-7S-l8y" firstAttribute="leading" secondItem="UZw-Zt-ISK" secondAttribute="leadingMargin" constant="8" id="HBd-9m-tJt"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="9Px-7S-l8y" secondAttribute="bottom" id="UDp-9d-X12"/>
                                         <constraint firstItem="9Px-7S-l8y" firstAttribute="top" secondItem="UZw-Zt-ISK" secondAttribute="topMargin" id="bvF-Y7-yF1"/>
                                         <constraint firstItem="hG4-nk-mVF" firstAttribute="leading" secondItem="9Px-7S-l8y" secondAttribute="trailing" constant="10" id="myx-B8-dbh"/>
@@ -154,9 +190,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPY-I4-8Zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1232.8" y="878.41079460269873"/>
+            <point key="canvasLocation" x="2015" y="-575"/>
         </scene>
-        <!--Add Edit Sphere Table View Controller-->
+        <!--Add / Edit Sphere-->
         <scene sceneID="KzP-SR-mDN">
             <objects>
                 <tableViewController id="lAC-aH-YI6" customClass="AddEditSphereTableViewController" customModule="RayTracer" customModuleProvider="target" sceneMemberID="viewController">
@@ -170,10 +206,18 @@
                             <outlet property="delegate" destination="lAC-aH-YI6" id="pjS-h5-DhV"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Add / Edit Sphere" id="GEa-oB-iQd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Ijg-0G-h7o">
+                            <connections>
+                                <segue destination="nhi-oH-SOG" kind="unwind" identifier="UnwindToSpheresTableViewController" unwindAction="unwindToSpheresTableViewControllerWithSender:" id="7iw-mo-qn4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUk-ed-Q3h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="nhi-oH-SOG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2034" y="878"/>
+            <point key="canvasLocation" x="3041" y="-575"/>
         </scene>
         <!--Spheres-->
         <scene sceneID="6uD-jg-z7j">
@@ -190,7 +234,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dnh-VP-O1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="282" y="879"/>
+            <point key="canvasLocation" x="996" y="-575"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="JCf-1o-R5N">
@@ -205,6 +249,7 @@
                     <connections>
                         <segue destination="1bW-I3-FiY" kind="relationship" relationship="viewControllers" id="BCf-hl-zFH"/>
                         <segue destination="FVs-Ll-KIY" kind="relationship" relationship="viewControllers" id="xnU-hx-L1t"/>
+                        <segue destination="4ZE-Ce-XFR" kind="relationship" relationship="viewControllers" id="Eel-TY-HMq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UQa-A3-Af6" userLabel="First Responder" sceneMemberID="firstResponder"/>

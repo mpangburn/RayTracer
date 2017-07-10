@@ -113,6 +113,7 @@
                 <outlet property="colorView" destination="Eh7-cz-gfz" id="BRP-QN-uQc"/>
                 <outlet property="greenSlider" destination="0bD-5m-Tg5" id="yY3-Ae-lYq"/>
                 <outlet property="redSlider" destination="qd1-fh-O5t" id="KUg-mM-nhX"/>
+                <outlet property="titleLabel" destination="c9V-RN-lCB" id="TBV-ob-nvw"/>
             </connections>
             <point key="canvasLocation" x="67" y="44"/>
         </tableViewCell>

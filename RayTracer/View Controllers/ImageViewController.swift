@@ -20,8 +20,9 @@ class ImageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = NSLocalizedString("Image", comment: "The title text for the ray-traced image screen")
 //        activityIndicatorView.startAnimating()
-        processImage()
+//        processImage()
 //        activityIndicatorView.stopAnimating()
         activityIndicatorView.isHidden = true
         setupScrollView()
@@ -29,7 +30,14 @@ class ImageViewController: UIViewController {
 //        centerScrollViewContents()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        processImage()
+//        setupScrollView()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
+//        processImage()
+//        setupScrollView()
         setZoomScale()
         centerScrollViewContents()
     }

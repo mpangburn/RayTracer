@@ -16,6 +16,7 @@ class SpheresTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = NSLocalizedString("Spheres", comment: "The title text for sphere list screen")
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
 
@@ -49,7 +50,7 @@ class SpheresTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SphereTableViewCell.className, for: indexPath) as! SphereTableViewCell
-        cell.equationLabel.text = spheres[indexPath.row].equation
+        cell.equationLabel.text = spheres[indexPath.row].equation(usingIntegers: true)
         cell.colorView.backgroundColor = UIColor(spheres[indexPath.row].color)
         return cell
     }
@@ -105,18 +106,19 @@ class SpheresTableViewController: UITableViewController {
     }
     */
 
-
     // MARK: - Navigation
+
+    @IBAction func unwindToSpheresTableViewController(sender: UIStoryboardSegue) { }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier! {
         case "AddSphere":
             let destination = segue.destination as! AddEditSphereTableViewController
-            destination.title = "Add Sphere"
+            destination.title = NSLocalizedString("Add Sphere", comment: "The title text for the sphere adding screen")
         case "EditSphere":
             let destination = segue.destination as! AddEditSphereTableViewController
-            destination.title = "Edit Sphere"
+            destination.title = NSLocalizedString("Edit Sphere", comment: "The title text for the sphere editing screen")
             guard let selectedRow = tableView.indexPathForSelectedRow?.row else { return }
             destination.sphere = spheres[selectedRow]
         default:

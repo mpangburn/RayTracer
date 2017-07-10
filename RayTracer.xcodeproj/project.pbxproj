@@ -50,8 +50,14 @@
 		89CEA6DB1F1203040008B05B /* Expandable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DA1F1203040008B05B /* Expandable.swift */; };
 		89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */; };
 		89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */; };
+		89CEA6E21F12BC1A0008B05B /* FinishTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6E01F12BC1A0008B05B /* FinishTableViewCell.swift */; };
+		89CEA6E31F12BC1A0008B05B /* FinishTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89CEA6E11F12BC1A0008B05B /* FinishTableViewCell.xib */; };
 		89E568E51F11EE7B003E782C /* ColorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E568E41F11EE7B003E782C /* ColorView.xib */; };
 		89E568E71F11EF16003E782C /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E568E61F11EF16003E782C /* ColorView.swift */; };
+		89FF805E1F12FBAB00A9F4AB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FF805D1F12FBAB00A9F4AB /* SettingsTableViewController.swift */; };
+		89FF80601F12FD9800A9F4AB /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FF805F1F12FD9800A9F4AB /* UserDefaults.swift */; };
+		89FF80631F13105400A9F4AB /* SingleButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FF80611F13105400A9F4AB /* SingleButtonTableViewCell.swift */; };
+		89FF80641F13105400A9F4AB /* SingleButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89FF80621F13105400A9F4AB /* SingleButtonTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,8 +118,14 @@
 		89CEA6DA1F1203040008B05B /* Expandable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Expandable.swift; path = Views/Expandable.swift; sourceTree = "<group>"; };
 		89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleValueTableViewCell.swift; path = Views/SingleValueTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SingleValueTableViewCell.xib; path = Views/SingleValueTableViewCell.xib; sourceTree = "<group>"; };
+		89CEA6E01F12BC1A0008B05B /* FinishTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FinishTableViewCell.swift; path = Views/FinishTableViewCell.swift; sourceTree = "<group>"; };
+		89CEA6E11F12BC1A0008B05B /* FinishTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FinishTableViewCell.xib; path = Views/FinishTableViewCell.xib; sourceTree = "<group>"; };
 		89E568E41F11EE7B003E782C /* ColorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ColorView.xib; path = Views/ColorView.xib; sourceTree = "<group>"; };
 		89E568E61F11EF16003E782C /* ColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorView.swift; path = Views/ColorView.swift; sourceTree = "<group>"; };
+		89FF805D1F12FBAB00A9F4AB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		89FF805F1F12FD9800A9F4AB /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		89FF80611F13105400A9F4AB /* SingleButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleButtonTableViewCell.swift; path = Views/SingleButtonTableViewCell.swift; sourceTree = "<group>"; };
+		89FF80621F13105400A9F4AB /* SingleButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SingleButtonTableViewCell.xib; path = Views/SingleButtonTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +205,7 @@
 				895856861F1173E300BEB595 /* UIColor.swift */,
 				895856511F116B2D00BEB595 /* UIImage.swift */,
 				8958568D1F11795100BEB595 /* UITableViewCell.swift */,
+				89FF805F1F12FD9800A9F4AB /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -221,9 +234,10 @@
 		895856601F116B2D00BEB595 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				895856621F116B2D00BEB595 /* SpheresTableViewController.swift */,
 				8958568F1F11A02B00BEB595 /* AddEditSphereTableViewController.swift */,
 				895856611F116B2D00BEB595 /* ImageViewController.swift */,
+				89FF805D1F12FBAB00A9F4AB /* SettingsTableViewController.swift */,
+				895856621F116B2D00BEB595 /* SpheresTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -244,8 +258,12 @@
 				895856971F11CF5E00BEB595 /* ColorTableViewCell.swift */,
 				895856981F11CF5E00BEB595 /* ColorTableViewCell.xib */,
 				89CEA6DA1F1203040008B05B /* Expandable.swift */,
+				89CEA6E01F12BC1A0008B05B /* FinishTableViewCell.swift */,
+				89CEA6E11F12BC1A0008B05B /* FinishTableViewCell.xib */,
 				895856911F11A21000BEB595 /* PointTableViewCell.swift */,
 				895856921F11A21000BEB595 /* PointTableViewCell.xib */,
+				89FF80611F13105400A9F4AB /* SingleButtonTableViewCell.swift */,
+				89FF80621F13105400A9F4AB /* SingleButtonTableViewCell.xib */,
 				89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */,
 				89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */,
 				895856881F1175F300BEB595 /* SphereTableViewCell.swift */,
@@ -342,6 +360,8 @@
 				8958563A1F116A2B00BEB595 /* LaunchScreen.storyboard in Resources */,
 				89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */,
 				89E568E51F11EE7B003E782C /* ColorView.xib in Resources */,
+				89FF80641F13105400A9F4AB /* SingleButtonTableViewCell.xib in Resources */,
+				89CEA6E31F12BC1A0008B05B /* FinishTableViewCell.xib in Resources */,
 				895856371F116A2B00BEB595 /* Assets.xcassets in Resources */,
 				895856321F116A2B00BEB595 /* Main.storyboard in Resources */,
 				8958569A1F11CF5E00BEB595 /* ColorTableViewCell.xib in Resources */,
@@ -371,11 +391,13 @@
 				895856641F116B2D00BEB595 /* UIImage.swift in Sources */,
 				8958566F1F116B2D00BEB595 /* Sphere.swift in Sources */,
 				895856901F11A02B00BEB595 /* AddEditSphereTableViewController.swift in Sources */,
+				89FF80631F13105400A9F4AB /* SingleButtonTableViewCell.swift in Sources */,
 				895856871F1173E300BEB595 /* UIColor.swift in Sources */,
 				895856711F116B2D00BEB595 /* Vector.swift in Sources */,
 				895856701F116B2D00BEB595 /* Utilities.swift in Sources */,
 				895856661F116B2D00BEB595 /* Finish.swift in Sources */,
 				895856961F11A2D900BEB595 /* NibLoadable.swift in Sources */,
+				89FF80601F12FD9800A9F4AB /* UserDefaults.swift in Sources */,
 				8958566E1F116B2D00BEB595 /* Sphere+CoreDataProperties.swift in Sources */,
 				895856721F116B2D00BEB595 /* ImageViewController.swift in Sources */,
 				895856631F116B2D00BEB595 /* Double.swift in Sources */,
@@ -390,7 +412,9 @@
 				895856891F1175F300BEB595 /* SphereTableViewCell.swift in Sources */,
 				895856991F11CF5E00BEB595 /* ColorTableViewCell.swift in Sources */,
 				895856731F116B2D00BEB595 /* SpheresTableViewController.swift in Sources */,
+				89FF805E1F12FBAB00A9F4AB /* SettingsTableViewController.swift in Sources */,
 				8958568C1F11794000BEB595 /* IdentifiableClass.swift in Sources */,
+				89CEA6E21F12BC1A0008B05B /* FinishTableViewCell.swift in Sources */,
 				8958562D1F116A2B00BEB595 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
