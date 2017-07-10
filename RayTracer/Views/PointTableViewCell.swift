@@ -23,15 +23,14 @@ class PointTableViewCell: UITableViewCell {
 
     var point: Point {
         get {
-            let xCoordinate = Double(xTextField.text!) ?? 0
-            let yCoordinate = Double(yTextField.text!) ?? 0
-            let zCoordinate = Double(zTextField.text!) ?? 0
-            return Point(x: xCoordinate, y: yCoordinate, z: zCoordinate)
+            return Point(x: Double(xSlider.value).roundTo(places: 1),
+                         y: Double(ySlider.value).roundTo(places: 1),
+                         z: Double(zSlider.value).roundTo(places: 1))
         }
         set {
-            xTextField.text = String(newValue.x)
-            yTextField.text = String(newValue.y)
-            zTextField.text = String(newValue.z)
+            xSlider.value = Float(newValue.x)
+            ySlider.value = Float(newValue.y)
+            zSlider.value = Float(newValue.z)
             updateCoordinatesLabel()
         }
     }
@@ -40,28 +39,28 @@ class PointTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var coordinatesLabel: UILabel!
-    @IBOutlet weak var coordinateDetailWrapperView: UIView!
-    @IBOutlet weak var coordinateDetailWrapperViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var xTextField: UITextField!
-    @IBOutlet weak var yTextField: UITextField!
-    @IBOutlet weak var zTextField: UITextField!
+    @IBOutlet weak var slidersWrapperView: UIView!
+    @IBOutlet weak var slidersWrapperViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var xSlider: UISlider!
+    @IBOutlet weak var ySlider: UISlider!
+    @IBOutlet weak var zSlider: UISlider!
 
-    private var coordinateDetailStackViewExpandedHeight: CGFloat = 0
+    private var slidersWrapperViewExpandedHeight: CGFloat = 0
 
     var isExpanded: Bool {
         get {
-            return coordinateDetailWrapperView.alpha == 1
+            return slidersWrapperView.alpha == 1
         }
         set {
             if newValue {
                 UIView.animate(withDuration: 1) {
-                    self.coordinateDetailWrapperView.alpha = 1
-                    self.coordinateDetailWrapperViewHeightConstraint.constant = self.coordinateDetailStackViewExpandedHeight
+                    self.slidersWrapperView.alpha = 1
+                    self.slidersWrapperViewHeightConstraint.constant = self.slidersWrapperViewExpandedHeight
                 }
 
             } else {
-                coordinateDetailWrapperView.alpha = 0
-                coordinateDetailWrapperViewHeightConstraint.constant = 0
+                slidersWrapperView.alpha = 0
+                slidersWrapperViewHeightConstraint.constant = 0
             }
         }
     }
@@ -69,7 +68,7 @@ class PointTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         titleLabel.text = NSLocalizedString("Position", comment: "The title text for the position editing cell")
-        coordinateDetailStackViewExpandedHeight = coordinateDetailWrapperViewHeightConstraint.constant
+        slidersWrapperViewExpandedHeight = slidersWrapperViewHeightConstraint.constant
         isExpanded = false
     }
 
@@ -86,7 +85,7 @@ class PointTableViewCell: UITableViewCell {
         coordinatesLabel.text = "(\(point.x), \(point.y), \(point.z))"
     }
     
-    @IBAction func pointChanged(_ sender: UITextField) {
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
         updateCoordinatesLabel()
         delegate?.pointTableViewCellPointDidChange(self)
     }

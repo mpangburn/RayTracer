@@ -77,7 +77,7 @@ class AddEditSphereTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0 {
-            return NSLocalizedString("A sphere's finish consists of four components:\nambient - the percentage of ambient light reflected by the sphere\ndiffuse - the percentage of diffuse light reflected by the sphere\nspecular - the percentage of specular light reflected by the sphere\nroughness - the modeled roughness of the sphere, which affects the spread of the specular light across the object.", comment: "Sphere finish description")
+            return NSLocalizedString("Ambient, diffuse, and specular refer to the percentages of respective light reflected by the sphere's finish. Roughness is the modeled roughness of the sphere, which affects the spread of the specular light across the surface.", comment: "Sphere finish description")
         } else {
             return nil
         }

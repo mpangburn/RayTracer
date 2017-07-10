@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="169.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rhk-nq-18j">
@@ -50,27 +50,27 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XhJ-g5-FHw">
-                        <rect key="frame" x="40" y="38.5" width="240" height="123"/>
+                        <rect key="frame" x="38" y="38.5" width="244" height="123"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="NIW-uG-hZc">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="120"/>
+                                <rect key="frame" x="0.0" y="0.0" width="244" height="120"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qd1-fh-O5t">
-                                        <rect key="frame" x="-2" y="0.0" width="244" height="38.5"/>
+                                        <rect key="frame" x="-2" y="0.0" width="248" height="38.5"/>
                                         <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="colorChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="0QN-72-qJr"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="0bD-5m-Tg5">
-                                        <rect key="frame" x="-2" y="41.5" width="244" height="38"/>
+                                        <rect key="frame" x="-2" y="41.5" width="248" height="38"/>
                                         <color key="tintColor" red="0.1647058824" green="0.6588235294" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="colorChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="EHl-wk-UMD"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Kva-m3-g2H">
-                                        <rect key="frame" x="-2" y="82.5" width="244" height="38.5"/>
+                                        <rect key="frame" x="-2" y="82.5" width="248" height="38.5"/>
                                         <connections>
                                             <action selector="colorChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="9ao-aT-KS9"/>
                                         </connections>
@@ -90,7 +90,6 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="NIW-uG-hZc" secondAttribute="trailing" id="7Qo-tf-RaM"/>
                             <constraint firstAttribute="bottom" secondItem="NIW-uG-hZc" secondAttribute="bottom" priority="800" constant="3" id="HbQ-gy-gis"/>
-                            <constraint firstAttribute="width" constant="240" id="KPK-rf-5h8"/>
                             <constraint firstItem="NIW-uG-hZc" firstAttribute="leading" secondItem="XhJ-g5-FHw" secondAttribute="leading" id="cBJ-hV-tnc"/>
                             <constraint firstAttribute="height" constant="123" id="nAI-mM-Qf0"/>
                             <constraint firstItem="NIW-uG-hZc" firstAttribute="top" secondItem="XhJ-g5-FHw" secondAttribute="top" id="zyq-Ha-zGC"/>
@@ -99,7 +98,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="rhk-nq-18j" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="80u-Qh-CVf"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="XhJ-g5-FHw" secondAttribute="trailing" constant="30" id="DgJ-d6-mwQ"/>
                     <constraint firstAttribute="bottomMargin" secondItem="XhJ-g5-FHw" secondAttribute="bottom" priority="750" id="ILe-9n-Ff6"/>
+                    <constraint firstItem="XhJ-g5-FHw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="30" id="aEE-9D-IqY"/>
                     <constraint firstItem="XhJ-g5-FHw" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="eu5-C6-GPp"/>
                     <constraint firstItem="rhk-nq-18j" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="hc2-9F-a9R"/>
                     <constraint firstItem="rhk-nq-18j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="oHY-2M-WHF"/>

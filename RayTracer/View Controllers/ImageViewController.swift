@@ -56,9 +56,9 @@ class ImageViewController: UIViewController {
         let frame = RayTracer.Defaults.frame
         let image = RayTracer.castAllRays(on: spheres,
                                           in: frame,
-                                          with: RayTracer.Defaults.ambient,
-                                          under: RayTracer.Defaults.light,
-                                          viewedFrom: RayTracer.Defaults.eye)
+                                          with: UserDefaults.standard.ambient ?? RayTracer.Defaults.ambient,
+                                          under: UserDefaults.standard.light ?? RayTracer.Defaults.light,
+                                          viewedFrom: UserDefaults.standard.eye ?? RayTracer.Defaults.eye)
         spheresImageViewHeightConstraint.constant = CGFloat(frame.height)
         spheresImageViewWidthConstraint.constant = CGFloat(frame.width)
         spheresImageView.image = UIImage(image)
