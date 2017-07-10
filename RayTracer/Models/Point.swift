@@ -10,7 +10,7 @@ import Foundation
 
 
 /// Represents a point in 3D space.
-public class Point: NSObject {
+public class Point: NSObject, NSCoding {
 
     /// The x-coordinate of the point.
     public var x: Double
@@ -32,6 +32,23 @@ public class Point: NSObject {
         self.x = x
         self.y = y
         self.z = z
+    }
+
+    private enum CodingKey: String {
+        case x, y, z
+    }
+
+    public required convenience init?(coder aDecoder: NSCoder) {
+        let x = aDecoder.decodeDouble(forKey: CodingKey.x.rawValue)
+        let y = aDecoder.decodeDouble(forKey: CodingKey.y.rawValue)
+        let z = aDecoder.decodeDouble(forKey: CodingKey.z.rawValue)
+        self.init(x: x, y: y, z: z)
+    }
+
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.x, forKey: CodingKey.x.rawValue)
+        aCoder.encode(self.y, forKey: CodingKey.y.rawValue)
+        aCoder.encode(self.z, forKey: CodingKey.z.rawValue)
     }
 }
 
@@ -96,7 +113,6 @@ extension Point {
 }
 
 
-// MARK: - Equatability
 extension Point {
     public static func == (lhs: Point, rhs: Point) -> Bool {
         return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
@@ -104,7 +120,6 @@ extension Point {
 }
 
 
-// MARK: - Description
 extension Point {
     override public var description: String {
         return "Point(x: \(self.x), y: \(self.y), z: \(self.z))"

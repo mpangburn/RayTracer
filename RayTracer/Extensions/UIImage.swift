@@ -11,7 +11,6 @@ import UIKit
 
 extension UIImage {
 
-    // c.f. https://stackoverflow.com/questions/7235991/create-image-from-rgb-data
     /**
      Creates a UIImage from the image data.
      - Parameter image: The image data used generate the UIImage.

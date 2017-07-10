@@ -28,4 +28,12 @@ extension Sphere {
     /// The finish of the sphere.
     @NSManaged public var finish: Finish
 
+    /// The date of the sphere's creation.
+    @NSManaged public var creationDate: NSDate
+
+    override public func awakeFromInsert() {
+        super.awakeFromInsert()
+        creationDate = NSDate()
+    }
+
 }

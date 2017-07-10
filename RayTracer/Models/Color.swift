@@ -11,7 +11,7 @@ import Foundation
 
 /// Represents a color using the RGBA color space.
 /// Each of the color's components falls in the interval [0,1].
-public class Color: NSObject {
+public class Color: NSObject, NSCoding {
 
     /// The color's red component.
     public var red: Double
@@ -38,6 +38,25 @@ public class Color: NSObject {
         self.green = green
         self.blue = blue
         self.alpha = alpha
+    }
+
+    private enum CodingKey: String {
+        case red, green, blue, alpha
+    }
+
+    public required convenience init?(coder aDecoder: NSCoder) {
+        let red = aDecoder.decodeDouble(forKey: CodingKey.red.rawValue)
+        let green = aDecoder.decodeDouble(forKey: CodingKey.green.rawValue)
+        let blue = aDecoder.decodeDouble(forKey: CodingKey.blue.rawValue)
+        let alpha = aDecoder.decodeDouble(forKey: CodingKey.alpha.rawValue)
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.red, forKey: CodingKey.red.rawValue)
+        aCoder.encode(self.green, forKey: CodingKey.green.rawValue)
+        aCoder.encode(self.blue, forKey: CodingKey.blue.rawValue)
+        aCoder.encode(self.alpha, forKey: CodingKey.alpha.rawValue)
     }
 }
 
@@ -70,7 +89,6 @@ extension Color {
 }
 
 
-// MARK: - Equatability
 extension Color {
     public static func == (lhs: Color, rhs: Color) -> Bool {
         return lhs.red == rhs.red &&
@@ -81,7 +99,6 @@ extension Color {
 }
 
 
-// MARK: - Description
 extension Color {
     override public var description: String {
         return "Color(red: \(self.red), green: \(self.green), blue: \(self.blue), alpha: \(self.alpha))"

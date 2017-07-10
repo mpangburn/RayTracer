@@ -27,3 +27,27 @@ extension Double {
         }
     }
 }
+
+
+extension Double {
+    
+    func roundTo(places: Int) -> Double {
+        let divisor = pow(10, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+
+    var integerPercentage: String {
+        switch self {
+        case let value where value <= 0:
+            return "0%"
+        case let value where value >= 1:
+            return "100%"
+        default:
+            return "\(Int(self.roundTo(places: 2) * 100))%"
+        }
+    }
+
+    var twoDigitDecimalString: String {
+        return String(format: "%.2f", self.roundTo(places: 2))
+    }
+}
