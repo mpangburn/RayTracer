@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rhk-nq-18j">
-                        <rect key="frame" x="8" y="8" width="304" height="30.5"/>
+                        <rect key="frame" x="8" y="8" width="304" height="28.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eh7-cz-gfz">
                                 <rect key="frame" x="220" y="9" width="76" height="10"/>
@@ -50,27 +50,27 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XhJ-g5-FHw">
-                        <rect key="frame" x="38" y="38.5" width="244" height="123"/>
+                        <rect key="frame" x="38" y="36.5" width="244" height="125"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="NIW-uG-hZc">
-                                <rect key="frame" x="0.0" y="0.0" width="244" height="120"/>
+                                <rect key="frame" x="0.0" y="0.0" width="244" height="122"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qd1-fh-O5t">
-                                        <rect key="frame" x="-2" y="0.0" width="248" height="38.5"/>
+                                        <rect key="frame" x="-2" y="0.0" width="248" height="39"/>
                                         <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="colorChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="0QN-72-qJr"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="0bD-5m-Tg5">
-                                        <rect key="frame" x="-2" y="41.5" width="248" height="38"/>
+                                        <rect key="frame" x="-2" y="42" width="248" height="39"/>
                                         <color key="tintColor" red="0.1647058824" green="0.6588235294" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="colorChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="EHl-wk-UMD"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Kva-m3-g2H">
-                                        <rect key="frame" x="-2" y="82.5" width="248" height="38.5"/>
+                                        <rect key="frame" x="-2" y="84" width="248" height="39"/>
                                         <connections>
                                             <action selector="colorChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="9ao-aT-KS9"/>
                                         </connections>
@@ -91,7 +91,7 @@
                             <constraint firstAttribute="trailing" secondItem="NIW-uG-hZc" secondAttribute="trailing" id="7Qo-tf-RaM"/>
                             <constraint firstAttribute="bottom" secondItem="NIW-uG-hZc" secondAttribute="bottom" priority="800" constant="3" id="HbQ-gy-gis"/>
                             <constraint firstItem="NIW-uG-hZc" firstAttribute="leading" secondItem="XhJ-g5-FHw" secondAttribute="leading" id="cBJ-hV-tnc"/>
-                            <constraint firstAttribute="height" constant="123" id="nAI-mM-Qf0"/>
+                            <constraint firstAttribute="height" constant="125" id="nAI-mM-Qf0"/>
                             <constraint firstItem="NIW-uG-hZc" firstAttribute="top" secondItem="XhJ-g5-FHw" secondAttribute="top" id="zyq-Ha-zGC"/>
                         </constraints>
                     </view>

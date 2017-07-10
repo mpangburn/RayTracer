@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, ExpandableTableViewCellDelegate {
 
     var eye: Point! {
         get {
@@ -149,6 +149,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         tableView.endEditing(false)
         tableView.beginUpdates()
+        closeExpandableTableViewCells(excluding: indexPath)
         return indexPath
     }
 

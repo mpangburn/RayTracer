@@ -14,7 +14,7 @@ protocol FinishTableViewCellDelegate: class {
 }
 
 
-class FinishTableViewCell: UITableViewCell {
+class FinishTableViewCell: ExpandableTableViewCell {
 
     weak var delegate: FinishTableViewCellDelegate?
 
@@ -34,49 +34,30 @@ class FinishTableViewCell: UITableViewCell {
         }
     }
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.text = NSLocalizedString("Finish", comment: "The title text for the finish editing cell")
+        }
+    }
+
     @IBOutlet weak var componentsLabel: UILabel!
-    @IBOutlet weak var slidersWrapperView: UIView!
-    @IBOutlet weak var slidersWrapperViewHeightConstraint: NSLayoutConstraint!
+
+    @IBOutlet weak var slidersWrapperView: UIView! {
+        didSet {
+            expandableView = slidersWrapperView
+        }
+    }
+
+    @IBOutlet weak var slidersWrapperViewHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            expandableViewHeightConstraint = slidersWrapperViewHeightConstraint
+        }
+    }
+
     @IBOutlet weak var ambientSlider: UISlider!
     @IBOutlet weak var diffuseSlider: UISlider!
     @IBOutlet weak var specularSlider: UISlider!
     @IBOutlet weak var roughnessSlider: UISlider!
-
-    private var slidersWrapperViewExpandedHeight: CGFloat = 0
-
-    var isExpanded: Bool {
-        get {
-            return slidersWrapperView.alpha == 1
-        }
-        set {
-            if newValue {
-                UIView.animate(withDuration: 1) {
-                    self.slidersWrapperView.alpha = 1
-                    self.slidersWrapperViewHeightConstraint.constant = self.slidersWrapperViewExpandedHeight
-                }
-
-            } else {
-                slidersWrapperView.alpha = 0
-                slidersWrapperViewHeightConstraint.constant = 0
-            }
-        }
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        titleLabel.text = NSLocalizedString("Finish", comment: "The title text for the finish editing cell")
-        slidersWrapperViewExpandedHeight = slidersWrapperViewHeightConstraint.constant
-        isExpanded = false
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        if selected {
-            isExpanded = !isExpanded
-        }
-    }
 
     private func updateComponentsLabel() {
         let finish = self.finish

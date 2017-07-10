@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddEditSphereTableViewController: UITableViewController {
+class AddEditSphereTableViewController: UITableViewController, ExpandableTableViewCellDelegate {
 
     var sphere: Sphere?
 
@@ -49,24 +49,24 @@ class AddEditSphereTableViewController: UITableViewController {
         switch Row(rawValue: indexPath.row)! {
         case .center:
             let cell = tableView.dequeueReusableCell(withIdentifier: PointTableViewCell.className) as! PointTableViewCell
-            cell.delegate = self
             cell.point = sphere?.center ?? Point.zero
+            cell.delegate = self
             return cell
         case .radius:
             let cell = tableView.dequeueReusableCell(withIdentifier: SingleValueTableViewCell.className) as! SingleValueTableViewCell
-            cell.delegate = self
-            cell.label.text = "Radius"
+            cell.label.text = NSLocalizedString("Radius", comment: "The title of the cell for configuring sphere radius")
             cell.value = sphere?.radius ?? 0
+            cell.delegate = self
             return cell
         case .color:
             let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className) as! ColorTableViewCell
-            cell.delegate = self
             cell.color = sphere?.color ?? Color.black
+            cell.delegate = self
             return cell
         case .finish:
             let cell = tableView.dequeueReusableCell(withIdentifier: FinishTableViewCell.className) as! FinishTableViewCell
-            cell.delegate = self
             cell.finish = sphere?.finish ?? Finish.none
+            cell.delegate = self
             return cell
         }
     }
@@ -77,7 +77,7 @@ class AddEditSphereTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0 {
-            return NSLocalizedString("Ambient, diffuse, and specular refer to the percentages of respective light reflected by the sphere's finish. Roughness is the modeled roughness of the sphere, which affects the spread of the specular light across the surface.", comment: "Sphere finish description")
+            return NSLocalizedString("Ambient, diffuse, and specular refer to the percentages of respective light reflected by the sphere's finish. Roughness is the modeled roughness of the sphere, which affects the spread of specular light across the surface.", comment: "Sphere finish description")
         } else {
             return nil
         }
@@ -90,6 +90,7 @@ class AddEditSphereTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         tableView.endEditing(false)
         tableView.beginUpdates()
+        closeExpandableTableViewCells(excluding: indexPath)
         return indexPath
     }
 
@@ -149,6 +150,12 @@ extension AddEditSphereTableViewController: SingleValueTableViewCellDelegate {
         if let sphere = self.sphere {
             sphere.radius = cell.value
         }
+    }
+
+    func singleValueTableViewCellDidBeginEditing(_ cell: SingleValueTableViewCell) {
+        tableView.beginUpdates()
+        closeExpandableTableViewCells()
+        tableView.endUpdates()
     }
 }
 

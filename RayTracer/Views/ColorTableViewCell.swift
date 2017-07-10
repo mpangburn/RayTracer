@@ -13,11 +13,8 @@ protocol ColorTableViewCellDelegate: class {
     func colorTableViewCellColorDidChange(_ cell: ColorTableViewCell)
 }
 
-enum ColorType {
-    case light, ambient
-}
 
-class ColorTableViewCell: UITableViewCell {
+class ColorTableViewCell: ExpandableTableViewCell {
 
     weak var delegate: ColorTableViewCellDelegate?
 
@@ -33,50 +30,46 @@ class ColorTableViewCell: UITableViewCell {
         }
     }
 
+    enum ColorType {
+        case light, ambient
+    }
+
     var colorType: ColorType?
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var colorView: UIView!   //ColorView!
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.text = NSLocalizedString("Color", comment: "The title text for the color editing cell")
+
+        }
+    }
+
+    @IBOutlet weak var colorView: UIView! {
+        didSet {
+            colorView.layer.borderColor = UIColor.black.cgColor
+            colorView.layer.borderWidth = 1.0
+        }
+    }
+
+    @IBOutlet weak var colorSliderWrapperView: UIView! {
+        didSet {
+            expandableView = colorSliderWrapperView
+        }
+    }
+
+    @IBOutlet weak var colorSliderWrapperViewHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            expandableViewHeightConstraint = colorSliderWrapperViewHeightConstraint
+        }
+    }
+
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
-    @IBOutlet weak var colorSliderWrapperView: UIView!
-    @IBOutlet weak var colorSliderWrapperViewHeightConstraint: NSLayoutConstraint!
-
-    private var colorSliderStackViewExpandedHeight: CGFloat = 0
-
-    var isExpanded: Bool {
-        get {
-            return colorSliderWrapperView.alpha == 1
-        }
-        set {
-            if newValue {
-                UIView.animate(withDuration: 1) {
-                    self.colorSliderWrapperView.alpha = 1
-                    self.colorSliderWrapperViewHeightConstraint.constant = self.colorSliderStackViewExpandedHeight
-                }
-
-            } else {
-                colorSliderWrapperView.alpha = 0
-                colorSliderWrapperViewHeightConstraint.constant = 0
-            }
-        }
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        titleLabel.text = NSLocalizedString("Color", comment: "The title text for the color editing cell")
-        colorView.layer.borderColor = UIColor.black.cgColor
-        colorView.layer.borderWidth = 1.0
-        colorSliderStackViewExpandedHeight = colorSliderWrapperViewHeightConstraint.constant
-        isExpanded = false
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         if selected {
-            isExpanded = !isExpanded
             updateColorView()
         }
     }

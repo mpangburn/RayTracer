@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76i-7L-p7b">
@@ -26,7 +26,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oWX-Un-xhr">
-                        <rect key="frame" x="68" y="7" width="236" height="30"/>
+                        <rect key="frame" x="68" y="0.0" width="236" height="43.5"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -41,8 +41,8 @@
                     <constraint firstItem="76i-7L-p7b" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="WoT-5U-8x6"/>
                     <constraint firstItem="oWX-Un-xhr" firstAttribute="leading" secondItem="76i-7L-p7b" secondAttribute="trailing" constant="10" id="YnI-he-6VX"/>
                     <constraint firstAttribute="trailing" secondItem="oWX-Un-xhr" secondAttribute="trailing" constant="16" id="Yto-62-OCy"/>
-                    <constraint firstItem="oWX-Un-xhr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="fbq-sl-7QG"/>
-                    <constraint firstAttribute="bottom" secondItem="oWX-Un-xhr" secondAttribute="bottom" constant="7" id="qIi-oE-jhq"/>
+                    <constraint firstItem="oWX-Un-xhr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fbq-sl-7QG"/>
+                    <constraint firstAttribute="bottom" secondItem="oWX-Un-xhr" secondAttribute="bottom" id="qIi-oE-jhq"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
