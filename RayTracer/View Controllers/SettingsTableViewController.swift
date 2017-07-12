@@ -18,8 +18,10 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
 
         tableView.register(PointTableViewCell.nib(), forCellReuseIdentifier: PointTableViewCell.className)
         tableView.register(ColorTableViewCell.nib(), forCellReuseIdentifier: ColorTableViewCell.className)
+        tableView.register(IntensityTableViewCell.nib(), forCellReuseIdentifier: IntensityTableViewCell.className)
+        tableView.register(FrameViewTableViewCell.nib(), forCellReuseIdentifier: FrameViewTableViewCell.className)
+        tableView.register(FrameSizeTableViewCell.nib(), forCellReuseIdentifier: FrameSizeTableViewCell.className)
         tableView.register(SingleButtonTableViewCell.nib(), forCellReuseIdentifier: SingleButtonTableViewCell.className)
-        tableView.register(FrameTableViewCell.nib(), forCellReuseIdentifier: FrameTableViewCell.className)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -39,6 +41,16 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
     private enum LightRow: Int {
         case position
         case color
+        case intensity
+
+        static let count = 3
+    }
+
+    private enum FrameRow: Int {
+        case view
+        case size
+
+        static let count = 2
     }
 
     // MARK: - Table view data source
@@ -65,7 +77,9 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Section(rawValue: section)! {
         case .light:
-            return 2
+            return LightRow.count
+        case .frame:
+            return FrameRow.count
         default:
             return 1
         }
@@ -93,6 +107,11 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
                 cell.colorType = .light
                 cell.delegate = self
                 return cell
+            case .intensity:
+                let cell = tableView.dequeueReusableCell(withIdentifier: IntensityTableViewCell.className) as! IntensityTableViewCell
+                cell.intensity = tracer.settings.light.intensity
+                cell.delegate = self
+                return cell
             }
         case .ambience:
             let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className) as! ColorTableViewCell
@@ -101,10 +120,18 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
             cell.delegate = self
             return cell
         case .frame:
-            let cell = tableView.dequeueReusableCell(withIdentifier: FrameTableViewCell.className) as! FrameTableViewCell
-            cell.sceneFrame = tracer.settings.sceneFrame
-            cell.delegate = self
-            return cell
+            switch FrameRow(rawValue: indexPath.row)! {
+            case .view:
+                let cell = tableView.dequeueReusableCell(withIdentifier: FrameViewTableViewCell.className) as! FrameViewTableViewCell
+                cell.frameView = tracer.settings.sceneFrame.view
+                cell.delegate = self
+                return cell
+            case .size:
+                let cell = tableView.dequeueReusableCell(withIdentifier: FrameSizeTableViewCell.className) as! FrameSizeTableViewCell
+                cell.frameSize = tracer.settings.sceneFrame.size
+                cell.delegate = self
+                return cell
+            }
         case .resetButton:
             let cell = tableView.dequeueReusableCell(withIdentifier: SingleButtonTableViewCell.className) as! SingleButtonTableViewCell
             cell.button.setTitle(NSLocalizedString("Reset", comment: "The title text for the reset button"), for: .normal)
@@ -121,7 +148,7 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Section(rawValue: section)! {
         case .frame:
-            return NSLocalizedString("The minimum and maximum x and y values specify the bounds of the view rectangle (with z-coordinate 0). The width and height specify the dimensions of the rendered image.", comment: "The description for the scene frame")
+            return NSLocalizedString("The minimum and maximum x and y values specify the bounds of the view rectangle rendered in the z-plane. The width and height specify the dimensions of the rendered image.", comment: "The description for the scene frame")
         default:
             return nil
         }
@@ -180,8 +207,20 @@ extension SettingsTableViewController: ColorTableViewCellDelegate {
     }
 }
 
-extension SettingsTableViewController: FrameTableViewCellDelegate {
-    func frameTableViewCellFrameDidChange(_ cell: FrameTableViewCell) {
-        tracer.settings.sceneFrame = cell.sceneFrame
+extension SettingsTableViewController: IntensityTableViewCellDelegate {
+    func intensityTableViewCellIntensityDidChange(_ cell: IntensityTableViewCell) {
+        tracer.settings.light.intensity = cell.intensity
+    }
+}
+
+extension SettingsTableViewController: FrameViewTableViewCellDelegate {
+    func frameViewTableViewCellFrameViewDidChange(_ cell: FrameViewTableViewCell) {
+        tracer.settings.sceneFrame.view = cell.frameView
+    }
+}
+
+extension SettingsTableViewController: FrameSizeTableViewCellDelegate {
+    func frameSizeTableViewCellFrameSizeDidChange(_ cell: FrameSizeTableViewCell) {
+        tracer.settings.sceneFrame.size = cell.frameSize
     }
 }

@@ -21,7 +21,7 @@ struct RayTracerSettings {
     var ambience = Color.white
 
     /// The frame for the scene.
-    var sceneFrame = Frame(minX: -10, maxX: 10, minY: -7.5, maxY: 7.5, width: 512, height: 384)
+    var sceneFrame = Frame(view: Frame.View(minX: -10, maxX: 10, minY: -7.5, maxY: 7.5, zPlane: 0), size: Frame.Size(width: 512, height: 384))
 }
 
 
@@ -29,31 +29,44 @@ extension RayTracerSettings: RawRepresentable {
     typealias RawValue = [String: Any]
 
     init?(rawValue: RawValue) {
-        if let eyePointData = rawValue["eyePoint"] as? Data,
-            let eyePoint = NSKeyedUnarchiver.unarchiveObject(with: eyePointData) as? Point {
-            self.eyePoint = eyePoint
+        guard let eyePointData = rawValue["eyePoint"] as? Data,
+            let eyePoint = NSKeyedUnarchiver.unarchiveObject(with: eyePointData) as? Point else {
+                return nil
         }
 
-        if let lightDict = rawValue["light"] as? [String: Data],
-            let lightPosition = NSKeyedUnarchiver.unarchiveObject(with: lightDict["position"]!) as? Point,
-            let lightColor = NSKeyedUnarchiver.unarchiveObject(with: lightDict["color"]!) as? Color {
-            self.light = Light(position: lightPosition, color: lightColor)
+        self.eyePoint = eyePoint
+
+        guard let lightDict = rawValue["light"] as? [String: Any],
+            let lightPositionData = lightDict["position"] as? Data,
+            let lightPosition = NSKeyedUnarchiver.unarchiveObject(with: lightPositionData) as? Point,
+            let lightColorData = lightDict["color"] as? Data,
+            let lightColor = NSKeyedUnarchiver.unarchiveObject(with: lightColorData) as? Color,
+            let intensityRawValue = lightDict["intensity"] as? Double,
+            let intensity = Light.Intensity(rawValue: intensityRawValue) else {
+                return nil
         }
 
-        if let ambienceData = rawValue["ambience"] as? Data,
-            let ambience = NSKeyedUnarchiver.unarchiveObject(with: ambienceData) as? Color {
-            self.ambience = ambience
+        self.light = Light(position: lightPosition, color: lightColor, intensity: intensity)
+
+        guard let ambienceData = rawValue["ambience"] as? Data,
+            let ambience = NSKeyedUnarchiver.unarchiveObject(with: ambienceData) as? Color else {
+                return nil
         }
 
-        if let sceneFrameDict = rawValue["sceneFrame"] as? [String: Any] {
-            let sceneFrame = Frame(minX: sceneFrameDict["minX"] as! Double,
-                                   maxX: sceneFrameDict["maxX"] as! Double,
-                                   minY: sceneFrameDict["minY"] as! Double,
-                                   maxY: sceneFrameDict["maxY"] as! Double,
-                                   width: sceneFrameDict["width"] as! Int,
-                                   height: sceneFrameDict["height"] as! Int)
-            self.sceneFrame = sceneFrame
+        self.ambience = ambience
+
+        guard let sceneFrameDict = rawValue["sceneFrame"] as? [String: Any],
+            let minX = sceneFrameDict["minX"] as? Double,
+            let maxX = sceneFrameDict["maxX"] as? Double,
+            let minY = sceneFrameDict["minY"] as? Double,
+            let maxY = sceneFrameDict["maxY"] as? Double,
+            let zPlane = sceneFrameDict["zPlane"] as? Double,
+            let width = sceneFrameDict["width"] as? Int,
+            let height = sceneFrameDict["height"] as? Int else {
+                return nil
         }
+
+        self.sceneFrame = Frame(view: Frame.View(minX: minX, maxX: maxX, minY: minY, maxY: maxY, zPlane: zPlane), size: Frame.Size(width: width, height: height))
     }
 
     var rawValue: RawValue {
@@ -63,22 +76,22 @@ extension RayTracerSettings: RawRepresentable {
 
         raw["light"] = [
             "position": NSKeyedArchiver.archivedData(withRootObject: light.position),
-            "color": NSKeyedArchiver.archivedData(withRootObject: light.color)
+            "color": NSKeyedArchiver.archivedData(withRootObject: light.color),
+            "intensity": light.intensity.rawValue
         ]
 
         raw["ambience"] = NSKeyedArchiver.archivedData(withRootObject: ambience)
 
         raw["sceneFrame"] = [
-            "minX": sceneFrame.minX,
-            "maxX": sceneFrame.maxX,
-            "minY": sceneFrame.minY,
-            "maxY": sceneFrame.maxY,
-            "width": sceneFrame.width,
-            "height": sceneFrame.height
+            "minX": sceneFrame.view.minX,
+            "maxX": sceneFrame.view.maxX,
+            "minY": sceneFrame.view.minY,
+            "maxY": sceneFrame.view.maxY,
+            "zPlane": sceneFrame.view.zPlane,
+            "width": sceneFrame.size.width,
+            "height": sceneFrame.size.height
         ]
 
         return raw
-
     }
-
 }

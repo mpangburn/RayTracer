@@ -28,7 +28,7 @@ class ImageViewController: UIViewController {
             presentLoadingView(message: "Rendering image...")
 
             // Move to a background thread to render the image
-            DispatchQueue.global(qos: .userInitiated).async {
+            DispatchQueue.global(qos: .userInteractive).async {
                 let image = self.renderImage()
 
                 // Bounce back to the main thread to update the UI
@@ -74,6 +74,7 @@ class ImageViewController: UIViewController {
     private func updateScrollView() {
         setZoomScale()
         centerScrollViewContents()
+//        scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
     }
 
     private func setupTapToZoomGestureRecognizer() {

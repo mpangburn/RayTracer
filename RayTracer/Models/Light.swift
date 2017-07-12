@@ -26,17 +26,11 @@ struct Light {
     }
 
     /// The intensity of the light.
-    var intensity: Intensity = .medium {
-        willSet {
-            self.color.scaleComponents(by: newValue.rawValue / intensity.rawValue)
-        }
-    }
+    var intensity: Intensity
 
-    init(position: Point, color: Color, intensity: Intensity = .medium) {
-        self.position = position
-        self.color = color
-        self.intensity = intensity
-        self.color.scaleComponents(by: intensity.rawValue)
+    /// The effective color of the light, factoring in intensity.
+    var effectiveColor: Color {
+        return color.withComponentsScaled(by: intensity.rawValue)
     }
 }
 

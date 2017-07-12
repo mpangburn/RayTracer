@@ -1,5 +1,5 @@
 //
-//  FrameTableViewCell.swift
+//  FrameViewTableViewCell.swift
 //  RayTracer
 //
 //  Created by Michael Pangburn on 7/10/17.
@@ -9,38 +9,36 @@
 import UIKit
 
 
-protocol FrameTableViewCellDelegate: class {
-    func frameTableViewCellFrameDidChange(_ cell: FrameTableViewCell)
+protocol FrameViewTableViewCellDelegate: class {
+    func frameViewTableViewCellFrameViewDidChange(_ cell: FrameViewTableViewCell)
 }
 
 
-class FrameTableViewCell: ExpandableTableViewCell {
+class FrameViewTableViewCell: ExpandableTableViewCell {
 
-    weak var delegate: FrameTableViewCellDelegate?
+    weak var delegate: FrameViewTableViewCellDelegate?
 
-    var sceneFrame: Frame {
+    var frameView: Frame.View {
         get {
-            return Frame(minX: Double(minXSlider.value),
+            return Frame.View(minX: Double(minXSlider.value),
                          maxX: Double(maxXSlider.value),
                          minY: Double(minYSlider.value),
                          maxY: Double(maxYSlider.value),
-                         width: Int(widthSlider.value),
-                         height: Int(heightSlider.value))
+                         zPlane: Double(zPlaneSlider.value))
         }
         set {
             minXSlider.value = Float(newValue.minX)
             maxXSlider.value = Float(newValue.maxX)
             minYSlider.value = Float(newValue.minY)
             maxYSlider.value = Float(newValue.maxY)
-            widthSlider.value = Float(newValue.width)
-            heightSlider.value = Float(newValue.height)
+            zPlaneSlider.value = Float(newValue.zPlane)
             updateMeasurementsLabel()
         }
     }
 
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
-            titleLabel.text = NSLocalizedString("Frame", comment: "The title text for the frame editing cell")
+            titleLabel.text = NSLocalizedString("View", comment: "The title text for the frame view editing cell")
         }
     }
 
@@ -62,16 +60,15 @@ class FrameTableViewCell: ExpandableTableViewCell {
     @IBOutlet weak var maxXSlider: UISlider!
     @IBOutlet weak var minYSlider: UISlider!
     @IBOutlet weak var maxYSlider: UISlider!
-    @IBOutlet weak var widthSlider: UISlider!
-    @IBOutlet weak var heightSlider: UISlider!
+    @IBOutlet weak var zPlaneSlider: UISlider!
 
     private func updateMeasurementsLabel() {
-        let frame = self.sceneFrame
-        measurementsLabel.text = "(\(Int(frame.minX)), \(Int(frame.maxX))) × (\(Int(frame.minY)), \(Int(frame.maxY))) | \(frame.width) × \(frame.height)"
+        let frameView = self.frameView
+        measurementsLabel.text = "(\(Int(frameView.minX)), \(Int(frameView.maxX))) × (\(Int(frameView.minY)), \(Int(frameView.maxY))) on z = \(Int(frameView.zPlane))"
     }
 
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         updateMeasurementsLabel()
-        delegate?.frameTableViewCellFrameDidChange(self)
+        delegate?.frameViewTableViewCellFrameViewDidChange(self)
     }
 }
