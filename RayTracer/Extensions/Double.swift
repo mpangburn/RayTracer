@@ -9,6 +9,7 @@
 import Foundation
 
 
+// MARK: - Double utilities for image processing
 extension Double {
 
     /// 8-bit integer equivalent of a value in the range [0,1].
@@ -25,6 +26,16 @@ extension Double {
 }
 
 
+// MARK: - Double approximate equality
+extension Double {
+
+    func epsilonEquals(_ other: Double, epsilon: Double) -> Bool {
+        return Swift.abs(self - other) < epsilon
+    }
+}
+
+
+// MARK: - Double formatting utilties
 extension Double {
     
     func roundTo(places: Int) -> Double {

@@ -22,10 +22,10 @@ extension UIImage {
         let componentsPerPixel = 4
 
         let imagePixelData = image.pixelData
-        var cgPixelData = [UInt8](repeating: 0, count: area * componentsPerPixel)
+        var cgPixelData = Array<UInt8>(repeating: 0, count: area * componentsPerPixel)
 
-//        print(imagePixelData.count)
-//        print(cgPixelData.count)
+        print(imagePixelData.count * 4)
+        print(cgPixelData.count)
 
         for (index, pixel) in imagePixelData.enumerated() {
             let offset = index * componentsPerPixel

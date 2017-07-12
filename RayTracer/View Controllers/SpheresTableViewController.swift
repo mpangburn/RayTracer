@@ -24,8 +24,8 @@ class SpheresTableViewController: UITableViewController {
 //        let deleteResult = try! context.execute(deleteRequest)
 
         let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
-        let dateSortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
-        fetchRequest.sortDescriptors = [dateSortDescriptor]
+//        let dateSortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
+//        fetchRequest.sortDescriptors = [dateSortDescriptor]
 
         do {
             tracer.spheres = try context.fetch(fetchRequest)
@@ -39,6 +39,14 @@ class SpheresTableViewController: UITableViewController {
         }
 
          appDelegate.saveContext()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // Accounts for unexpected sphere reordering after tracing
+        tracer.spheres.sort { ($0.creationDate as Date) < ($1.creationDate as Date) }
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -66,7 +74,7 @@ class SpheresTableViewController: UITableViewController {
         }
     }
 
-    func deleteSphereData(at indexPath: IndexPath) {
+    private func deleteSphereData(at indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()

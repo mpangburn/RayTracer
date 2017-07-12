@@ -18,7 +18,7 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
 
         tableView.register(PointTableViewCell.nib(), forCellReuseIdentifier: PointTableViewCell.className)
         tableView.register(ColorTableViewCell.nib(), forCellReuseIdentifier: ColorTableViewCell.className)
-        tableView.register(IntensityTableViewCell.nib(), forCellReuseIdentifier: IntensityTableViewCell.className)
+        tableView.register(SegmentedControlTableViewCell.nib(), forCellReuseIdentifier: SegmentedControlTableViewCell.className)
         tableView.register(FrameViewTableViewCell.nib(), forCellReuseIdentifier: FrameViewTableViewCell.className)
         tableView.register(FrameSizeTableViewCell.nib(), forCellReuseIdentifier: FrameSizeTableViewCell.className)
         tableView.register(SingleButtonTableViewCell.nib(), forCellReuseIdentifier: SingleButtonTableViewCell.className)
@@ -28,7 +28,7 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
         tableView.endEditing(true)
     }
 
-    private enum Section: Int {
+    fileprivate enum Section: Int {
         case eyePoint
         case light
         case ambience
@@ -46,11 +46,12 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
         static let count = 3
     }
 
-    private enum FrameRow: Int {
+    fileprivate enum FrameRow: Int {
         case view
         case size
+        case aspectRatio
 
-        static let count = 2
+        static let count = 3
     }
 
     // MARK: - Table view data source
@@ -108,7 +109,8 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
                 cell.delegate = self
                 return cell
             case .intensity:
-                let cell = tableView.dequeueReusableCell(withIdentifier: IntensityTableViewCell.className) as! IntensityTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: SegmentedControlTableViewCell.className) as! SegmentedControlTableViewCell
+                cell.valueType = .intensity
                 cell.intensity = tracer.settings.light.intensity
                 cell.delegate = self
                 return cell
@@ -128,7 +130,14 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
                 return cell
             case .size:
                 let cell = tableView.dequeueReusableCell(withIdentifier: FrameSizeTableViewCell.className) as! FrameSizeTableViewCell
-                cell.frameSize = tracer.settings.sceneFrame.size
+                cell.width = tracer.settings.sceneFrame.width
+                cell.height = tracer.settings.sceneFrame.height
+                cell.delegate = self
+                return cell
+            case .aspectRatio:
+                let cell = tableView.dequeueReusableCell(withIdentifier: SegmentedControlTableViewCell.className) as! SegmentedControlTableViewCell
+                cell.valueType = .aspectRatio
+                cell.aspectRatio = tracer.settings.sceneFrame.aspectRatio
                 cell.delegate = self
                 return cell
             }
@@ -207,9 +216,18 @@ extension SettingsTableViewController: ColorTableViewCellDelegate {
     }
 }
 
-extension SettingsTableViewController: IntensityTableViewCellDelegate {
-    func intensityTableViewCellIntensityDidChange(_ cell: IntensityTableViewCell) {
-        tracer.settings.light.intensity = cell.intensity
+extension SettingsTableViewController: SegmentedControlTableViewCellDelegate {
+    func segmentedControlTableViewCellSegmentedControlValueDidChange(_ cell: SegmentedControlTableViewCell) {
+        switch cell.valueType {
+        case .intensity:
+            tracer.settings.light.intensity = cell.intensity!
+        case .aspectRatio:
+            tracer.settings.sceneFrame.aspectRatio = cell.aspectRatio!
+            let sizeCell = tableView.cellForRow(at: IndexPath(row: FrameRow.size.rawValue, section: Section.frame.rawValue)) as! FrameSizeTableViewCell
+            sizeCell.width = tracer.settings.sceneFrame.width
+            sizeCell.height = tracer.settings.sceneFrame.height
+            print(tracer.settings.sceneFrame)
+        }
     }
 }
 
@@ -221,6 +239,22 @@ extension SettingsTableViewController: FrameViewTableViewCellDelegate {
 
 extension SettingsTableViewController: FrameSizeTableViewCellDelegate {
     func frameSizeTableViewCellFrameSizeDidChange(_ cell: FrameSizeTableViewCell) {
-        tracer.settings.sceneFrame.size = cell.frameSize
+        tracer.settings.sceneFrame.width = cell.width
+        tracer.settings.sceneFrame.height = cell.height
+
+//        let maxWidthSliderValue = Int(cell.widthSlider.maximumValue)
+//        if tracer.settings.sceneFrame.width > maxWidthSliderValue {
+//            tracer.settings.sceneFrame.width = maxWidthSliderValue
+//        }
+//
+//        let maxHeightSliderValue = Int(cell.heightSlider.maximumValue)
+//        if tracer.settings.sceneFrame.height > maxHeightSliderValue {
+//            tracer.settings.sceneFrame.height = maxHeightSliderValue
+//        }
+
+        cell.width = tracer.settings.sceneFrame.width
+        cell.height = tracer.settings.sceneFrame.height
+
+        print(tracer.settings.sceneFrame)
     }
 }

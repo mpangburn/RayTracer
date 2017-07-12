@@ -19,10 +19,21 @@ struct Light {
     var color: Color
 
     /// Values representing possible light intensities.
-    enum Intensity: Double {
-        case low = 0.5
-        case medium = 1.0
-        case high = 1.5
+    enum Intensity: Int {
+        case low
+        case medium
+        case high
+
+        var value: Double {
+            switch self {
+            case .low:
+                return 0.5
+            case .medium:
+                return 1.0
+            case .high:
+                return 1.5
+            }
+        }
     }
 
     /// The intensity of the light.
@@ -30,7 +41,7 @@ struct Light {
 
     /// The effective color of the light, factoring in intensity.
     var effectiveColor: Color {
-        return color.withComponentsScaled(by: intensity.rawValue)
+        return color.withComponentsScaled(by: intensity.value)
     }
 }
 

@@ -42,8 +42,8 @@ class RayTracer {
 
         var pixels: [Color.PixelData] = []
         let frame = settings.sceneFrame
-        let xOffset = (frame.view.maxX - frame.view.minX) / Double(frame.size.width)
-        let yOffset = (frame.view.maxY - frame.view.minY) / Double(frame.size.height)
+        let xOffset = (frame.view.maxX - frame.view.minX) / Double(frame.width)
+        let yOffset = (frame.view.maxY - frame.view.minY) / Double(frame.height)
 
         var y = frame.view.maxY
         while y > frame.view.minY {
@@ -58,8 +58,17 @@ class RayTracer {
             y -= yOffset
         }
 
-        pixels = Array(pixels.prefix(upTo: frame.size.width * frame.size.height))
-        return Image(pixelData: pixels, width: frame.size.width, height: frame.size.height)
+//        pixels = Array(pixels.prefix(upTo: frame.width * frame.height))
+//        pixels = Array(pixels.suffix(frame.width * frame.height))
+        let areaDifference = pixels.count - (frame.width * frame.height)
+        let halfAreaDifference = areaDifference / 2
+        pixels = Array(pixels.dropFirst(halfAreaDifference))
+        pixels = Array(pixels.dropLast(areaDifference - halfAreaDifference))
+
+//        let _ = pixels.dropFirst(halfAreaDifference)
+//        let _ = pixels.dropLast(halfAreaDifference)
+
+        return Image(pixelData: pixels, width: frame.width, height: frame.height)
     }
 
 

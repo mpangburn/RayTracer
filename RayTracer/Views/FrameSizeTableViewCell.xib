@@ -79,13 +79,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="g98-tp-MSg">
                                         <rect key="frame" x="80" y="0.0" width="179" height="75"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="500" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="VFb-aq-c8U">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1000" minValue="20" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="VFb-aq-c8U">
                                                 <rect key="frame" x="-2" y="0.0" width="183" height="38.5"/>
                                                 <connections>
                                                     <action selector="sliderValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="V6g-Qd-wDI"/>
                                                 </connections>
                                             </slider>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="500" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="akl-Uj-XQQ">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1000" minValue="20" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="akl-Uj-XQQ">
                                                 <rect key="frame" x="-2" y="37.5" width="183" height="38.5"/>
                                                 <connections>
                                                     <action selector="sliderValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="qRg-RM-0LA"/>

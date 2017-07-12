@@ -51,10 +51,11 @@
 		8958569A1F11CF5E00BEB595 /* ColorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 895856981F11CF5E00BEB595 /* ColorTableViewCell.xib */; };
 		8961BC0E1F15368E0004DCD5 /* RayTracerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC0D1F15368E0004DCD5 /* RayTracerSettings.swift */; };
 		8961BC101F159FB00004DCD5 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC0F1F159FB00004DCD5 /* UIViewController.swift */; };
-		8961BC131F15B7B80004DCD5 /* IntensityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC111F15B7B80004DCD5 /* IntensityTableViewCell.swift */; };
-		8961BC141F15B7B80004DCD5 /* IntensityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8961BC121F15B7B80004DCD5 /* IntensityTableViewCell.xib */; };
+		8961BC141F15B7B80004DCD5 /* SegmentedControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8961BC121F15B7B80004DCD5 /* SegmentedControlTableViewCell.xib */; };
 		8961BC171F15F6F00004DCD5 /* FrameSizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC151F15F6F00004DCD5 /* FrameSizeTableViewCell.swift */; };
 		8961BC181F15F6F00004DCD5 /* FrameSizeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8961BC161F15F6F00004DCD5 /* FrameSizeTableViewCell.xib */; };
+		8961BC1A1F1606010004DCD5 /* DoubleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC191F1606010004DCD5 /* DoubleTests.swift */; };
+		8961BC1E1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC1D1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift */; };
 		89CEA6DB1F1203040008B05B /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */; };
 		89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */; };
 		89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */; };
@@ -125,10 +126,11 @@
 		895856981F11CF5E00BEB595 /* ColorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ColorTableViewCell.xib; path = Views/ColorTableViewCell.xib; sourceTree = "<group>"; };
 		8961BC0D1F15368E0004DCD5 /* RayTracerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RayTracerSettings.swift; sourceTree = "<group>"; };
 		8961BC0F1F159FB00004DCD5 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		8961BC111F15B7B80004DCD5 /* IntensityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntensityTableViewCell.swift; path = Views/IntensityTableViewCell.swift; sourceTree = "<group>"; };
-		8961BC121F15B7B80004DCD5 /* IntensityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IntensityTableViewCell.xib; path = Views/IntensityTableViewCell.xib; sourceTree = "<group>"; };
+		8961BC121F15B7B80004DCD5 /* SegmentedControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SegmentedControlTableViewCell.xib; path = Views/SegmentedControlTableViewCell.xib; sourceTree = "<group>"; };
 		8961BC151F15F6F00004DCD5 /* FrameSizeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrameSizeTableViewCell.swift; path = Views/FrameSizeTableViewCell.swift; sourceTree = "<group>"; };
 		8961BC161F15F6F00004DCD5 /* FrameSizeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FrameSizeTableViewCell.xib; path = Views/FrameSizeTableViewCell.xib; sourceTree = "<group>"; };
+		8961BC191F1606010004DCD5 /* DoubleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleTests.swift; sourceTree = "<group>"; };
+		8961BC1D1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegmentedControlTableViewCell.swift; path = Views/SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewCell.swift; path = Views/ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleValueTableViewCell.swift; path = Views/SingleValueTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SingleValueTableViewCell.xib; path = Views/SingleValueTableViewCell.xib; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				895856441F116A2B00BEB595 /* RayTracerTests.swift */,
+				8961BC191F1606010004DCD5 /* DoubleTests.swift */,
 				8958567A1F116E3C00BEB595 /* PointTests.swift */,
 				8958567B1F116E3C00BEB595 /* RayTests.swift */,
 				8958567C1F116E3C00BEB595 /* SphereTests.swift */,
@@ -276,10 +279,10 @@
 				8961BC161F15F6F00004DCD5 /* FrameSizeTableViewCell.xib */,
 				891E7E671F145F7D007D2AA2 /* FrameViewTableViewCell.swift */,
 				891E7E681F145F7D007D2AA2 /* FrameViewTableViewCell.xib */,
-				8961BC111F15B7B80004DCD5 /* IntensityTableViewCell.swift */,
-				8961BC121F15B7B80004DCD5 /* IntensityTableViewCell.xib */,
 				895856911F11A21000BEB595 /* PointTableViewCell.swift */,
 				895856921F11A21000BEB595 /* PointTableViewCell.xib */,
+				8961BC1D1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift */,
+				8961BC121F15B7B80004DCD5 /* SegmentedControlTableViewCell.xib */,
 				89FF80611F13105400A9F4AB /* SingleButtonTableViewCell.swift */,
 				89FF80621F13105400A9F4AB /* SingleButtonTableViewCell.xib */,
 				89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */,
@@ -379,7 +382,7 @@
 				89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */,
 				89FF80641F13105400A9F4AB /* SingleButtonTableViewCell.xib in Resources */,
 				89CEA6E31F12BC1A0008B05B /* FinishTableViewCell.xib in Resources */,
-				8961BC141F15B7B80004DCD5 /* IntensityTableViewCell.xib in Resources */,
+				8961BC141F15B7B80004DCD5 /* SegmentedControlTableViewCell.xib in Resources */,
 				895856371F116A2B00BEB595 /* Assets.xcassets in Resources */,
 				895856321F116A2B00BEB595 /* Main.storyboard in Resources */,
 				8958569A1F11CF5E00BEB595 /* ColorTableViewCell.xib in Resources */,
@@ -415,7 +418,7 @@
 				89FF80631F13105400A9F4AB /* SingleButtonTableViewCell.swift in Sources */,
 				895856871F1173E300BEB595 /* UIColor.swift in Sources */,
 				8961BC171F15F6F00004DCD5 /* FrameSizeTableViewCell.swift in Sources */,
-				8961BC131F15B7B80004DCD5 /* IntensityTableViewCell.swift in Sources */,
+				8961BC1E1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift in Sources */,
 				895856711F116B2D00BEB595 /* Vector.swift in Sources */,
 				895856701F116B2D00BEB595 /* Utilities.swift in Sources */,
 				895856661F116B2D00BEB595 /* Finish.swift in Sources */,
@@ -454,6 +457,7 @@
 				895856841F116E3C00BEB595 /* UtilitiesTests.swift in Sources */,
 				8958567F1F116E3C00BEB595 /* CoreDataHelpers.swift in Sources */,
 				895856831F116E3C00BEB595 /* SphereTests.swift in Sources */,
+				8961BC1A1F1606010004DCD5 /* DoubleTests.swift in Sources */,
 				895856451F116A2B00BEB595 /* RayTracerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

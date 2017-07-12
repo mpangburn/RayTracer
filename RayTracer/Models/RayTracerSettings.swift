@@ -21,7 +21,7 @@ struct RayTracerSettings {
     var ambience = Color.white
 
     /// The frame for the scene.
-    var sceneFrame = Frame(view: Frame.View(minX: -10, maxX: 10, minY: -7.5, maxY: 7.5, zPlane: 0), size: Frame.Size(width: 512, height: 384))
+    var sceneFrame = Frame(view: Frame.View(minX: -10, maxX: 10, minY: -7.5, maxY: 7.5, zPlane: 0), width: 512, height: 384, aspectRatio: .fourThree)//size: Frame.Size(width: 512, height: 384))
 }
 
 
@@ -41,7 +41,7 @@ extension RayTracerSettings: RawRepresentable {
             let lightPosition = NSKeyedUnarchiver.unarchiveObject(with: lightPositionData) as? Point,
             let lightColorData = lightDict["color"] as? Data,
             let lightColor = NSKeyedUnarchiver.unarchiveObject(with: lightColorData) as? Color,
-            let intensityRawValue = lightDict["intensity"] as? Double,
+            let intensityRawValue = lightDict["intensity"] as? Int,
             let intensity = Light.Intensity(rawValue: intensityRawValue) else {
                 return nil
         }
@@ -62,11 +62,13 @@ extension RayTracerSettings: RawRepresentable {
             let maxY = sceneFrameDict["maxY"] as? Double,
             let zPlane = sceneFrameDict["zPlane"] as? Double,
             let width = sceneFrameDict["width"] as? Int,
-            let height = sceneFrameDict["height"] as? Int else {
+            let height = sceneFrameDict["height"] as? Int,
+            let aspectRatioRawValue = sceneFrameDict["aspectRatio"] as? Int,
+            let aspectRatio = Frame.AspectRatio(rawValue: aspectRatioRawValue) else {
                 return nil
         }
 
-        self.sceneFrame = Frame(view: Frame.View(minX: minX, maxX: maxX, minY: minY, maxY: maxY, zPlane: zPlane), size: Frame.Size(width: width, height: height))
+        self.sceneFrame = Frame(view: Frame.View(minX: minX, maxX: maxX, minY: minY, maxY: maxY, zPlane: zPlane), width: width, height: height, aspectRatio: aspectRatio)//size: Frame.Size(width: width, height: height))
     }
 
     var rawValue: RawValue {
@@ -88,8 +90,9 @@ extension RayTracerSettings: RawRepresentable {
             "minY": sceneFrame.view.minY,
             "maxY": sceneFrame.view.maxY,
             "zPlane": sceneFrame.view.zPlane,
-            "width": sceneFrame.size.width,
-            "height": sceneFrame.size.height
+            "width": sceneFrame.width,
+            "height": sceneFrame.height,
+            "aspectRatio": sceneFrame.aspectRatio.rawValue
         ]
 
         return raw

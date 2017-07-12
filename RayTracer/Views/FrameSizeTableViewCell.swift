@@ -18,13 +18,22 @@ class FrameSizeTableViewCell: ExpandableTableViewCell {
 
     weak var delegate: FrameSizeTableViewCellDelegate?
 
-    var frameSize: Frame.Size {
+    var width: Int {
         get {
-            return Frame.Size(width: Int(widthSlider.value), height: Int(heightSlider.value))
+            return Int(widthSlider.value)
         }
         set {
-            widthSlider.value = Float(newValue.width)
-            heightSlider.value = Float(newValue.height)
+            widthSlider.value = Float(newValue)
+            updateSizeLabel()
+        }
+    }
+
+    var height: Int {
+        get {
+            return Int(heightSlider.value)
+        }
+        set {
+            heightSlider.value = Float(newValue)
             updateSizeLabel()
         }
     }
@@ -53,8 +62,7 @@ class FrameSizeTableViewCell: ExpandableTableViewCell {
     @IBOutlet weak var heightSlider: UISlider!
 
     func updateSizeLabel() {
-        let frameSize = self.frameSize
-        sizeLabel.text = "\(frameSize.width) × \(frameSize.height)"
+        sizeLabel.text = "\(width) × \(height)"
     }
 
     @IBAction func sliderValueChanged(_ sender: UISlider) {
