@@ -31,7 +31,6 @@ class ExpandableTableViewCell: UITableViewCell {
                     self.expandableView.alpha = 1
                     self.expandableViewHeightConstraint.constant = self.expandedViewHeight
                 }
-
             } else {
                 expandableView.alpha = 0
                 expandableViewHeightConstraint.constant = 0

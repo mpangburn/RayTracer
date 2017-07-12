@@ -10,13 +10,13 @@ import Foundation
 
 
 /// Represents a ray in 3D space.
-public struct Ray {
+struct Ray {
 
     /// The initial point of the ray.
-    public var initial: Point
+    var initial: Point
 
     /// The direction of the ray, represented as a vector.
-    public var direction: Vector
+    var direction: Vector
 }
 
 
@@ -28,7 +28,7 @@ extension Ray {
      - Parameter t: The parameter value used to compute the point.
      - Returns: The point on the ray computed by scaling its direction by the value.
      */
-    public func pointForVectorScaled(by t: Double) -> Point {
+    func pointForVectorScaled(by t: Double) -> Point {
         return self.initial.translate(by: t * self.direction)
     }
 
@@ -37,7 +37,7 @@ extension Ray {
      - Parameter sphere: The sphere to check for intersection with.
      - Returns: The point where the ray intersects the sphere, if it exists.
      */
-    public func intersection(with sphere: Sphere) -> Point? {
+    func intersection(with sphere: Sphere) -> Point? {
         let vectorFromCenterToInitial = Vector(from: sphere.center, to: self.initial)
 
         // Solves the quadratic for the value(s) of t for which
@@ -62,14 +62,14 @@ extension Ray {
     }
 
     /// A ray's intersection with a sphere.
-    public typealias Intersection = (sphere: Sphere, point: Point)
+    typealias Intersection = (sphere: Sphere, point: Point)
 
     /**
      Returns the intersections of the ray with the spheres.
      - Parameter spheres: The spheres to check for intersections with.
      - Returns: A list of tuples, each containing a sphere and the point where the ray intersects it.
      */
-    public func intersections(with spheres: [Sphere]) -> [Intersection] {
+    func intersections(with spheres: [Sphere]) -> [Intersection] {
         var intersections: [(sphere: Sphere, point: Point)] = []
         for sphere in spheres {
             if let intersection = self.intersection(with: sphere) {
@@ -84,7 +84,7 @@ extension Ray {
      - Parameter spheres: The spheres to compute distance from.
      - Returns: The closest of the spheres with which the ray intersects.
      */
-    public func closestIntersection(with spheres: [Sphere]) -> Intersection? {
+    func closestIntersection(with spheres: [Sphere]) -> Intersection? {
         let intersections = self.intersections(with: spheres)
         guard intersections.count > 0 else { return nil }
 
@@ -105,21 +105,21 @@ extension Ray {
 
 extension Ray: Equatable { }
 
-public func == (lhs: Ray, rhs: Ray) -> Bool {
+func == (lhs: Ray, rhs: Ray) -> Bool {
     return lhs.initial == rhs.initial && lhs.direction == rhs.direction
 }
 
-public func == (lhs: Ray.Intersection, rhs: Ray.Intersection) -> Bool {
+func == (lhs: Ray.Intersection, rhs: Ray.Intersection) -> Bool {
     return lhs.sphere == rhs.sphere && lhs.point == rhs.point
 }
 
 
 extension Ray: CustomStringConvertible, CustomDebugStringConvertible {
-    public var description: String {
+    var description: String {
         return "Ray(initial: \(self.initial), direction: \(self.direction))"
     }
 
-    public var debugDescription: String {
+    var debugDescription: String {
         return self.description
     }
 }

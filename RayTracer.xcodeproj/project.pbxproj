@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		891E7E691F145F7D007D2AA2 /* FrameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891E7E671F145F7D007D2AA2 /* FrameTableViewCell.swift */; };
+		891E7E6A1F145F7D007D2AA2 /* FrameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 891E7E681F145F7D007D2AA2 /* FrameTableViewCell.xib */; };
 		8958562D1F116A2B00BEB595 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958562C1F116A2B00BEB595 /* AppDelegate.swift */; };
 		895856321F116A2B00BEB595 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 895856301F116A2B00BEB595 /* Main.storyboard */; };
 		895856371F116A2B00BEB595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895856361F116A2B00BEB595 /* Assets.xcassets */; };
@@ -47,6 +49,8 @@
 		895856961F11A2D900BEB595 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856951F11A2D900BEB595 /* NibLoadable.swift */; };
 		895856991F11CF5E00BEB595 /* ColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895856971F11CF5E00BEB595 /* ColorTableViewCell.swift */; };
 		8958569A1F11CF5E00BEB595 /* ColorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 895856981F11CF5E00BEB595 /* ColorTableViewCell.xib */; };
+		8961BC0E1F15368E0004DCD5 /* RayTracerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC0D1F15368E0004DCD5 /* RayTracerSettings.swift */; };
+		8961BC101F159FB00004DCD5 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC0F1F159FB00004DCD5 /* UIViewController.swift */; };
 		89CEA6DB1F1203040008B05B /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */; };
 		89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */; };
 		89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */; };
@@ -69,6 +73,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		891E7E671F145F7D007D2AA2 /* FrameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrameTableViewCell.swift; path = Views/FrameTableViewCell.swift; sourceTree = "<group>"; };
+		891E7E681F145F7D007D2AA2 /* FrameTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FrameTableViewCell.xib; path = Views/FrameTableViewCell.xib; sourceTree = "<group>"; };
 		895856291F116A2B00BEB595 /* RayTracer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayTracer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8958562C1F116A2B00BEB595 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		895856311F116A2B00BEB595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,6 +119,8 @@
 		895856951F11A2D900BEB595 /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		895856971F11CF5E00BEB595 /* ColorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorTableViewCell.swift; path = Views/ColorTableViewCell.swift; sourceTree = "<group>"; };
 		895856981F11CF5E00BEB595 /* ColorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ColorTableViewCell.xib; path = Views/ColorTableViewCell.xib; sourceTree = "<group>"; };
+		8961BC0D1F15368E0004DCD5 /* RayTracerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RayTracerSettings.swift; sourceTree = "<group>"; };
+		8961BC0F1F159FB00004DCD5 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewCell.swift; path = Views/ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleValueTableViewCell.swift; path = Views/SingleValueTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SingleValueTableViewCell.xib; path = Views/SingleValueTableViewCell.xib; sourceTree = "<group>"; };
@@ -201,6 +209,7 @@
 				895856861F1173E300BEB595 /* UIColor.swift */,
 				895856511F116B2D00BEB595 /* UIImage.swift */,
 				8958568D1F11795100BEB595 /* UITableViewCell.swift */,
+				8961BC0F1F159FB00004DCD5 /* UIViewController.swift */,
 				89FF805F1F12FD9800A9F4AB /* UserDefaults.swift */,
 			);
 			path = Extensions;
@@ -217,6 +226,7 @@
 				895856581F116B2D00BEB595 /* Point.swift */,
 				895856591F116B2D00BEB595 /* Ray.swift */,
 				8958565A1F116B2D00BEB595 /* RayTracer.swift */,
+				8961BC0D1F15368E0004DCD5 /* RayTracerSettings.swift */,
 				8958565B1F116B2D00BEB595 /* Sphere+CoreDataClass.swift */,
 				8958565C1F116B2D00BEB595 /* Sphere+CoreDataProperties.swift */,
 				8958565D1F116B2D00BEB595 /* Sphere.swift */,
@@ -254,6 +264,8 @@
 				89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */,
 				89CEA6E01F12BC1A0008B05B /* FinishTableViewCell.swift */,
 				89CEA6E11F12BC1A0008B05B /* FinishTableViewCell.xib */,
+				891E7E671F145F7D007D2AA2 /* FrameTableViewCell.swift */,
+				891E7E681F145F7D007D2AA2 /* FrameTableViewCell.xib */,
 				895856911F11A21000BEB595 /* PointTableViewCell.swift */,
 				895856921F11A21000BEB595 /* PointTableViewCell.xib */,
 				89FF80611F13105400A9F4AB /* SingleButtonTableViewCell.swift */,
@@ -358,6 +370,7 @@
 				895856371F116A2B00BEB595 /* Assets.xcassets in Resources */,
 				895856321F116A2B00BEB595 /* Main.storyboard in Resources */,
 				8958569A1F11CF5E00BEB595 /* ColorTableViewCell.xib in Resources */,
+				891E7E6A1F145F7D007D2AA2 /* FrameTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +390,7 @@
 			files = (
 				8958568E1F11795100BEB595 /* UITableViewCell.swift in Sources */,
 				895856691F116B2D00BEB595 /* Light.swift in Sources */,
+				8961BC101F159FB00004DCD5 /* UIViewController.swift in Sources */,
 				89CEA6DB1F1203040008B05B /* ExpandableTableViewCell.swift in Sources */,
 				89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */,
 				895856681F116B2D00BEB595 /* Image.swift in Sources */,
@@ -394,7 +408,9 @@
 				8958566E1F116B2D00BEB595 /* Sphere+CoreDataProperties.swift in Sources */,
 				895856721F116B2D00BEB595 /* ImageViewController.swift in Sources */,
 				895856631F116B2D00BEB595 /* Double.swift in Sources */,
+				891E7E691F145F7D007D2AA2 /* FrameTableViewCell.swift in Sources */,
 				8958566D1F116B2D00BEB595 /* Sphere+CoreDataClass.swift in Sources */,
+				8961BC0E1F15368E0004DCD5 /* RayTracerSettings.swift in Sources */,
 				8958566A1F116B2D00BEB595 /* Point.swift in Sources */,
 				895856671F116B2D00BEB595 /* Frame.swift in Sources */,
 				895856651F116B2D00BEB595 /* Color.swift in Sources */,

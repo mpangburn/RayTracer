@@ -22,9 +22,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="d5L-pe-oed">
-                                <rect key="frame" x="177" y="323" width="20" height="20"/>
-                            </activityIndicatorView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBf-to-ugF">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
@@ -48,9 +45,7 @@
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VBf-to-ugF" secondAttribute="bottom" id="5A1-be-JQF"/>
                             <constraint firstItem="VBf-to-ugF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9BL-Ic-F8f"/>
-                            <constraint firstItem="d5L-pe-oed" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ijS-Ws-TjN"/>
                             <constraint firstAttribute="trailing" secondItem="VBf-to-ugF" secondAttribute="trailing" id="sG1-Et-UKV"/>
-                            <constraint firstItem="d5L-pe-oed" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wjY-Pr-lUi"/>
                             <constraint firstItem="VBf-to-ugF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="x2V-Kx-q25"/>
                         </constraints>
                     </view>
@@ -62,7 +57,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="d5L-pe-oed" id="xH9-en-RFR"/>
                         <outlet property="scrollView" destination="VBf-to-ugF" id="bSI-S1-yhS"/>
                         <outlet property="spheresImageView" destination="Ngz-Lf-FfR" id="a2d-kX-YMF"/>
                         <outlet property="spheresImageViewHeightConstraint" destination="Ld4-W9-kOX" id="oJ4-Fs-Idx"/>
@@ -171,7 +165,7 @@
                                 <connections>
                                     <outlet property="colorView" destination="hG4-nk-mVF" id="s6v-HG-sga"/>
                                     <outlet property="equationLabel" destination="9Px-7S-l8y" id="pR6-NS-673"/>
-                                    <segue destination="lAC-aH-YI6" kind="show" identifier="EditSphere" id="3lC-LT-r87"/>
+                                    <segue destination="lAC-aH-YI6" kind="show" identifier="EditSphere" id="htP-bP-sy6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -183,7 +177,7 @@
                     <navigationItem key="navigationItem" title="Spheres" id="4hJ-H7-nc0">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eVN-rx-Vdy">
                             <connections>
-                                <segue destination="lAC-aH-YI6" kind="show" identifier="AddSphere" id="0m6-sq-8aM"/>
+                                <segue destination="lWo-Lg-rWV" kind="presentation" identifier="AddSphere" id="0m6-sq-8aM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -207,6 +201,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add / Edit Sphere" id="GEa-oB-iQd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="4SG-6f-5Nw">
+                            <connections>
+                                <action selector="cancel:" destination="lAC-aH-YI6" id="vlb-Ew-qHe"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Ijg-0G-h7o">
                             <connections>
                                 <segue destination="nhi-oH-SOG" kind="unwind" identifier="UnwindToSpheresTableViewController" unwindAction="unwindToSpheresTableViewControllerWithSender:" id="7iw-mo-qn4"/>
@@ -217,7 +216,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUk-ed-Q3h" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="nhi-oH-SOG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3041" y="-575"/>
+            <point key="canvasLocation" x="3980" y="-575.26236881559225"/>
         </scene>
         <!--Spheres-->
         <scene sceneID="6uD-jg-z7j">
@@ -256,8 +255,26 @@
             </objects>
             <point key="canvasLocation" x="56.799999999999997" y="138.98050974512745"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="k46-ew-sfN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lWo-Lg-rWV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Ed-BJ-Rms">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lAC-aH-YI6" kind="relationship" relationship="rootViewController" id="jFW-ow-N44"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gfa-M1-j1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3031" y="-54"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3lC-LT-r87"/>
+        <segue reference="htP-bP-sy6"/>
     </inferredMetricsTieBreakers>
 </document>

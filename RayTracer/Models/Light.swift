@@ -10,29 +10,50 @@ import Foundation
 
 
 /// Represents a light emitted in 3D space.
-public struct Light {
+struct Light {
 
     /// The position of the light.
-    public var position: Point
+    var position: Point
 
     /// The color of the light.
-    public var color: Color
+    var color: Color
+
+    /// Values representing possible light intensities.
+    enum Intensity: Double {
+        case low = 0.5
+        case medium = 1.0
+        case high = 1.5
+    }
+
+    /// The intensity of the light.
+    var intensity: Intensity = .medium {
+        willSet {
+            self.color.scaleComponents(by: newValue.rawValue / intensity.rawValue)
+        }
+    }
+
+    init(position: Point, color: Color, intensity: Intensity = .medium) {
+        self.position = position
+        self.color = color
+        self.intensity = intensity
+        self.color.scaleComponents(by: intensity.rawValue)
+    }
 }
 
 
 extension Light: Equatable { }
 
-public func == (lhs: Light, rhs: Light) -> Bool {
+func == (lhs: Light, rhs: Light) -> Bool {
     return lhs.position == rhs.position && lhs.color == rhs.color
 }
 
 
 extension Light: CustomStringConvertible, CustomDebugStringConvertible {
-    public var description: String {
+    var description: String {
         return "Light(position: \(self.position), color: \(self.color))"
     }
 
-    public var debugDescription: String {
+    var debugDescription: String {
         return self.description
     }
 }

@@ -12,26 +12,26 @@ import CoreData
 
 extension Sphere {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Sphere> {
+    @nonobjc class func fetchRequest() -> NSFetchRequest<Sphere> {
         return NSFetchRequest<Sphere>(entityName: "Sphere")
     }
 
     /// The center of the sphere.
-    @NSManaged public var center: Point
+    @NSManaged var center: Point
 
     /// The radius of the sphere.
-    @NSManaged public var radius: Double
+    @NSManaged var radius: Double
 
     /// The color of the sphere.
-    @NSManaged public var color: Color
+    @NSManaged var color: Color
 
     /// The finish of the sphere.
-    @NSManaged public var finish: Finish
+    @NSManaged var finish: Finish
 
     /// The date of the sphere's creation.
-    @NSManaged public var creationDate: NSDate
+    @NSManaged var creationDate: NSDate
 
-    override public func awakeFromInsert() {
+    override func awakeFromInsert() {
         super.awakeFromInsert()
         creationDate = NSDate()
     }

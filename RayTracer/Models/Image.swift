@@ -10,23 +10,23 @@ import Foundation
 
 
 /// The data for an image.
-public struct Image {
+struct Image {
 
     /// The pixel data for the image.
-    public var pixelData: [Color.PixelData]
+    var pixelData: [Color.PixelData]
 
     /// The width of the image.
-    public var width: Int
+    var width: Int
 
     /// The height of the image.
-    public var height: Int
+    var height: Int
 }
 
 
 // MARK: - Image conversion
 extension Image {
 
-    public enum Format {
+    enum Format {
         case ppm
     }
 
@@ -37,7 +37,7 @@ extension Image {
         - fileName: The name of the file to write to (excluding the extension).
      - Returns: A boolean representing whether or not the image was saved successfully.
      */
-    @discardableResult public func write(to format: Image.Format, named fileName: String) -> Bool {
+    @discardableResult func write(to format: Image.Format, named fileName: String) -> Bool {
         switch format {
         case .ppm:
             return writeToPPM(named: fileName)
@@ -68,11 +68,11 @@ extension Image {
 
 
 extension Image: CustomStringConvertible, CustomDebugStringConvertible {
-    public var description: String {
+    var description: String {
         return "Image(pixelData: \(self.pixelData), width: \(self.width), height: \(self.height))"
     }
 
-    public var debugDescription: String {
+    var debugDescription: String {
         return self.description
     }
 }

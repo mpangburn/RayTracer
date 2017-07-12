@@ -17,7 +17,7 @@ protocol SingleValueTableViewCellDelegate: class {
 }
 
 
-class SingleValueTableViewCell: UITableViewCell {
+class SingleValueTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     weak var delegate: SingleValueTableViewCellDelegate?
 
@@ -36,14 +36,16 @@ class SingleValueTableViewCell: UITableViewCell {
             valueTextField.text = String(newValue)
         }
     }
-    
-    @IBAction func textFieldEditingDidEnd(_ sender: UITextField) {
+
+    func endTextFieldEditing() {
+        valueTextField.resignFirstResponder()
+    }
+
+    // MARK: - UITextFieldDelegate
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
         delegate?.singleValueTableViewCellValueDidChange(self)
     }
-}
-
-
-extension SingleValueTableViewCell: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         delegate?.singleValueTableViewCellDidBeginEditing(self)

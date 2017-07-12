@@ -16,57 +16,64 @@ class ImageViewController: UIViewController {
     @IBOutlet weak var spheresImageView: UIImageView!
     @IBOutlet weak var spheresImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var spheresImageViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Image", comment: "The title text for the ray-traced image screen")
-//        activityIndicatorView.startAnimating()
-//        processImage()
-//        activityIndicatorView.stopAnimating()
-        activityIndicatorView.isHidden = true
         setupScrollView()
-//        setZoomScale()
-//        centerScrollViewContents()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        processImage()
-//        setupScrollView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
-//        processImage()
-//        setupScrollView()
-        setZoomScale()
-        centerScrollViewContents()
+        if RayTracer.shared.sceneNeedsRendering {
+            presentLoadingView(message: "Rendering image...")
+
+            // Move to a background thread to render the image
+            DispatchQueue.global(qos: .userInitiated).async {
+                let image = self.renderImage()
+
+                // Bounce back to the main thread to update the UI
+                DispatchQueue.main.async {
+                    self.spheresImageView.image = image
+                    self.spheresImageViewHeightConstraint.constant = image.size.height
+                    self.spheresImageViewWidthConstraint.constant = image.size.width
+                    self.updateScrollView()
+                    self.dismissLoadingView()
+                }
+            }
+        }
     }
 
-    private func processImage() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    private func renderImage() -> UIImage {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("Failed to access AppDelegate")
+        }
+
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
-        var spheres: [Sphere] = []
+        let tracer = RayTracer.shared
+
         do {
-            spheres = try context.fetch(fetchRequest)
+            tracer.spheres = try context.fetch(fetchRequest)
         } catch {
             print("Error fetching sphere data")
         }
 
-        let frame = RayTracer.Defaults.frame
-        let image = RayTracer.castAllRays(on: spheres,
-                                          in: frame,
-                                          with: UserDefaults.standard.ambient ?? RayTracer.Defaults.ambient,
-                                          under: UserDefaults.standard.light ?? RayTracer.Defaults.light,
-                                          viewedFrom: UserDefaults.standard.eye ?? RayTracer.Defaults.eye)
-        spheresImageViewHeightConstraint.constant = CGFloat(frame.height)
-        spheresImageViewWidthConstraint.constant = CGFloat(frame.width)
-        spheresImageView.image = UIImage(image)
+        let image = tracer.castAllRays()
+        guard let renderedImage = UIImage(image) else {
+            fatalError("Failed to render image into UIImage")
+        }
+
+        return renderedImage
     }
 
     private func setupScrollView() {
         scrollView.delegate = self
         setupTapToZoomGestureRecognizer()
+    }
+
+    private func updateScrollView() {
+        setZoomScale()
+        centerScrollViewContents()
     }
 
     private func setupTapToZoomGestureRecognizer() {
@@ -82,11 +89,10 @@ class ImageViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        setZoomScale()
-        centerScrollViewContents()
+        updateScrollView()
     }
 
-    fileprivate func setZoomScale() {
+    private func setZoomScale() {
         let imageViewSize = spheresImageView.bounds.size
         let scrollViewSize = scrollView.bounds.size
         let widthScale = scrollViewSize.width / imageViewSize.width

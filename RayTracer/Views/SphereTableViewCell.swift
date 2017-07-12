@@ -13,11 +13,6 @@ class SphereTableViewCell: UITableViewCell {
     @IBOutlet weak var equationLabel: UILabel!
     @IBOutlet weak var colorView: UIView!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         let color = colorView.backgroundColor
         super.setSelected(selected, animated: animated)

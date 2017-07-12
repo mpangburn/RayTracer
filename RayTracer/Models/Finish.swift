@@ -10,19 +10,19 @@ import Foundation
 
 
 /// Describes how an object interacts with light.
-public class Finish: NSObject, NSCoding {
+class Finish: NSObject, NSCoding {
 
     /// The percentage of ambient light reflected by the finish.
-    public var ambient: Double
+    var ambient: Double
 
     /// The percentage of diffuse light reflected by the finish.
-    public var diffuse: Double
+    var diffuse: Double
 
     /// The percentage of specular light reflected by the finish.
-    public var specular: Double
+    var specular: Double
 
     /// The modeled roughness of the finish, which affects the spread of the specular light across the object.
-    public var roughness: Double
+    var roughness: Double
 
     /**
      Creates a finish with the attributes.
@@ -32,7 +32,7 @@ public class Finish: NSObject, NSCoding {
         - specular: The percentage of specular light reflected by the finish.
         - roughness: The modeled roughness of the finish.
      */
-    public init(ambient: Double, diffuse: Double, specular: Double, roughness: Double) {
+    init(ambient: Double, diffuse: Double, specular: Double, roughness: Double) {
         self.ambient = ambient
         self.diffuse = diffuse
         self.specular = specular
@@ -43,7 +43,7 @@ public class Finish: NSObject, NSCoding {
         case ambient, diffuse, specular, roughness
     }
 
-    public required convenience init?(coder aDecoder: NSCoder) {
+    required convenience init?(coder aDecoder: NSCoder) {
         let ambient = aDecoder.decodeDouble(forKey: CodingKey.ambient.rawValue)
         let diffuse = aDecoder.decodeDouble(forKey: CodingKey.diffuse.rawValue)
         let specular = aDecoder.decodeDouble(forKey: CodingKey.specular.rawValue)
@@ -51,7 +51,7 @@ public class Finish: NSObject, NSCoding {
         self.init(ambient: ambient, diffuse: diffuse, specular: specular, roughness: roughness)
     }
 
-    public func encode(with aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         aCoder.encode(self.ambient, forKey: CodingKey.ambient.rawValue)
         aCoder.encode(self.diffuse, forKey: CodingKey.diffuse.rawValue)
         aCoder.encode(self.specular, forKey: CodingKey.specular.rawValue)
@@ -64,14 +64,14 @@ public class Finish: NSObject, NSCoding {
 extension Finish {
 
     /// No finish.
-    public static var none: Finish {
+    static var none: Finish {
         return Finish(ambient: 0, diffuse: 0, specular: 0, roughness: 0)
     }
 }
 
 
 extension Finish {
-    public static func == (lhs: Finish, rhs: Finish) -> Bool {
+    static func == (lhs: Finish, rhs: Finish) -> Bool {
         return lhs.ambient == rhs.ambient &&
             lhs.diffuse == rhs.diffuse &&
             lhs.specular == rhs.specular &&
@@ -81,7 +81,7 @@ extension Finish {
 
 
 extension Finish {
-    override public var description: String {
+    override var description: String {
         return "Finish(ambient: \(self.ambient), diffuse: \(self.diffuse), specular: \(self.specular), roughness: \(self.roughness)))"
     }
 }

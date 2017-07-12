@@ -11,19 +11,19 @@ import Foundation
 
 /// Represents a color using the RGBA color space.
 /// Each of the color's components falls in the interval [0,1].
-public class Color: NSObject, NSCoding {
+class Color: NSObject, NSCoding {
 
     /// The color's red component.
-    public var red: Double
+    var red: Double
 
     /// The color's green component.
-    public var green: Double
+    var green: Double
 
     /// The color's blue component.
-    public var blue: Double
+    var blue: Double
 
     /// The color's alpha component.
-    public var alpha: Double
+    var alpha: Double
 
     /**
      Creates the color with the RGBA components.
@@ -33,7 +33,7 @@ public class Color: NSObject, NSCoding {
         - blue: The color's blue component.
         - alpha: The color's alpha component; defaults to 1.0.
      */
-    public init(red: Double, green: Double, blue: Double, alpha: Double = 1.0) {
+    init(red: Double, green: Double, blue: Double, alpha: Double = 1.0) {
         self.red = red
         self.green = green
         self.blue = blue
@@ -44,7 +44,7 @@ public class Color: NSObject, NSCoding {
         case red, green, blue, alpha
     }
 
-    public required convenience init?(coder aDecoder: NSCoder) {
+    required convenience init?(coder aDecoder: NSCoder) {
         let red = aDecoder.decodeDouble(forKey: CodingKey.red.rawValue)
         let green = aDecoder.decodeDouble(forKey: CodingKey.green.rawValue)
         let blue = aDecoder.decodeDouble(forKey: CodingKey.blue.rawValue)
@@ -52,11 +52,17 @@ public class Color: NSObject, NSCoding {
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 
-    public func encode(with aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         aCoder.encode(self.red, forKey: CodingKey.red.rawValue)
         aCoder.encode(self.green, forKey: CodingKey.green.rawValue)
         aCoder.encode(self.blue, forKey: CodingKey.blue.rawValue)
         aCoder.encode(self.alpha, forKey: CodingKey.alpha.rawValue)
+    }
+
+    func scaleComponents(by scalar: Double) {
+        self.red *= scalar
+        self.green *= scalar
+        self.blue *= scalar
     }
 }
 
@@ -65,9 +71,9 @@ public class Color: NSObject, NSCoding {
 extension Color {
 
     /// Represents the color's components in 8-bit unsigned integer form.
-    public typealias PixelData = (red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8)
+    typealias PixelData = (red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8)
 
-    public var pixelData: PixelData {
+    var pixelData: PixelData {
         return (red: self.red.pixelDataValue, green: self.green.pixelDataValue, blue: self.blue.pixelDataValue, alpha: self.alpha.pixelDataValue)
     }
 
@@ -78,19 +84,19 @@ extension Color {
 extension Color {
 
     /// The color black.
-    public static var black: Color {
+    static var black: Color {
         return Color(red: 0, green: 0, blue: 0, alpha: 0)
     }
 
     /// The color white.
-    public static var white: Color {
+    static var white: Color {
         return Color(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
 }
 
 
 extension Color {
-    public static func == (lhs: Color, rhs: Color) -> Bool {
+    static func == (lhs: Color, rhs: Color) -> Bool {
         return lhs.red == rhs.red &&
             lhs.green == rhs.green &&
             lhs.blue == rhs.blue &&
@@ -100,7 +106,7 @@ extension Color {
 
 
 extension Color {
-    override public var description: String {
+    override var description: String {
         return "Color(red: \(self.red), green: \(self.green), blue: \(self.blue), alpha: \(self.alpha))"
     }
 }
