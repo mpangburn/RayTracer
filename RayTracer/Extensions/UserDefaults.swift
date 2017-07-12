@@ -12,60 +12,19 @@ import Foundation
 extension UserDefaults {
 
     private enum Key: String {
-        case eye = "com.pangburn.RayTracer.eye"
-        case frame = "com.pangburn.RayTracer.frame"
-        case light = "com.pangburn.RayTracer.light"
-        case ambient = "com.pangburn.RayTracer.ambient"
+        case rayTracerSettings = "com.pangburn.RayTracer.rayTracerSettings"
     }
 
-    var eye: Point? {
+    var rayTracerSettings: RayTracerSettings? {
         get {
-            guard let data = object(forKey: Key.eye.rawValue) as? Data else { return nil }
-            return NSKeyedUnarchiver.unarchiveObject(with: data) as? Point
-        }
-        set {
-            if let newValue = newValue {
-                let data = NSKeyedArchiver.archivedData(withRootObject: newValue)
-                set(data, forKey: Key.eye.rawValue)
+            if let rawValue = dictionary(forKey: Key.rayTracerSettings.rawValue) {
+                return RayTracerSettings(rawValue: rawValue)
             } else {
-                removeObject(forKey: Key.eye.rawValue)
+                return nil
             }
         }
-    }
-
-
-    var light: Light? {
-        get {
-            guard let data = dictionary(forKey: Key.light.rawValue) as? [String : Data],
-                let position = NSKeyedUnarchiver.unarchiveObject(with: data["position"]!) as? Point,
-                let color = NSKeyedUnarchiver.unarchiveObject(with: data["color"]!) as? Color else { return nil }
-            return Light(position: position, color: color)
-        }
         set {
-            if let newValue = newValue {
-                let data = [
-                    "position" : NSKeyedArchiver.archivedData(withRootObject: newValue.position),
-                    "color" : NSKeyedArchiver.archivedData(withRootObject: newValue.color)
-                ]
-                set(data, forKey: Key.light.rawValue)
-            } else {
-                removeObject(forKey: Key.light.rawValue)
-            }
-        }
-    }
-
-    var ambient: Color? {
-        get {
-            guard let data = object(forKey: Key.ambient.rawValue) as? Data else { return nil }
-            return NSKeyedUnarchiver.unarchiveObject(with: data) as? Color
-        }
-        set {
-            if let newValue = newValue {
-                let data = NSKeyedArchiver.archivedData(withRootObject: newValue)
-                set(data, forKey: Key.ambient.rawValue)
-            } else {
-                removeObject(forKey: Key.ambient.rawValue)
-            }
+            set(newValue?.rawValue, forKey: Key.rayTracerSettings.rawValue)
         }
     }
 }

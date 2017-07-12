@@ -20,7 +20,7 @@ extension Sphere {
         - radius: The radius of the sphere.
         - color: The color of sphere; defaults to black.
      */
-    public convenience init(center: Point, radius: Double, color: Color, finish: Finish, context: NSManagedObjectContext) {
+    convenience init(center: Point, radius: Double, color: Color, finish: Finish, context: NSManagedObjectContext) {
         self.init(context: context)
         self.center = center
         self.radius = radius
@@ -38,7 +38,7 @@ extension Sphere {
      - Parameter point: The point for which to compute the normal vector at.
      - Returns: The normal vector from the center to the point.
      */
-    public func normal(at point: Point) -> Vector {
+    func normal(at point: Point) -> Vector {
         return Vector(from: self.center, to: point).normalized()
     }
 }
@@ -52,7 +52,7 @@ extension Sphere {
      Fails if the string is malformed.
      - Parameter string: The string containing the sphere's data.
      */
-    public convenience init?(string: String, context: NSManagedObjectContext) {
+    convenience init?(string: String, context: NSManagedObjectContext) {
         let components = string.components(separatedBy: " ")
             .map { Double($0) }
             .flatMap { $0 }
@@ -65,7 +65,7 @@ extension Sphere {
     }
 
     /// The equation form of the sphere.
-    public func equation(usingIntegers: Bool) -> String {
+    func equation(usingIntegers: Bool) -> String {
         let base: String
         if usingIntegers {
             base = "(x - \(Int(self.center.x)))² + (y - \(Int(self.center.y)))² + (z - \(Int(self.center.z)))² = \(Int(self.radius))"
@@ -78,7 +78,7 @@ extension Sphere {
 
 
 extension Sphere {
-    public static func == (lhs: Sphere, rhs: Sphere) -> Bool {
+    static func == (lhs: Sphere, rhs: Sphere) -> Bool {
         return lhs.center == rhs.center &&
             lhs.radius == rhs.radius &&
             lhs.color == rhs.color &&

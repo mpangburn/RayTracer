@@ -8,42 +8,9 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, ExpandableTableViewCellDelegate {
 
-    var eye: Point! {
-        get {
-            return UserDefaults.standard.eye ?? RayTracer.Defaults.eye
-        }
-        set {
-            UserDefaults.standard.eye = newValue
-            let cell = tableView.cellForRow(at: IndexPath(row: 0, section: Section.eye.rawValue)) as! PointTableViewCell
-            cell.point = eye
-        }
-    }
-
-    var light: Light! {
-        get {
-            return UserDefaults.standard.light ?? RayTracer.Defaults.light
-        }
-        set {
-            UserDefaults.standard.light = newValue
-            let positionCell = tableView.cellForRow(at: IndexPath(row: LightRow.position.rawValue, section: Section.light.rawValue)) as! PointTableViewCell
-            positionCell.point = light.position
-            let colorCell = tableView.cellForRow(at: IndexPath(row: LightRow.color.rawValue, section: Section.light.rawValue)) as! ColorTableViewCell
-            colorCell.color = light.color
-        }
-    }
-
-    var ambient: Color! {
-        get {
-            return UserDefaults.standard.ambient ?? RayTracer.Defaults.ambient
-        }
-        set {
-            UserDefaults.standard.ambient = newValue
-            let cell = tableView.cellForRow(at: IndexPath(row: 0, section: Section.ambient.rawValue)) as! ColorTableViewCell
-            cell.color = ambient
-        }
-    }
+    var tracer = RayTracer.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +19,7 @@ class SettingsTableViewController: UITableViewController {
         tableView.register(PointTableViewCell.nib(), forCellReuseIdentifier: PointTableViewCell.className)
         tableView.register(ColorTableViewCell.nib(), forCellReuseIdentifier: ColorTableViewCell.className)
         tableView.register(SingleButtonTableViewCell.nib(), forCellReuseIdentifier: SingleButtonTableViewCell.className)
+        tableView.register(FrameTableViewCell.nib(), forCellReuseIdentifier: FrameTableViewCell.className)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,9 +30,10 @@ class SettingsTableViewController: UITableViewController {
         case eye
         case light
         case ambient
-        case reset
+        case frame
+        case resetButton
 
-        static let count = 4
+        static let count = 5
     }
 
     private enum LightRow: Int {
@@ -81,25 +50,23 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Section(rawValue: section)! {
         case .eye:
-            return NSLocalizedString("EYE", comment: "The title of the section for the scene's eye setting")
+            return NSLocalizedString("VIEWPOINT", comment: "The title of the section for the scene's viewpoint (eye) setting")
         case .light:
             return NSLocalizedString("LIGHT", comment: "The title of the section for the scene's light setting")
         case .ambient:
-            return NSLocalizedString("AMBIENT", comment: "The title of the section for the scene's ambient color setting")
-        case .reset:
+            return NSLocalizedString("AMBIENCE", comment: "The title of the section for the scene's ambient color setting")
+        case .frame:
+            return NSLocalizedString("FRAME", comment: "The title of the section for the scene's frame setting")
+        case .resetButton:
             return ""
         }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Section(rawValue: section)! {
-        case .eye:
-            return 1
         case .light:
             return 2
-        case .ambient:
-            return 1
-        case .reset:
+        default:
             return 1
         }
     }
@@ -108,7 +75,7 @@ class SettingsTableViewController: UITableViewController {
         switch Section(rawValue: indexPath.section)! {
         case .eye:
             let cell = tableView.dequeueReusableCell(withIdentifier: PointTableViewCell.className) as! PointTableViewCell
-            cell.point = self.eye
+            cell.point = tracer.settings.eye
             cell.pointType = .eye
             cell.delegate = self
             return cell
@@ -116,24 +83,29 @@ class SettingsTableViewController: UITableViewController {
             switch LightRow(rawValue: indexPath.row)! {
             case .position:
                 let cell = tableView.dequeueReusableCell(withIdentifier: PointTableViewCell.className) as! PointTableViewCell
-                cell.point = self.light.position
+                cell.point = tracer.settings.light.position
                 cell.pointType = .light
                 cell.delegate = self
                 return cell
             case .color:
                 let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className) as! ColorTableViewCell
-                cell.color = self.light.color
+                cell.color = tracer.settings.light.color
                 cell.colorType = .light
                 cell.delegate = self
                 return cell
             }
         case .ambient:
             let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className) as! ColorTableViewCell
-            cell.color = self.ambient
+            cell.color = tracer.settings.ambient
             cell.colorType = .ambient
             cell.delegate = self
             return cell
-        case .reset:
+        case .frame:
+            let cell = tableView.dequeueReusableCell(withIdentifier: FrameTableViewCell.className) as! FrameTableViewCell
+            cell.sceneFrame = tracer.settings.sceneFrame
+            cell.delegate = self
+            return cell
+        case .resetButton:
             let cell = tableView.dequeueReusableCell(withIdentifier: SingleButtonTableViewCell.className) as! SingleButtonTableViewCell
             cell.button.setTitle(NSLocalizedString("Reset", comment: "The title text for the reset button"), for: .normal)
             cell.button.setTitleColor(.red, for: .normal)
@@ -146,15 +118,28 @@ class SettingsTableViewController: UITableViewController {
         return 144
     }
 
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch Section(rawValue: section)! {
+        case .frame:
+            return NSLocalizedString("The minimum and maximum x and y values specify the bounds of the view rectangle (with z-coordinate 0). The width and height specify the dimensions of the rendered image.", comment: "The description for the scene frame")
+        default:
+            return nil
+        }
+    }
+
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         tableView.endEditing(false)
         tableView.beginUpdates()
+        closeExpandableTableViewCells(excluding: indexPath)
         return indexPath
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.endUpdates()
         tableView.deselectRow(at: indexPath, animated: true)
+//        if Section(rawValue: indexPath.section) != .resetButton {
+//            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+//        }
     }
 
 
@@ -165,9 +150,8 @@ class SettingsTableViewController: UITableViewController {
                                                 message: NSLocalizedString("Are you sure you want to reset ray tracing settings? This will not affect sphere data.", comment: "The subtitle text for the reset alert"),
                                                 preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Reset", comment: "The text for the reset button within the reset alert"), style: .destructive) { _ in
-            self.eye = nil
-            self.light = nil
-            self.ambient = nil
+            self.tracer.settings = RayTracerSettings()
+            self.tableView.reloadData()
         })
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "The text for the cancel button within the reset alert"), style: .cancel, handler: nil))
         self.present(alertController, animated: true)
@@ -178,9 +162,9 @@ extension SettingsTableViewController: PointTableViewCellDelegate {
     func pointTableViewCellPointDidChange(_ cell: PointTableViewCell) {
         switch cell.pointType! {
         case .eye:
-            UserDefaults.standard.eye = cell.point
+            tracer.settings.eye = cell.point
         case .light:
-            UserDefaults.standard.light = Light(position: cell.point, color: self.light.color)
+            tracer.settings.light.position = cell.point
         }
     }
 }
@@ -189,9 +173,15 @@ extension SettingsTableViewController: ColorTableViewCellDelegate {
     func colorTableViewCellColorDidChange(_ cell: ColorTableViewCell) {
         switch cell.colorType! {
         case .light:
-            UserDefaults.standard.light = Light(position: self.light.position, color: cell.color)
+            tracer.settings.light.color = cell.color
         case .ambient:
-            UserDefaults.standard.ambient = cell.color
+            tracer.settings.ambient = cell.color
         }
+    }
+}
+
+extension SettingsTableViewController: FrameTableViewCellDelegate {
+    func frameTableViewCellFrameDidChange(_ cell: FrameTableViewCell) {
+        tracer.settings.sceneFrame = cell.sceneFrame
     }
 }

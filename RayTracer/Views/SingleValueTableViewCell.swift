@@ -10,16 +10,23 @@ import UIKit
 
 
 protocol SingleValueTableViewCellDelegate: class {
+
     func singleValueTableViewCellValueDidChange(_ cell: SingleValueTableViewCell)
+
+    func singleValueTableViewCellDidBeginEditing(_ cell: SingleValueTableViewCell)
 }
 
 
-class SingleValueTableViewCell: UITableViewCell {
+class SingleValueTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     weak var delegate: SingleValueTableViewCellDelegate?
 
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var valueTextField: UITextField!
+    @IBOutlet weak var valueTextField: UITextField! {
+        didSet {
+            valueTextField.delegate = self
+        }
+    }
 
     var value: Double {
         get {
@@ -30,18 +37,17 @@ class SingleValueTableViewCell: UITableViewCell {
         }
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func endTextFieldEditing() {
+        valueTextField.resignFirstResponder()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    // MARK: - UITextFieldDelegate
 
-        // Configure the view for the selected state
-    }
-    
-    @IBAction func textFieldEditingDidEnd(_ sender: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         delegate?.singleValueTableViewCellValueDidChange(self)
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        delegate?.singleValueTableViewCellDidBeginEditing(self)
     }
 }

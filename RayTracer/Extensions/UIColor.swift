@@ -15,7 +15,7 @@ extension UIColor {
      Creates a UIColor from the color components.
      - Parameter color: The color data from which to create the UIColor.
      */
-    public convenience init(_ color: Color) {
+    convenience init(_ color: Color) {
         self.init(red: CGFloat(color.red),
                   green: CGFloat(color.green),
                   blue: CGFloat(color.blue),

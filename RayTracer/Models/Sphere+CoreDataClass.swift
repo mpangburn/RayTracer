@@ -9,7 +9,8 @@
 import Foundation
 import CoreData
 
+
 @objc(Sphere)
-public class Sphere: NSManagedObject {
+class Sphere: NSManagedObject {
 
 }

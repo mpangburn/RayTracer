@@ -11,18 +11,14 @@ import Foundation
 
 extension Double {
 
-    /**
-     Converts the value to an 8-bit unsigned integer, where:
-        - values greater than 1 return 255,
-        - values between 0 and 255 (inclusive) are multiplied by 255, and
-        - values less than 0 return 0.
-     */
+    /// 8-bit integer equivalent of a value in the range [0,1].
     var pixelDataValue: UInt8 {
-        if self < 0 {
+        switch self {
+        case let value where value < 0:
             return UInt8.min
-        } else if self > 1 {
+        case let value where value > 1:
             return UInt8.max
-        } else {
+        default:
             return UInt8(self * 255)
         }
     }

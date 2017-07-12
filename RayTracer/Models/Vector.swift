@@ -10,16 +10,16 @@ import Foundation
 
 
 /// Represents a vector in 3D space.
-public struct Vector {
+struct Vector {
 
     /// The x-component of the vector.
-    public var x: Double
+    var x: Double
 
     /// The y-component of the vector.
-    public var y: Double
+    var y: Double
 
     /// The z-component of the vector.
-    public var z: Double
+    var z: Double
 
     /**
      Creates a vector from the given components.
@@ -28,7 +28,7 @@ public struct Vector {
         - y: The y-component of the vector.
         - z: The z-component of the vector.
      */
-    public init(x: Double, y: Double, z: Double) {
+    init(x: Double, y: Double, z: Double) {
         self.x = x
         self.y = y
         self.z = z
@@ -40,7 +40,7 @@ public struct Vector {
         - initial: The point from which the vector begins.
         - terminal: The point at which the vector ends.
      */
-    public init(from initial: Point, to terminal: Point) {
+    init(from initial: Point, to terminal: Point) {
         self.init(x: terminal.x - initial.x, y: terminal.y - initial.y, z: terminal.z - initial.z)
     }
 }
@@ -50,12 +50,12 @@ public struct Vector {
 extension Vector {
 
     /// The length of the vector, equivalent to its magnitude.
-    public var length: Double {
+    var length: Double {
         return sqrt((x * x) + (y * y) + (z * z))
     }
 
     /// The magnitude of the vector, equivalent to its length.
-    public var magnitude: Double {
+    var magnitude: Double {
         return self.length
     }
 }
@@ -67,7 +67,7 @@ extension Vector {
     /**
      Normalizes the vector.
      */
-    public mutating func normalize() {
+    mutating func normalize() {
         self = self.normalized()
     }
 
@@ -75,7 +75,7 @@ extension Vector {
      Returns the normalized vector.
      - Returns: The vector with the same direction and magnitude 1.
      */
-    public func normalized() -> Vector {
+    func normalized() -> Vector {
         return self / self.magnitude
     }
 
@@ -83,7 +83,7 @@ extension Vector {
      Scales the vector by the scalar.
      - Parameter scalar: The scalar to scale by.
      */
-    public mutating func scale(by scalar: Double) {
+    mutating func scale(by scalar: Double) {
         self = self.scaled(by: scalar)
     }
 
@@ -92,7 +92,7 @@ extension Vector {
      - Parameter scalar: The scalar to scale by.
      - Returns: The vector scaled by the scalar.
      */
-    public func scaled(by scalar: Double) -> Vector {
+    func scaled(by scalar: Double) -> Vector {
         return Vector(x: self.x * scalar, y: self.y * scalar, z: self.z * scalar)
     }
 
@@ -101,7 +101,7 @@ extension Vector {
      - Parameter other: The vector to dot with.
      - Returns: The dot product of the vectors.
      */
-    public func dot(with other: Vector) -> Double {
+    func dot(with other: Vector) -> Double {
         return (self.x * other.x) + (self.y * other.y) + (self.z * other.z)
     }
 
@@ -110,7 +110,7 @@ extension Vector {
      - Parameter other: The vector to cross with.
      - Returns: The cross product of the vectors.
      */
-    public func cross(with other: Vector) -> Vector {
+    func cross(with other: Vector) -> Vector {
         let xComponent = self.y * other.z - self.z * other.y
         let yComponent = -(self.x * other.z - self.z * other.x)
         let zComponent = self.x * other.y - self.y * other.x
@@ -123,32 +123,32 @@ extension Vector {
 extension Vector {
 
     /// Negates each component of the vector.
-    public static prefix func - (vector: Vector) -> Vector {
+    static prefix func - (vector: Vector) -> Vector {
         return Vector(x: -vector.x, y: -vector.y, z: -vector.z)
     }
 
     /// Adds the components of the two vectors.
-    public static func + (lhs: Vector, rhs: Vector) -> Vector {
+    static func + (lhs: Vector, rhs: Vector) -> Vector {
         return Vector(x: lhs.x + rhs.x, y: lhs.y + rhs.y, z: lhs.z + rhs.z)
     }
 
     /// Subtracts the components of the second vector from the first.
-    public static func - (lhs: Vector, rhs: Vector) -> Vector {
+    static func - (lhs: Vector, rhs: Vector) -> Vector {
         return lhs + (-rhs)
     }
 
     /// Multiplies each component of the the vector by the scalar.
-    public static func * (lhs: Vector, rhs: Double) -> Vector {
+    static func * (lhs: Vector, rhs: Double) -> Vector {
         return lhs.scaled(by: rhs)
     }
 
     /// Multiplies each component of the the vector by the scalar.
-    public static func * (lhs: Double, rhs: Vector) -> Vector {
+    static func * (lhs: Double, rhs: Vector) -> Vector {
         return rhs.scaled(by: lhs)
     }
 
     /// Divides each component of the vector by the scalar.
-    public static func / (lhs: Vector, rhs: Double) -> Vector {
+    static func / (lhs: Vector, rhs: Double) -> Vector {
         return lhs * (1 / rhs)
     }
 }
@@ -161,12 +161,12 @@ infix operator ×: MultiplicationPrecedence
 extension Vector {
 
     /// Returns the dot product of the two vectors.
-    public static func • (lhs: Vector, rhs: Vector) -> Double {
+    static func • (lhs: Vector, rhs: Vector) -> Double {
         return lhs.dot(with: rhs)
     }
 
     /// Returns the cross product of the two vectors.
-    public static func × (lhs: Vector, rhs: Vector) -> Vector {
+    static func × (lhs: Vector, rhs: Vector) -> Vector {
         return lhs.cross(with: rhs)
     }
 }
@@ -176,7 +176,7 @@ extension Vector {
 extension Vector {
 
     /// The zero vector.
-    public static var zero: Vector {
+    static var zero: Vector {
         return Vector(x: 0, y: 0, z: 0)
     }
 }
@@ -184,17 +184,17 @@ extension Vector {
 
 extension Vector: Equatable { }
 
-public func == (lhs: Vector, rhs: Vector) -> Bool {
+func == (lhs: Vector, rhs: Vector) -> Bool {
     return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
 }
 
 
 extension Vector: CustomStringConvertible, CustomDebugStringConvertible {
-    public var description: String {
+    var description: String {
         return "Vector(x: \(self.x), y: \(self.y), z: \(self.z))"
     }
 
-    public var debugDescription: String {
+    var debugDescription: String {
         return self.description
     }
 }
