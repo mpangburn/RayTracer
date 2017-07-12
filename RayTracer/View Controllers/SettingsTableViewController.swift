@@ -27,9 +27,9 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
     }
 
     private enum Section: Int {
-        case eye
+        case eyePoint
         case light
-        case ambient
+        case ambience
         case frame
         case resetButton
 
@@ -49,11 +49,11 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Section(rawValue: section)! {
-        case .eye:
-            return NSLocalizedString("VIEWPOINT", comment: "The title of the section for the scene's viewpoint (eye) setting")
+        case .eyePoint:
+            return NSLocalizedString("EYE POINT", comment: "The title of the section for the scene's viewpoint setting")
         case .light:
             return NSLocalizedString("LIGHT", comment: "The title of the section for the scene's light setting")
-        case .ambient:
+        case .ambience:
             return NSLocalizedString("AMBIENCE", comment: "The title of the section for the scene's ambient color setting")
         case .frame:
             return NSLocalizedString("FRAME", comment: "The title of the section for the scene's frame setting")
@@ -73,9 +73,9 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch Section(rawValue: indexPath.section)! {
-        case .eye:
+        case .eyePoint:
             let cell = tableView.dequeueReusableCell(withIdentifier: PointTableViewCell.className) as! PointTableViewCell
-            cell.point = tracer.settings.eye
+            cell.point = tracer.settings.eyePoint
             cell.pointType = .eye
             cell.delegate = self
             return cell
@@ -94,10 +94,10 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
                 cell.delegate = self
                 return cell
             }
-        case .ambient:
+        case .ambience:
             let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className) as! ColorTableViewCell
-            cell.color = tracer.settings.ambient
-            cell.colorType = .ambient
+            cell.color = tracer.settings.ambience
+            cell.colorType = .ambience
             cell.delegate = self
             return cell
         case .frame:
@@ -162,7 +162,7 @@ extension SettingsTableViewController: PointTableViewCellDelegate {
     func pointTableViewCellPointDidChange(_ cell: PointTableViewCell) {
         switch cell.pointType! {
         case .eye:
-            tracer.settings.eye = cell.point
+            tracer.settings.eyePoint = cell.point
         case .light:
             tracer.settings.light.position = cell.point
         }
@@ -174,8 +174,8 @@ extension SettingsTableViewController: ColorTableViewCellDelegate {
         switch cell.colorType! {
         case .light:
             tracer.settings.light.color = cell.color
-        case .ambient:
-            tracer.settings.ambient = cell.color
+        case .ambience:
+            tracer.settings.ambience = cell.color
         }
     }
 }
