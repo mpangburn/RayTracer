@@ -17,6 +17,8 @@ class ImageViewController: UIViewController {
     @IBOutlet weak var spheresImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var spheresImageViewWidthConstraint: NSLayoutConstraint!
 
+    let tracer = RayTracer.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Image", comment: "The title text for the ray-traced image screen")
@@ -24,11 +26,13 @@ class ImageViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        if RayTracer.shared.sceneNeedsRendering {
+        super.viewDidAppear(animated)
+
+        if tracer.sceneNeedsRendering {
             presentLoadingView(message: "Rendering image...")
 
             // Move to a background thread to render the image
-            DispatchQueue.global(qos: .userInitiated).async {
+            DispatchQueue.global(qos: .userInteractive).async {
                 let image = self.renderImage()
 
                 // Bounce back to the main thread to update the UI
@@ -36,6 +40,9 @@ class ImageViewController: UIViewController {
                     self.spheresImageView.image = image
                     self.spheresImageViewHeightConstraint.constant = image.size.height
                     self.spheresImageViewWidthConstraint.constant = image.size.width
+//                    self.scrollView.backgroundColor = UIColor(self.tracer.settings.backgroundColor)
+//                    self.spheresImageView.layer.borderColor = UIColor.black.cgColor
+//                    self.spheresImageView.layer.borderWidth = 2.0
                     self.updateScrollView()
                     self.dismissLoadingView()
                 }
@@ -50,8 +57,6 @@ class ImageViewController: UIViewController {
 
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
-        let tracer = RayTracer.shared
-
         do {
             tracer.spheres = try context.fetch(fetchRequest)
         } catch {
@@ -74,6 +79,7 @@ class ImageViewController: UIViewController {
     private func updateScrollView() {
         setZoomScale()
         centerScrollViewContents()
+//        scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
     }
 
     private func setupTapToZoomGestureRecognizer() {

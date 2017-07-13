@@ -42,6 +42,7 @@ class AddEditSphereTableViewController: UITableViewController, ExpandableTableVi
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         tableView.endEditing(true)
     }
 

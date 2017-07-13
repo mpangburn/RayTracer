@@ -31,7 +31,7 @@ class Color: NSObject, NSCoding {
         - red: The color's red component.
         - green: The color's green component.
         - blue: The color's blue component.
-        - alpha: The color's alpha component; defaults to 1.0.
+        - alpha: The color's alpha component, which defaults to 1.0.
      */
     init(red: Double, green: Double, blue: Double, alpha: Double = 1.0) {
         self.red = red
@@ -59,10 +59,13 @@ class Color: NSObject, NSCoding {
         aCoder.encode(self.alpha, forKey: CodingKey.alpha.rawValue)
     }
 
-    func scaleComponents(by scalar: Double) {
-        self.red *= scalar
-        self.green *= scalar
-        self.blue *= scalar
+    /**
+     Returns the color with each of its components multiplied by the scalar.
+     - Parameter scalar: The value to multiply each component by.
+     - Returns: The color with each of his components multiplied by the scalar.
+     */
+    func withComponentsScaled(by scalar: Double) -> Color {
+        return Color(red: self.red * scalar, green: self.green * scalar, blue: self.blue * scalar)
     }
 }
 
@@ -73,10 +76,10 @@ extension Color {
     /// Represents the color's components in 8-bit unsigned integer form.
     typealias PixelData = (red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8)
 
+    /// The pixel data for the color, using unsigned 8-bit integer values.
     var pixelData: PixelData {
         return (red: self.red.pixelDataValue, green: self.green.pixelDataValue, blue: self.blue.pixelDataValue, alpha: self.alpha.pixelDataValue)
     }
-
 }
 
 
@@ -85,12 +88,12 @@ extension Color {
 
     /// The color black.
     static var black: Color {
-        return Color(red: 0, green: 0, blue: 0, alpha: 0)
+        return Color(red: 0.0, green: 0.0, blue: 0.0)
     }
 
     /// The color white.
     static var white: Color {
-        return Color(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        return Color(red: 1.0, green: 1.0, blue: 1.0)
     }
 }
 

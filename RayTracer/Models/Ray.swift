@@ -15,7 +15,7 @@ struct Ray {
     /// The initial point of the ray.
     var initial: Point
 
-    /// The direction of the ray, represented as a vector.
+    /// The direction of the ray.
     var direction: Vector
 }
 

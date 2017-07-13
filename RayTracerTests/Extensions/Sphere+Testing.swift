@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-import RayTracer
+@testable import RayTracer
 
 
 extension Sphere {

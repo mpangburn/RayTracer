@@ -33,7 +33,12 @@ class SingleValueTableViewCell: UITableViewCell, UITextFieldDelegate {
             return Double(valueTextField.text!) ?? 0
         }
         set {
-            valueTextField.text = String(newValue)
+            // Display decimal point only if necessary
+            if newValue.truncatingRemainder(dividingBy: 1) == 0 {
+                valueTextField.text = String(format: "%.0f", newValue)
+            } else {
+                valueTextField.text = String(newValue)
+            }
         }
     }
 
