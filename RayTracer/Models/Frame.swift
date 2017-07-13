@@ -58,14 +58,6 @@ struct Frame {
         }
     }
 
-    private mutating func updateHeightForAspectRatio() {
-        height = Int(Double(width) / aspectRatio.ratio)
-    }
-
-    private mutating func updateWidthForAspectRatio() {
-        width = Int(Double(height) * aspectRatio.ratio)
-    }
-
     /// Describes the width to height ratio of the frame.
     enum AspectRatio: Int {
         case freeform
@@ -118,6 +110,14 @@ struct Frame {
             }
         }
         return aspectRatio == .freeform || currentAspectRatio.epsilonEquals(aspectRatio.ratio, epsilon: epsilon)
+    }
+
+    private mutating func updateHeightForAspectRatio() {
+        height = Int(Double(width) / aspectRatio.ratio)
+    }
+
+    private mutating func updateWidthForAspectRatio() {
+        width = Int(Double(height) * aspectRatio.ratio)
     }
 }
 

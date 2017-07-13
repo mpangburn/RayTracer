@@ -11,6 +11,4 @@ import CoreData
 
 
 @objc(Sphere)
-class Sphere: NSManagedObject {
-
-}
+class Sphere: NSManagedObject { }

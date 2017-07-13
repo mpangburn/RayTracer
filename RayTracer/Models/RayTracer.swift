@@ -9,7 +9,7 @@
 import Foundation
 
 
-/// Contains functions for ray tracing.
+/// A class that stores data for and performs ray tracing.
 class RayTracer {
 
     /// The shared RayTracer instance.
@@ -65,9 +65,6 @@ class RayTracer {
         pixels = Array(pixels.dropFirst(halfAreaDifference))
         pixels = Array(pixels.dropLast(areaDifference - halfAreaDifference))
 
-//        let _ = pixels.dropFirst(halfAreaDifference)
-//        let _ = pixels.dropLast(halfAreaDifference)
-
         return Image(pixelData: pixels, width: frame.width, height: frame.height)
     }
 
@@ -79,7 +76,7 @@ class RayTracer {
      */
     func cast(ray: Ray) -> Color.PixelData {
         guard let intersection = ray.closestIntersection(with: spheres) else {
-            return Color.white.pixelData
+            return settings.backgroundColor.pixelData
         }
 
         let closestSphere = intersection.sphere
@@ -87,9 +84,9 @@ class RayTracer {
         let ambient = closestSphere.finish.ambient
         let diffuse = computeDiffuseComponents(at: intersection)
         let specular = computeSpecularComponents(at: intersection)
-        let red = closestSphere.color.red * settings.ambience.red * ambient + diffuse.red + specular.red
-        let green = closestSphere.color.green * settings.ambience.green * ambient + diffuse.green + specular.green
-        let blue = closestSphere.color.blue * settings.ambience.blue * ambient + diffuse.blue + specular.blue
+        let red = closestSphere.color.red * (settings.ambience.red * ambient) + diffuse.red + specular.red
+        let green = closestSphere.color.green * (settings.ambience.green * ambient) + diffuse.green + specular.green
+        let blue = closestSphere.color.blue * (settings.ambience.blue * ambient) + diffuse.blue + specular.blue
 
         return Color(red: red, green: green, blue: blue).pixelData
     }

@@ -13,7 +13,7 @@ extension UIImage {
 
     /**
      Creates a UIImage from the image data.
-     - Parameter image: The image data used generate the UIImage.
+     - Parameter image: The image data used to generate the UIImage.
      */
     convenience init?(_ image: Image) {
         let width = image.width
@@ -23,9 +23,6 @@ extension UIImage {
 
         let imagePixelData = image.pixelData
         var cgPixelData = Array<UInt8>(repeating: 0, count: area * componentsPerPixel)
-
-        print(imagePixelData.count * 4)
-        print(cgPixelData.count)
 
         for (index, pixel) in imagePixelData.enumerated() {
             let offset = index * componentsPerPixel

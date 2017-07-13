@@ -31,7 +31,7 @@ class ColorTableViewCell: ExpandableTableViewCell {
     }
 
     enum ColorType {
-        case light, ambience
+        case light, ambience, background
     }
 
     var colorType: ColorType?

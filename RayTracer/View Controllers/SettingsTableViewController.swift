@@ -24,18 +24,15 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
         tableView.register(SingleButtonTableViewCell.nib(), forCellReuseIdentifier: SingleButtonTableViewCell.className)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        tableView.endEditing(true)
-    }
-
     fileprivate enum Section: Int {
         case eyePoint
         case light
         case ambience
+        case background
         case frame
         case resetButton
 
-        static let count = 5
+        static let count = 6
     }
 
     private enum LightRow: Int {
@@ -68,6 +65,8 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
             return NSLocalizedString("LIGHT", comment: "The title of the section for the scene's light setting")
         case .ambience:
             return NSLocalizedString("AMBIENCE", comment: "The title of the section for the scene's ambient color setting")
+        case .background:
+            return NSLocalizedString("BACKGROUND", comment: "The title of the section for the scene's background color setting")
         case .frame:
             return NSLocalizedString("FRAME", comment: "The title of the section for the scene's frame setting")
         case .resetButton:
@@ -121,6 +120,12 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
             cell.colorType = .ambience
             cell.delegate = self
             return cell
+        case .background:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className) as! ColorTableViewCell
+            cell.color = tracer.settings.backgroundColor
+            cell.colorType = .background
+            cell.delegate = self
+            return cell
         case .frame:
             switch FrameRow(rawValue: indexPath.row)! {
             case .view:
@@ -156,6 +161,8 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Section(rawValue: section)! {
+        case .background:
+            return NSLocalizedString("The background color is used for space where no spheres exist. Shadows are not cast on the background.", comment: "The description for the scene's background color")
         case .frame:
             return NSLocalizedString("The minimum and maximum x and y values specify the bounds of the view rectangle rendered in the z-plane. The width and height specify the dimensions of the rendered image.", comment: "The description for the scene frame")
         default:
@@ -164,7 +171,6 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
     }
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        tableView.endEditing(false)
         tableView.beginUpdates()
         closeExpandableTableViewCells(excluding: indexPath)
         return indexPath
@@ -173,8 +179,8 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.endUpdates()
         tableView.deselectRow(at: indexPath, animated: true)
-//        if Section(rawValue: indexPath.section) != .resetButton {
-//            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+//        if let _ = tableView.cellForRow(at: indexPath) as? ExpandableTableViewCell {
+//            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
 //        }
     }
 
@@ -212,6 +218,8 @@ extension SettingsTableViewController: ColorTableViewCellDelegate {
             tracer.settings.light.color = cell.color
         case .ambience:
             tracer.settings.ambience = cell.color
+        case .background:
+            tracer.settings.backgroundColor = cell.color
         }
     }
 }

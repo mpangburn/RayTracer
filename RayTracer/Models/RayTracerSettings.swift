@@ -20,8 +20,11 @@ struct RayTracerSettings {
     /// The ambient color for the scene.
     var ambience = Color.white
 
+    /// The background color for the scene.
+    var backgroundColor: Color = Color.white
+
     /// The frame for the scene.
-    var sceneFrame = Frame(view: Frame.View(minX: -10, maxX: 10, minY: -7.5, maxY: 7.5, zPlane: 0), width: 512, height: 384, aspectRatio: .fourThree)//size: Frame.Size(width: 512, height: 384))
+    var sceneFrame = Frame(view: Frame.View(minX: -10, maxX: 10, minY: -7.5, maxY: 7.5, zPlane: 0), width: 512, height: 384, aspectRatio: .fourThree)
 }
 
 
@@ -29,33 +32,36 @@ extension RayTracerSettings: RawRepresentable {
     typealias RawValue = [String: Any]
 
     init?(rawValue: RawValue) {
-        guard let eyePointData = rawValue["eyePoint"] as? Data,
-            let eyePoint = NSKeyedUnarchiver.unarchiveObject(with: eyePointData) as? Point else {
-                return nil
+        if let eyePointData = rawValue["eyePoint"] as? Data,
+            let eyePoint = NSKeyedUnarchiver.unarchiveObject(with: eyePointData) as? Point {
+
+            self.eyePoint = eyePoint
         }
 
-        self.eyePoint = eyePoint
-
-        guard let lightDict = rawValue["light"] as? [String: Any],
+        if let lightDict = rawValue["light"] as? [String: Any],
             let lightPositionData = lightDict["position"] as? Data,
             let lightPosition = NSKeyedUnarchiver.unarchiveObject(with: lightPositionData) as? Point,
             let lightColorData = lightDict["color"] as? Data,
             let lightColor = NSKeyedUnarchiver.unarchiveObject(with: lightColorData) as? Color,
             let intensityRawValue = lightDict["intensity"] as? Int,
-            let intensity = Light.Intensity(rawValue: intensityRawValue) else {
-                return nil
+            let intensity = Light.Intensity(rawValue: intensityRawValue) {
+
+            self.light = Light(position: lightPosition, color: lightColor, intensity: intensity)
         }
 
-        self.light = Light(position: lightPosition, color: lightColor, intensity: intensity)
+        if let ambienceData = rawValue["ambience"] as? Data,
+            let ambience = NSKeyedUnarchiver.unarchiveObject(with: ambienceData) as? Color {
 
-        guard let ambienceData = rawValue["ambience"] as? Data,
-            let ambience = NSKeyedUnarchiver.unarchiveObject(with: ambienceData) as? Color else {
-                return nil
+            self.ambience = ambience
         }
 
-        self.ambience = ambience
+        if let backgroundColorData = rawValue["backgroundColor"] as? Data,
+            let backgroundColor = NSKeyedUnarchiver.unarchiveObject(with: backgroundColorData) as? Color {
 
-        guard let sceneFrameDict = rawValue["sceneFrame"] as? [String: Any],
+            self.backgroundColor = backgroundColor
+        }
+
+        if let sceneFrameDict = rawValue["sceneFrame"] as? [String: Any],
             let minX = sceneFrameDict["minX"] as? Double,
             let maxX = sceneFrameDict["maxX"] as? Double,
             let minY = sceneFrameDict["minY"] as? Double,
@@ -64,11 +70,10 @@ extension RayTracerSettings: RawRepresentable {
             let width = sceneFrameDict["width"] as? Int,
             let height = sceneFrameDict["height"] as? Int,
             let aspectRatioRawValue = sceneFrameDict["aspectRatio"] as? Int,
-            let aspectRatio = Frame.AspectRatio(rawValue: aspectRatioRawValue) else {
-                return nil
-        }
+            let aspectRatio = Frame.AspectRatio(rawValue: aspectRatioRawValue) {
 
-        self.sceneFrame = Frame(view: Frame.View(minX: minX, maxX: maxX, minY: minY, maxY: maxY, zPlane: zPlane), width: width, height: height, aspectRatio: aspectRatio)//size: Frame.Size(width: width, height: height))
+            self.sceneFrame = Frame(view: Frame.View(minX: minX, maxX: maxX, minY: minY, maxY: maxY, zPlane: zPlane), width: width, height: height, aspectRatio: aspectRatio)
+        }
     }
 
     var rawValue: RawValue {
@@ -83,6 +88,8 @@ extension RayTracerSettings: RawRepresentable {
         ]
 
         raw["ambience"] = NSKeyedArchiver.archivedData(withRootObject: ambience)
+
+        raw["backgroundColor"] = NSKeyedArchiver.archivedData(withRootObject: backgroundColor)
 
         raw["sceneFrame"] = [
             "minX": sceneFrame.view.minX,

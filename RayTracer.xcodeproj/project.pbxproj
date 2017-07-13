@@ -54,7 +54,6 @@
 		8961BC141F15B7B80004DCD5 /* SegmentedControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8961BC121F15B7B80004DCD5 /* SegmentedControlTableViewCell.xib */; };
 		8961BC171F15F6F00004DCD5 /* FrameSizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC151F15F6F00004DCD5 /* FrameSizeTableViewCell.swift */; };
 		8961BC181F15F6F00004DCD5 /* FrameSizeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8961BC161F15F6F00004DCD5 /* FrameSizeTableViewCell.xib */; };
-		8961BC1A1F1606010004DCD5 /* DoubleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC191F1606010004DCD5 /* DoubleTests.swift */; };
 		8961BC1E1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC1D1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift */; };
 		89CEA6DB1F1203040008B05B /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */; };
 		89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */; };
@@ -129,7 +128,6 @@
 		8961BC121F15B7B80004DCD5 /* SegmentedControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SegmentedControlTableViewCell.xib; path = Views/SegmentedControlTableViewCell.xib; sourceTree = "<group>"; };
 		8961BC151F15F6F00004DCD5 /* FrameSizeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrameSizeTableViewCell.swift; path = Views/FrameSizeTableViewCell.swift; sourceTree = "<group>"; };
 		8961BC161F15F6F00004DCD5 /* FrameSizeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FrameSizeTableViewCell.xib; path = Views/FrameSizeTableViewCell.xib; sourceTree = "<group>"; };
-		8961BC191F1606010004DCD5 /* DoubleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleTests.swift; sourceTree = "<group>"; };
 		8961BC1D1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegmentedControlTableViewCell.swift; path = Views/SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewCell.swift; path = Views/ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleValueTableViewCell.swift; path = Views/SingleValueTableViewCell.swift; sourceTree = "<group>"; };
@@ -198,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				895856441F116A2B00BEB595 /* RayTracerTests.swift */,
-				8961BC191F1606010004DCD5 /* DoubleTests.swift */,
 				8958567A1F116E3C00BEB595 /* PointTests.swift */,
 				8958567B1F116E3C00BEB595 /* RayTests.swift */,
 				8958567C1F116E3C00BEB595 /* SphereTests.swift */,
@@ -457,7 +454,6 @@
 				895856841F116E3C00BEB595 /* UtilitiesTests.swift in Sources */,
 				8958567F1F116E3C00BEB595 /* CoreDataHelpers.swift in Sources */,
 				895856831F116E3C00BEB595 /* SphereTests.swift in Sources */,
-				8961BC1A1F1606010004DCD5 /* DoubleTests.swift in Sources */,
 				895856451F116A2B00BEB595 /* RayTracerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
