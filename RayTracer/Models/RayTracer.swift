@@ -80,7 +80,6 @@ class RayTracer {
         }
 
         let closestSphere = intersection.sphere
-
         let ambient = closestSphere.finish.ambient
         let diffuse = computeDiffuseComponents(at: intersection)
         let specular = computeSpecularComponents(at: intersection)
@@ -104,13 +103,11 @@ class RayTracer {
         let rayToLightIntersections = rayToLight.intersections(with: spheres)
 
         var lightIsObscured = false
-        if rayToLightIntersections.count > 0 {
-            for intersection in rayToLightIntersections {
-                let distanceToSphere = intersection.point.distance(from: rayToLight.initial)
-                if distanceToSphere < distanceToLight {
-                    lightIsObscured = true
-                    break
-                }
+        for intersection in rayToLightIntersections {
+            let distanceToSphere = intersection.point.distance(from: rayToLight.initial)
+            if distanceToSphere < distanceToLight {
+                lightIsObscured = true
+                break
             }
         }
 

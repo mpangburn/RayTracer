@@ -10,7 +10,8 @@ import UIKit
 
 
 protocol FrameSizeTableViewCellDelegate: class {
-    func frameSizeTableViewCellFrameSizeDidChange(_ cell: FrameSizeTableViewCell)
+    func frameSizeTableViewCellWidthDidChange(_ cell: FrameSizeTableViewCell)
+    func frameSizeTableViewCellHeightDidChange(_ cell: FrameSizeTableViewCell)
 }
 
 
@@ -67,6 +68,14 @@ class FrameSizeTableViewCell: ExpandableTableViewCell {
 
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         updateSizeLabel()
-        delegate?.frameSizeTableViewCellFrameSizeDidChange(self)
+        
+        switch sender {
+        case widthSlider:
+            delegate?.frameSizeTableViewCellWidthDidChange(self)
+        case heightSlider:
+            delegate?.frameSizeTableViewCellHeightDidChange(self)
+        default:
+            break
+        }
     }
 }

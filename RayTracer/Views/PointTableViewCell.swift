@@ -32,12 +32,6 @@ class PointTableViewCell: ExpandableTableViewCell {
         }
     }
 
-    enum PointType {
-        case eye, light
-    }
-
-    var pointType: PointType?
-
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.text = NSLocalizedString("Position", comment: "The title text for the position editing cell")

@@ -33,7 +33,7 @@ class SpheresTableViewController: UITableViewController {
             print("Error fetching sphere data")
         }
 
-        if tracer.spheres.count == 0 {
+        if tracer.spheres.isEmpty {
             tracer.spheres.append(Sphere(string: "1.0 1.0 0.0 2.0 1.0 0.0 1.0 0.2 0.4 0.5 0.05", context: context)!)
             tracer.spheres.append(Sphere(string: "8.0 -10.0 110.0 100.0 0.2 0.2 0.6 0.4 0.8 0.0 0.05", context: context)!)
         }
@@ -45,7 +45,9 @@ class SpheresTableViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         // Accounts for unexpected sphere reordering after tracing
-//        tracer.spheres.sort { ($0.creationDate as Date) < ($1.creationDate as Date) }
+        let sceneNeedsRendering = tracer.sceneNeedsRendering
+        tracer.spheres.sort { ($0.creationDate as Date) < ($1.creationDate as Date) }
+        tracer.sceneNeedsRendering = sceneNeedsRendering
         tableView.reloadData()
     }
 

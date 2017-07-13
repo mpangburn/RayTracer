@@ -30,12 +30,6 @@ class ColorTableViewCell: ExpandableTableViewCell {
         }
     }
 
-    enum ColorType {
-        case light, ambience, background
-    }
-
-    var colorType: ColorType?
-
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.text = NSLocalizedString("Color", comment: "The title text for the color editing cell")

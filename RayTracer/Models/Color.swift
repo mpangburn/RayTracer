@@ -59,6 +59,11 @@ class Color: NSObject, NSCoding {
         aCoder.encode(self.alpha, forKey: CodingKey.alpha.rawValue)
     }
 
+    /**
+     Returns the color with each of its components multiplied by the scalar.
+     - Parameter scalar: The value to multiply each component by.
+     - Returns: The color with each of his components multiplied by the scalar.
+     */
     func withComponentsScaled(by scalar: Double) -> Color {
         return Color(red: self.red * scalar, green: self.green * scalar, blue: self.blue * scalar)
     }
@@ -71,7 +76,7 @@ extension Color {
     /// Represents the color's components in 8-bit unsigned integer form.
     typealias PixelData = (red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8)
 
-    /// The color represented with the appropriate UInt8 values.
+    /// The pixel data for the color, using unsigned 8-bit integer values.
     var pixelData: PixelData {
         return (red: self.red.pixelDataValue, green: self.green.pixelDataValue, blue: self.blue.pixelDataValue, alpha: self.alpha.pixelDataValue)
     }
