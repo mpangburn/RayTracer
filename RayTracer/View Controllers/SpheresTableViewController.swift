@@ -12,11 +12,11 @@ import CoreData
 
 class SpheresTableViewController: UITableViewController {
 
-    var tracer = RayTracer.shared
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Spheres", comment: "The title text for sphere list screen")
+        tableView.tableFooterView = UIView()
+
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
 
@@ -24,8 +24,9 @@ class SpheresTableViewController: UITableViewController {
 //        let deleteResult = try! context.execute(deleteRequest)
 
         let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
-//        let dateSortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
-//        fetchRequest.sortDescriptors = [dateSortDescriptor]
+        let dateSortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
+        fetchRequest.sortDescriptors = [dateSortDescriptor]
+        let tracer = RayTracer.shared
 
         do {
             tracer.spheres = try context.fetch(fetchRequest)
@@ -41,16 +42,6 @@ class SpheresTableViewController: UITableViewController {
          appDelegate.saveContext()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        // Accounts for unexpected sphere reordering after tracing
-        let sceneNeedsRendering = tracer.sceneNeedsRendering
-        tracer.spheres.sort { ($0.creationDate as Date) < ($1.creationDate as Date) }
-        tracer.sceneNeedsRendering = sceneNeedsRendering
-        tableView.reloadData()
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,20 +49,20 @@ class SpheresTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tracer.spheres.count
+        return RayTracer.shared.spheres.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SphereTableViewCell.className, for: indexPath) as! SphereTableViewCell
-        cell.equationLabel.text = tracer.spheres[indexPath.row].equation(usingIntegers: true)
-        cell.colorView.backgroundColor = UIColor(tracer.spheres[indexPath.row].color)
+        cell.equationLabel.text = RayTracer.shared.spheres[indexPath.row].equation(usingIntegers: true)
+        cell.colorView.backgroundColor = UIColor(RayTracer.shared.spheres[indexPath.row].color)
         return cell
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteSphereData(at: indexPath)
-            tracer.spheres.remove(at: indexPath.row)
+            RayTracer.shared.spheres.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -80,7 +71,7 @@ class SpheresTableViewController: UITableViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "creationDate == %@", self.tracer.spheres[indexPath.row].creationDate)
+        fetchRequest.predicate = NSPredicate(format: "creationDate == %@", RayTracer.shared.spheres[indexPath.row].creationDate)
         let sphereToDelete = try! context.fetch(fetchRequest).first!
         context.delete(sphereToDelete)
         appDelegate.saveContext()
@@ -92,6 +83,7 @@ class SpheresTableViewController: UITableViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 
         if let sourceViewController = sender.source as? AddEditSphereTableViewController {
+            let tracer = RayTracer.shared
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 let originalCreationDate = tracer.spheres[selectedIndexPath.row].creationDate
                 deleteSphereData(at: selectedIndexPath)
@@ -116,8 +108,8 @@ class SpheresTableViewController: UITableViewController {
         case "EditSphere":
             let destination = segue.destination as! AddEditSphereTableViewController
             destination.title = NSLocalizedString("Edit Sphere", comment: "The title text for the sphere editing screen")
-            guard let selectedRow = tableView.indexPathForSelectedRow?.row else { return }
-            destination.sphere = tracer.spheres[selectedRow]
+            let selectedRow = tableView.indexPathForSelectedRow!.row
+            destination.sphere = RayTracer.shared.spheres[selectedRow]
         default:
             break
         }

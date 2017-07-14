@@ -13,22 +13,23 @@ import CoreData
 class ImageViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var spheresImageView: UIImageView!
-    @IBOutlet weak var spheresImageViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var spheresImageViewWidthConstraint: NSLayoutConstraint!
-
-    let tracer = RayTracer.shared
+    var spheresImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Image", comment: "The title text for the ray-traced image screen")
+        setupImageView()
         setupScrollView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if tracer.sceneNeedsRendering {
+        if RayTracer.shared.sceneNeedsRendering {
             presentLoadingView(message: "Rendering image...")
 
             // Move to a background thread to render the image
@@ -37,12 +38,10 @@ class ImageViewController: UIViewController {
 
                 // Bounce back to the main thread to update the UI
                 DispatchQueue.main.async {
+                    self.spheresImageView.frame.size.width = image.size.width
+                    self.spheresImageView.frame.size.height = image.size.height
                     self.spheresImageView.image = image
-                    self.spheresImageViewHeightConstraint.constant = image.size.height
-                    self.spheresImageViewWidthConstraint.constant = image.size.width
-//                    self.scrollView.backgroundColor = UIColor(self.tracer.settings.backgroundColor)
-//                    self.spheresImageView.layer.borderColor = UIColor.black.cgColor
-//                    self.spheresImageView.layer.borderWidth = 2.0
+                    self.scrollView.zoomScale = 1.0
                     self.updateScrollView()
                     self.dismissLoadingView()
                 }
@@ -50,20 +49,14 @@ class ImageViewController: UIViewController {
         }
     }
 
+    private func setupImageView() {
+        let image = UIImage(Image(pixelData: Array<Color.PixelData>(repeating: Color.white.pixelData, count: 1), width: 1, height: 1))
+        spheresImageView = UIImageView(image: image)
+        scrollView.addSubview(spheresImageView)
+    }
+
     private func renderImage() -> UIImage {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            fatalError("Failed to access AppDelegate")
-        }
-
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
-        do {
-            tracer.spheres = try context.fetch(fetchRequest)
-        } catch {
-            print("Error fetching sphere data")
-        }
-
-        let image = tracer.castAllRays()
+        let image = RayTracer.shared.castAllRays()
         guard let renderedImage = UIImage(image) else {
             fatalError("Failed to render image into UIImage")
         }
@@ -79,7 +72,6 @@ class ImageViewController: UIViewController {
     private func updateScrollView() {
         setZoomScale()
         centerScrollViewContents()
-//        scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
     }
 
     private func setupTapToZoomGestureRecognizer() {
@@ -104,8 +96,17 @@ class ImageViewController: UIViewController {
         let widthScale = scrollViewSize.width / imageViewSize.width
         let heightScale = scrollViewSize.height / imageViewSize.height
 
-        scrollView.minimumZoomScale = min(widthScale, heightScale)
-        scrollView.zoomScale = 1.0
+        let minScale = min(widthScale, heightScale)
+        let baseScale: CGFloat = 1.0
+        if minScale < baseScale {
+            scrollView.minimumZoomScale = minScale
+            scrollView.maximumZoomScale = baseScale
+        } else {
+            scrollView.minimumZoomScale = baseScale
+            scrollView.maximumZoomScale = minScale
+        }
+
+        scrollView.zoomScale = baseScale
     }
 
     fileprivate func centerScrollViewContents() {
@@ -118,8 +119,26 @@ class ImageViewController: UIViewController {
 
     @IBAction func shareImage(_ sender: UIBarButtonItem) {
         let activityViewController = UIActivityViewController(activityItems: [spheresImageView.image as Any], applicationActivities: nil)
-        activityViewController.excludedActivityTypes = [UIActivityType.assignToContact]
-        self.present(activityViewController, animated: true, completion: nil)
+        activityViewController.excludedActivityTypes = [.assignToContact]
+        self.present(activityViewController, animated: true)
+    }
+
+    // MARK: - Debugging
+    private func printFramesInfo() {
+        print("Settings Frame: \(RayTracer.shared.settings.sceneFrame)")
+        print("ImageView Frame: \(spheresImageView.frame)")
+        print("ImageView Bounds: \(spheresImageView.bounds)")
+        print("Image Size: \(spheresImageView.image!.size)")
+    }
+
+    private func printScrollViewInfo() {
+        print("=====SCROLL VIEW =====")
+        print("Frame: \(scrollView.frame)")
+        print("Bounds: \(scrollView.bounds)")
+        print("Content Inset: \(scrollView.contentInset)")
+        print("Min Zoom Scale: \(scrollView.minimumZoomScale)")
+        print("Max Zoom Scale: \(scrollView.maximumZoomScale)")
+        print("Zoom Scale: \(scrollView.zoomScale)")
     }
 }
 

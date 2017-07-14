@@ -92,12 +92,12 @@ class AddEditSphereTableViewController: UITableViewController, ExpandableTableVi
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? NSLocalizedString("ATTRIBUTES", comment: "The title of the section for sphere attribute editing") : ""
+        return section == 0 ? NSLocalizedString("ATTRIBUTES", comment: "The title of the section for sphere attribute editing") : nil
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0 {
-            return NSLocalizedString("Ambient, diffuse, and specular refer to the percentages of respective light reflected by the sphere's finish. Roughness is the modeled roughness of the sphere, which affects the spread of specular light across the surface.", comment: "Sphere finish description")
+            return NSLocalizedString("Ambient, diffuse, and specular refer to the percentages of respective light reflected by the sphere's finish. Roughness is the modeled roughness of the sphere, which affects the spread of specular light across the surface.", comment: "The description of a sphere's finish")
         } else {
             return nil
         }
@@ -118,6 +118,8 @@ class AddEditSphereTableViewController: UITableViewController, ExpandableTableVi
         tableView.endUpdates()
         tableView.deselectRow(at: indexPath, animated: true)
     }
+
+    // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let radiusCell = tableView.cellForRow(at: IndexPath(row: Row.radius.rawValue, section: 0)) as! SingleValueTableViewCell

@@ -9,7 +9,7 @@
 import Foundation
 
 
-/// A class that stores data for and performs ray tracing.
+/// Stores data for and performs ray tracing.
 class RayTracer {
 
     /// The shared RayTracer instance.
@@ -25,7 +25,6 @@ class RayTracer {
     /// The ray tracing settings to be used in creating the scene.
     var settings = UserDefaults.standard.rayTracerSettings ?? RayTracerSettings() {
         didSet {
-            UserDefaults.standard.rayTracerSettings = settings
             sceneNeedsRendering = true
         }
     }
@@ -147,3 +146,4 @@ class RayTracer {
         }
     }
 }
+

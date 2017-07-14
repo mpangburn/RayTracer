@@ -58,9 +58,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="scrollView" destination="VBf-to-ugF" id="bSI-S1-yhS"/>
-                        <outlet property="spheresImageView" destination="Ngz-Lf-FfR" id="a2d-kX-YMF"/>
-                        <outlet property="spheresImageViewHeightConstraint" destination="Ld4-W9-kOX" id="oJ4-Fs-Idx"/>
-                        <outlet property="spheresImageViewWidthConstraint" destination="QE6-l5-bCM" id="Vrj-F1-ojV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
