@@ -67,7 +67,6 @@ class RayTracer {
         return Image(pixelData: pixels, width: frame.width, height: frame.height)
     }
 
-
     /**
      Casts the ray on the scene.
      - Parameter ray: The ray to cast.
