@@ -10,7 +10,7 @@ import UIKit
 
 class SphereTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var equationLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var colorView: UIView!
 
     override func setSelected(_ selected: Bool, animated: Bool) {

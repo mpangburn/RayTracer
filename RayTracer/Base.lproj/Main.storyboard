@@ -68,7 +68,7 @@
         <scene sceneID="R5O-fE-pTK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FVs-Ll-KIY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Image" id="UHv-I5-qjD"/>
+                    <tabBarItem key="tabBarItem" title="Image" image="Image" id="UHv-I5-qjD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SH5-8C-TF8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -106,7 +106,7 @@
         <scene sceneID="wRC-3a-alq">
             <objects>
                 <navigationController id="4ZE-Ce-XFR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="xPB-6G-Yuf"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="xPB-6G-Yuf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qnw-YB-ieR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -136,32 +136,32 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hG4-nk-mVF">
-                                            <rect key="frame" x="340" y="0.0" width="35" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="35" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="35" id="L8z-ag-wHD"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Px-7S-l8y">
-                                            <rect key="frame" x="16" y="8" width="314" height="27.5"/>
+                                            <rect key="frame" x="51" y="8" width="316" height="27.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="hG4-nk-mVF" secondAttribute="trailing" id="7dp-bL-ATs"/>
-                                        <constraint firstItem="9Px-7S-l8y" firstAttribute="leading" secondItem="UZw-Zt-ISK" secondAttribute="leadingMargin" constant="8" id="HBd-9m-tJt"/>
+                                        <constraint firstItem="hG4-nk-mVF" firstAttribute="leading" secondItem="UZw-Zt-ISK" secondAttribute="leading" id="9Bg-ED-RXA"/>
+                                        <constraint firstItem="9Px-7S-l8y" firstAttribute="leading" secondItem="hG4-nk-mVF" secondAttribute="trailing" constant="16" id="QKE-nX-LBx"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="9Px-7S-l8y" secondAttribute="bottom" id="UDp-9d-X12"/>
                                         <constraint firstItem="9Px-7S-l8y" firstAttribute="top" secondItem="UZw-Zt-ISK" secondAttribute="topMargin" id="bvF-Y7-yF1"/>
-                                        <constraint firstItem="hG4-nk-mVF" firstAttribute="leading" secondItem="9Px-7S-l8y" secondAttribute="trailing" constant="10" id="myx-B8-dbh"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="9Px-7S-l8y" secondAttribute="trailing" id="lSI-V1-caj"/>
                                         <constraint firstItem="hG4-nk-mVF" firstAttribute="top" secondItem="UZw-Zt-ISK" secondAttribute="top" id="nVi-Hd-Qc1"/>
                                         <constraint firstAttribute="bottom" secondItem="hG4-nk-mVF" secondAttribute="bottom" id="zwg-Sm-fNq"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="colorView" destination="hG4-nk-mVF" id="s6v-HG-sga"/>
-                                    <outlet property="equationLabel" destination="9Px-7S-l8y" id="pR6-NS-673"/>
+                                    <outlet property="titleLabel" destination="9Px-7S-l8y" id="8bP-Ic-GVS"/>
                                     <segue destination="lAC-aH-YI6" kind="show" identifier="EditSphere" id="htP-bP-sy6"/>
                                 </connections>
                             </tableViewCell>
@@ -219,7 +219,7 @@
         <scene sceneID="6uD-jg-z7j">
             <objects>
                 <navigationController id="1bW-I3-FiY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Spheres" id="wUc-rk-mAE"/>
+                    <tabBarItem key="tabBarItem" title="Spheres" image="Sphere" id="wUc-rk-mAE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="74c-Hr-btn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -271,6 +271,11 @@
             <point key="canvasLocation" x="3031" y="-54"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Image" width="30" height="30"/>
+        <image name="Settings" width="30" height="30"/>
+        <image name="Sphere" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="htP-bP-sy6"/>
     </inferredMetricsTieBreakers>
