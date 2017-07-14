@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController, ExpandableTableViewCellDelegate {
 
-    var tracer = RayTracer.shared
+    let tracer = RayTracer.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +22,11 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
         tableView.register(FrameViewTableViewCell.nib(), forCellReuseIdentifier: FrameViewTableViewCell.className)
         tableView.register(FrameSizeTableViewCell.nib(), forCellReuseIdentifier: FrameSizeTableViewCell.className)
         tableView.register(SingleButtonTableViewCell.nib(), forCellReuseIdentifier: SingleButtonTableViewCell.className)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserDefaults.standard.rayTracerSettings = tracer.settings
     }
 
     fileprivate enum Section: Int {

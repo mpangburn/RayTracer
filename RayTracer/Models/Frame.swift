@@ -15,8 +15,9 @@ struct Frame {
     /// The view for the frame.
     var view: View
 
-    /// Represents the view for the frame.
+    /// Represents the coordinate view for the frame.
     struct View {
+
         /// The lower x-bound of the view.
         var minX: Double
 
@@ -29,7 +30,7 @@ struct Frame {
         /// The upper y-bound of the view.
         var maxY: Double
 
-        /// The z-plane in which the view is drawn.
+        /// The z-plane on which the view is seen.
         var zPlane: Double
     }
 
@@ -81,7 +82,7 @@ struct Frame {
         }
     }
 
-    fileprivate var currentAspectRatio: Double {
+    fileprivate var actualAspectRatio: Double {
         return (Double(width) / Double(height))
     }
 
@@ -96,7 +97,7 @@ struct Frame {
 
 extension Frame: CustomStringConvertible, CustomDebugStringConvertible {
     var description: String {
-        return "Frame(minX: \(self.view.minX), maxX: \(self.view.maxX), minY: \(self.view.minY), maxY: \(self.view.maxY), zPlane: \(self.view.zPlane), width: \(self.width), height: \(self.height), aspectRatio: \(self.aspectRatio.ratio), currentAspectRatio: \(self.currentAspectRatio))"
+        return "Frame(minX: \(self.view.minX), maxX: \(self.view.maxX), minY: \(self.view.minY), maxY: \(self.view.maxY), zPlane: \(self.view.zPlane), width: \(self.width), height: \(self.height), aspectRatio: \(self.aspectRatio.ratio), actualAspectRatio: \(self.actualAspectRatio))"
     }
 
     var debugDescription: String {
