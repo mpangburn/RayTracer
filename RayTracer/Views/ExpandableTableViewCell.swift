@@ -51,15 +51,3 @@ class ExpandableTableViewCell: UITableViewCell {
         }
     }
 }
-
-
-protocol ExpandableTableViewCellDelegate: class { }
-
-extension ExpandableTableViewCellDelegate where Self: UITableViewController {
-
-    func closeExpandableTableViewCells(excluding indexPath: IndexPath? = nil) {
-        for case let cell as ExpandableTableViewCell in tableView.visibleCells where tableView.indexPath(for: cell) != indexPath && cell.isExpanded {
-            cell.isExpanded = false
-        }
-    }
-}

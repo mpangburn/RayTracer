@@ -10,10 +10,8 @@ import UIKit
 
 
 protocol SingleValueTableViewCellDelegate: class {
-
-    func singleValueTableViewCellValueDidChange(_ cell: SingleValueTableViewCell)
-
     func singleValueTableViewCellDidBeginEditing(_ cell: SingleValueTableViewCell)
+    func singleValueTableViewCellValueDidChange(_ cell: SingleValueTableViewCell)
 }
 
 
@@ -33,26 +31,24 @@ class SingleValueTableViewCell: UITableViewCell, UITextFieldDelegate {
             return Double(valueTextField.text!) ?? 0
         }
         set {
-            // Display decimal point only if necessary
-            if newValue.truncatingRemainder(dividingBy: 1) == 0 {
-                valueTextField.text = String(format: "%.0f", newValue)
-            } else {
-                valueTextField.text = String(newValue)
-            }
+            valueTextField.text = newValue.cleanValueString
         }
     }
 
-    func endTextFieldEditing() {
-        valueTextField.resignFirstResponder()
-    }
+    private var valueBeforeEditing = 0.0
 
     // MARK: - UITextFieldDelegate
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        delegate?.singleValueTableViewCellValueDidChange(self)
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        valueBeforeEditing = value
+        valueTextField.text = ""
+        delegate?.singleValueTableViewCellDidBeginEditing(self)
     }
 
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        delegate?.singleValueTableViewCellDidBeginEditing(self)
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if valueTextField.text!.isEmpty {
+            value = valueBeforeEditing
+        }
+        delegate?.singleValueTableViewCellValueDidChange(self)
     }
 }

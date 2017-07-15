@@ -9,7 +9,8 @@
 import UIKit
 import CoreData
 
-class AddEditSphereTableViewController: UITableViewController, ExpandableTableViewCellDelegate {
+
+class AddEditSphereTableViewController: ExpandableCellTableViewController {
 
     var sphere: Sphere {
         get {
@@ -39,6 +40,8 @@ class AddEditSphereTableViewController: UITableViewController, ExpandableTableVi
         tableView.register(SingleValueTableViewCell.nib(), forCellReuseIdentifier: SingleValueTableViewCell.className)
         tableView.register(ColorTableViewCell.nib(), forCellReuseIdentifier: ColorTableViewCell.className)
         tableView.register(FinishTableViewCell.nib(), forCellReuseIdentifier: FinishTableViewCell.className)
+
+        tableView.estimatedRowHeight = 144
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,7 +95,11 @@ class AddEditSphereTableViewController: UITableViewController, ExpandableTableVi
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? NSLocalizedString("ATTRIBUTES", comment: "The title of the section for sphere attribute editing") : nil
+        if section == 0 {
+            return NSLocalizedString("ATTRIBUTES", comment: "The title of the section for sphere attribute editing")
+        } else {
+            return nil
+        }
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
@@ -103,27 +110,22 @@ class AddEditSphereTableViewController: UITableViewController, ExpandableTableVi
         }
     }
 
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 144
-    }
-
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        tableView.endEditing(false)
-        tableView.beginUpdates()
-        closeExpandableTableViewCells(excluding: indexPath)
-        return indexPath
+    private func endRadiusEditing() {
+        let radiusCell = tableView.cellForRow(at: IndexPath(row: Row.radius.rawValue, section: 0)) as! SingleValueTableViewCell
+        radiusCell.valueTextField.resignFirstResponder()
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.endUpdates()
-        tableView.deselectRow(at: indexPath, animated: true)
+        super.tableView(tableView, didSelectRowAt: indexPath)
+        if Row(rawValue: indexPath.section) != .radius {
+            endRadiusEditing()
+        }
     }
 
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let radiusCell = tableView.cellForRow(at: IndexPath(row: Row.radius.rawValue, section: 0)) as! SingleValueTableViewCell
-        radiusCell.endTextFieldEditing()
+        endRadiusEditing()
     }
 
     @IBAction func cancel(_ sender: UIBarButtonItem) {
@@ -142,14 +144,14 @@ extension AddEditSphereTableViewController: PointTableViewCellDelegate {
 }
 
 extension AddEditSphereTableViewController: SingleValueTableViewCellDelegate {
-    func singleValueTableViewCellValueDidChange(_ cell: SingleValueTableViewCell) {
-        self.radius = cell.value
-    }
-
     func singleValueTableViewCellDidBeginEditing(_ cell: SingleValueTableViewCell) {
         tableView.beginUpdates()
         closeExpandableTableViewCells()
         tableView.endUpdates()
+    }
+
+    func singleValueTableViewCellValueDidChange(_ cell: SingleValueTableViewCell) {
+        self.radius = cell.value
     }
 }
 

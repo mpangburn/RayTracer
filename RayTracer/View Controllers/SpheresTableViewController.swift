@@ -36,7 +36,7 @@ class SpheresTableViewController: UITableViewController {
 
         if tracer.spheres.isEmpty {
             tracer.spheres.append(Sphere(string: "1.0 1.0 0.0 2.0 1.0 0.0 1.0 0.2 0.4 0.5 0.05", context: context)!)
-            tracer.spheres.append(Sphere(string: "8.0 -10.0 110.0 100.0 0.2 0.2 0.6 0.4 0.8 0.0 0.05", context: context)!)
+            tracer.spheres.append(Sphere(string: "8.0 -10.0 100.0 90.0 0.2 0.2 0.6 0.4 0.8 0.0 0.05", context: context)!)
         }
 
          appDelegate.saveContext()
@@ -55,7 +55,7 @@ class SpheresTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SphereTableViewCell.className, for: indexPath) as! SphereTableViewCell
         let sphere = RayTracer.shared.spheres[indexPath.row]
-        cell.titleLabel.text = "radius = \(sphere.radius.cleanValueString) at (\(sphere.center.x), \(sphere.center.y), \(sphere.center.z))"
+        cell.titleLabel.text = "radius = \(sphere.radius.cleanValueString) at (\(sphere.center.x.cleanValueString), \(sphere.center.y.cleanValueString), \(sphere.center.z.cleanValueString))"
         cell.colorView.backgroundColor = UIColor(sphere.color)
         return cell
     }

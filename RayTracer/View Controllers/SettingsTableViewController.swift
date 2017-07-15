@@ -8,7 +8,8 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController, ExpandableTableViewCellDelegate {
+
+class SettingsTableViewController: ExpandableCellTableViewController {
 
     let tracer = RayTracer.shared
 
@@ -22,6 +23,8 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
         tableView.register(FrameViewTableViewCell.nib(), forCellReuseIdentifier: FrameViewTableViewCell.className)
         tableView.register(FrameSizeTableViewCell.nib(), forCellReuseIdentifier: FrameSizeTableViewCell.className)
         tableView.register(SingleButtonTableViewCell.nib(), forCellReuseIdentifier: SingleButtonTableViewCell.className)
+
+        tableView.estimatedRowHeight = 144
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -155,10 +158,6 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
         }
     }
 
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 144
-    }
-
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Section(rawValue: section)! {
         case .background:
@@ -169,21 +168,6 @@ class SettingsTableViewController: UITableViewController, ExpandableTableViewCel
             return nil
         }
     }
-
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        tableView.beginUpdates()
-        closeExpandableTableViewCells(excluding: indexPath)
-        return indexPath
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.endUpdates()
-        tableView.deselectRow(at: indexPath, animated: true)
-//        if let _ = tableView.cellForRow(at: indexPath) as? ExpandableTableViewCell {
-//            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
-//        }
-    }
-
 
     // MARK: - Actions
 
@@ -265,8 +249,8 @@ extension SettingsTableViewController: FrameSizeTableViewCellDelegate {
 
         let minHeightSliderValue = Int(cell.heightSlider.minimumValue)
         let heightIsAtMinAndWidthIsDecreasing = cell.height == minHeightSliderValue && cell.width < tracer.settings.sceneFrame.width
-        let decreasedWidthSliderValueQuickly = tracer.settings.sceneFrame.height < minHeightSliderValue && cell.width == Int(cell.widthSlider.minimumValue)
-        if heightIsAtMinAndWidthIsDecreasing || decreasedWidthSliderValueQuickly {
+        let widthSliderWasDecreasedQuickly = tracer.settings.sceneFrame.height < minHeightSliderValue && cell.width == Int(cell.widthSlider.minimumValue)
+        if heightIsAtMinAndWidthIsDecreasing || widthSliderWasDecreasedQuickly {
             tracer.settings.sceneFrame.height = minHeightSliderValue
         } else {
             tracer.settings.sceneFrame.width = cell.width
@@ -279,13 +263,12 @@ extension SettingsTableViewController: FrameSizeTableViewCellDelegate {
     func frameSizeTableViewCellHeightDidChange(_ cell: FrameSizeTableViewCell) {
         guard tracer.settings.sceneFrame.aspectRatio != .freeform else {
             tracer.settings.sceneFrame.height = cell.height
-            print(tracer.settings.sceneFrame)
             return
         }
 
         let maxWidthSliderValue = Int(cell.widthSlider.maximumValue)
-        let widthIsAtMinAndHeightIsDecreasing = cell.width == maxWidthSliderValue && cell.height > tracer.settings.sceneFrame.height
-        if widthIsAtMinAndHeightIsDecreasing {
+        let widthIsAtMaxAndHeightIsIncreasing = cell.width == maxWidthSliderValue && cell.height > tracer.settings.sceneFrame.height
+        if widthIsAtMaxAndHeightIsIncreasing {
             tracer.settings.sceneFrame.width = maxWidthSliderValue
         } else {
             tracer.settings.sceneFrame.height = cell.height

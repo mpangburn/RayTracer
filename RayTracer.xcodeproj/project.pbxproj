@@ -55,6 +55,7 @@
 		8961BC171F15F6F00004DCD5 /* FrameSizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC151F15F6F00004DCD5 /* FrameSizeTableViewCell.swift */; };
 		8961BC181F15F6F00004DCD5 /* FrameSizeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8961BC161F15F6F00004DCD5 /* FrameSizeTableViewCell.xib */; };
 		8961BC1E1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC1D1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift */; };
+		8961BC211F1950A40004DCD5 /* ExpandableCellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC201F1950A40004DCD5 /* ExpandableCellTableViewController.swift */; };
 		89CEA6DB1F1203040008B05B /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */; };
 		89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */; };
 		89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */; };
@@ -129,6 +130,7 @@
 		8961BC151F15F6F00004DCD5 /* FrameSizeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrameSizeTableViewCell.swift; path = Views/FrameSizeTableViewCell.swift; sourceTree = "<group>"; };
 		8961BC161F15F6F00004DCD5 /* FrameSizeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FrameSizeTableViewCell.xib; path = Views/FrameSizeTableViewCell.xib; sourceTree = "<group>"; };
 		8961BC1D1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegmentedControlTableViewCell.swift; path = Views/SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
+		8961BC201F1950A40004DCD5 /* ExpandableCellTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableCellTableViewController.swift; path = Abstract/ExpandableCellTableViewController.swift; sourceTree = "<group>"; };
 		89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewCell.swift; path = Views/ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleValueTableViewCell.swift; path = Views/SingleValueTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SingleValueTableViewCell.xib; path = Views/SingleValueTableViewCell.xib; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 		895856601F116B2D00BEB595 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8961BC1F1F19507B0004DCD5 /* Abstract */,
 				8958568F1F11A02B00BEB595 /* AddEditSphereTableViewController.swift */,
 				895856611F116B2D00BEB595 /* ImageViewController.swift */,
 				89FF805D1F12FBAB00A9F4AB /* SettingsTableViewController.swift */,
@@ -287,6 +290,14 @@
 				895856881F1175F300BEB595 /* SphereTableViewCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		8961BC1F1F19507B0004DCD5 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				8961BC201F1950A40004DCD5 /* ExpandableCellTableViewController.swift */,
+			);
+			name = Abstract;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +440,7 @@
 				8961BC0E1F15368E0004DCD5 /* RayTracerSettings.swift in Sources */,
 				8958566A1F116B2D00BEB595 /* Point.swift in Sources */,
 				895856671F116B2D00BEB595 /* Frame.swift in Sources */,
+				8961BC211F1950A40004DCD5 /* ExpandableCellTableViewController.swift in Sources */,
 				895856651F116B2D00BEB595 /* Color.swift in Sources */,
 				895856931F11A21000BEB595 /* PointTableViewCell.swift in Sources */,
 				8958566B1F116B2D00BEB595 /* Ray.swift in Sources */,
