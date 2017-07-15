@@ -21,7 +21,7 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDg-KV-9Mf">
                         <rect key="frame" x="128" y="0.0" width="64" height="43.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="44" id="Lql-4N-64d"/>
+                            <constraint firstAttribute="height" priority="750" constant="44" id="Lql-4N-64d"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="sfm-zf-PRd"/>
                         </constraints>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
