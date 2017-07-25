@@ -86,29 +86,29 @@ class AddEditSphereTableViewController: ExpandableCellTableViewController {
         case .attributes:
             switch AttributeRow(rawValue: indexPath.row)! {
             case .center:
-                let cell = tableView.dequeueReusableCell(withIdentifier: PointTableViewCell.className) as! PointTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: PointTableViewCell.className, for: indexPath) as! PointTableViewCell
                 cell.point = self.center
                 cell.delegate = self
                 return cell
             case .radius:
-                let cell = tableView.dequeueReusableCell(withIdentifier: SingleValueTableViewCell.className) as! SingleValueTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: SingleValueTableViewCell.className, for: indexPath) as! SingleValueTableViewCell
                 cell.label.text = NSLocalizedString("Radius", comment: "The title of the cell for configuring sphere radius")
                 cell.value = self.radius
                 cell.delegate = self
                 return cell
             case .color:
-                let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className) as! ColorTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className, for: indexPath) as! ColorTableViewCell
                 cell.color = self.color
                 cell.delegate = self
                 return cell
             case .finish:
-                let cell = tableView.dequeueReusableCell(withIdentifier: FinishTableViewCell.className) as! FinishTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: FinishTableViewCell.className, for: indexPath) as! FinishTableViewCell
                 cell.finish = self.finish
                 cell.delegate = self
                 return cell
             }
         case .randomButton:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SingleButtonTableViewCell.className) as! SingleButtonTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: SingleButtonTableViewCell.className, for: indexPath) as! SingleButtonTableViewCell
             cell.button.setTitle(NSLocalizedString("Random Sphere", comment: "The button text for the random sphere button"), for: .normal)
             cell.button.addTarget(nil, action: #selector(generateRandomSphere), for: .touchUpInside)
             return cell
@@ -133,16 +133,16 @@ class AddEditSphereTableViewController: ExpandableCellTableViewController {
         }
     }
 
-    private func endRadiusEditing() {
-        let radiusCell = tableView.cellForRow(at: IndexPath(row: AttributeRow.radius.rawValue, section: 0)) as! SingleValueTableViewCell
-        radiusCell.valueTextField.resignFirstResponder()
-    }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         super.tableView(tableView, didSelectRowAt: indexPath)
         if Section(rawValue: indexPath.section) == .attributes && AttributeRow(rawValue: indexPath.row) != .radius {
             endRadiusEditing()
         }
+    }
+
+    private func endRadiusEditing() {
+        let radiusCell = tableView.cellForRow(at: IndexPath(row: AttributeRow.radius.rawValue, section: Section.attributes.rawValue)) as! SingleValueTableViewCell
+        radiusCell.valueTextField.resignFirstResponder()
     }
 
     // MARK: - Actions

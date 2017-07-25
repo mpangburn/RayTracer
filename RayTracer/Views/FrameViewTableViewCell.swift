@@ -64,7 +64,7 @@ class FrameViewTableViewCell: ExpandableTableViewCell {
 
     private func updateMeasurementsLabel() {
         let frameView = self.frameView
-        measurementsLabel.text = "(\(Int(frameView.minX)), \(Int(frameView.maxX))) × (\(Int(frameView.minY)), \(Int(frameView.maxY))) on z = \(Int(frameView.zPlane))"
+        measurementsLabel.text = "(\(frameView.minX.cleanValueOrSingleDecimalString), \(frameView.maxX.cleanValueOrSingleDecimalString)) × (\(frameView.minY.cleanValueOrSingleDecimalString), \(frameView.maxY.cleanValueOrSingleDecimalString)) on z = \(frameView.zPlane.cleanValueOrSingleDecimalString)"
     }
 
     @IBAction func sliderValueChanged(_ sender: UISlider) {

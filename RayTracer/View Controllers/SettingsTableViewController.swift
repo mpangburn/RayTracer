@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 
 class SettingsTableViewController: ExpandableCellTableViewController {
@@ -38,9 +39,10 @@ class SettingsTableViewController: ExpandableCellTableViewController {
         case ambience
         case background
         case frame
-        case resetButton
+        case resetSettings
+        case resetSpheres
 
-        static let count = 6
+        static let count = 7
     }
 
     private enum LightRow: Int {
@@ -77,8 +79,8 @@ class SettingsTableViewController: ExpandableCellTableViewController {
             return NSLocalizedString("BACKGROUND", comment: "The title of the section for the scene's background color setting")
         case .frame:
             return NSLocalizedString("FRAME", comment: "The title of the section for the scene's frame setting")
-        case .resetButton:
-            return ""
+        case .resetSettings, .resetSpheres:
+            return nil
         }
     }
 
@@ -96,64 +98,70 @@ class SettingsTableViewController: ExpandableCellTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch Section(rawValue: indexPath.section)! {
         case .eyePoint:
-            let cell = tableView.dequeueReusableCell(withIdentifier: PointTableViewCell.className) as! PointTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: PointTableViewCell.className, for: indexPath) as! PointTableViewCell
             cell.point = tracer.settings.eyePoint
             cell.delegate = self
             return cell
         case .light:
             switch LightRow(rawValue: indexPath.row)! {
             case .position:
-                let cell = tableView.dequeueReusableCell(withIdentifier: PointTableViewCell.className) as! PointTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: PointTableViewCell.className, for: indexPath) as! PointTableViewCell
                 cell.point = tracer.settings.light.position
                 cell.delegate = self
                 return cell
             case .color:
-                let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className) as! ColorTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className, for: indexPath) as! ColorTableViewCell
                 cell.color = tracer.settings.light.color
                 cell.delegate = self
                 return cell
             case .intensity:
-                let cell = tableView.dequeueReusableCell(withIdentifier: SegmentedControlTableViewCell.className) as! SegmentedControlTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: SegmentedControlTableViewCell.className, for: indexPath) as! SegmentedControlTableViewCell
                 cell.valueType = .intensity
                 cell.intensity = tracer.settings.light.intensity
                 cell.delegate = self
                 return cell
             }
         case .ambience:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className) as! ColorTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className, for: indexPath) as! ColorTableViewCell
             cell.color = tracer.settings.ambience
             cell.delegate = self
             return cell
         case .background:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className) as! ColorTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: ColorTableViewCell.className, for: indexPath) as! ColorTableViewCell
             cell.color = tracer.settings.backgroundColor
             cell.delegate = self
             return cell
         case .frame:
             switch FrameRow(rawValue: indexPath.row)! {
             case .view:
-                let cell = tableView.dequeueReusableCell(withIdentifier: FrameViewTableViewCell.className) as! FrameViewTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: FrameViewTableViewCell.className, for: indexPath) as! FrameViewTableViewCell
                 cell.frameView = tracer.settings.sceneFrame.view
                 cell.delegate = self
                 return cell
             case .size:
-                let cell = tableView.dequeueReusableCell(withIdentifier: FrameSizeTableViewCell.className) as! FrameSizeTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: FrameSizeTableViewCell.className, for: indexPath) as! FrameSizeTableViewCell
                 cell.width = tracer.settings.sceneFrame.width
                 cell.height = tracer.settings.sceneFrame.height
                 cell.delegate = self
                 return cell
             case .aspectRatio:
-                let cell = tableView.dequeueReusableCell(withIdentifier: SegmentedControlTableViewCell.className) as! SegmentedControlTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: SegmentedControlTableViewCell.className, for: indexPath) as! SegmentedControlTableViewCell
                 cell.valueType = .aspectRatio
                 cell.aspectRatio = tracer.settings.sceneFrame.aspectRatio
                 cell.delegate = self
                 return cell
             }
-        case .resetButton:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SingleButtonTableViewCell.className) as! SingleButtonTableViewCell
-            cell.button.setTitle(NSLocalizedString("Reset", comment: "The title text for the reset button"), for: .normal)
+        case .resetSettings:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SingleButtonTableViewCell.className, for: indexPath) as! SingleButtonTableViewCell
+            cell.button.setTitle(NSLocalizedString("Reset Settings", comment: "The title text for the reset settings button"), for: .normal)
             cell.button.setTitleColor(.red, for: .normal)
-            cell.button.addTarget(self, action: #selector(SettingsTableViewController.resetButtonPressed(_:)), for: .touchUpInside)
+            cell.button.addTarget(self, action: #selector(resetSettingsButtonPressed(_:)), for: .touchUpInside)
+            return cell
+        case .resetSpheres:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SingleButtonTableViewCell.className, for: indexPath) as! SingleButtonTableViewCell
+            cell.button.setTitle(NSLocalizedString("Reset Spheres", comment: "The title text for the reset spheres button"), for: .normal)
+            cell.button.setTitleColor(.red, for: .normal)
+            cell.button.addTarget(self, action: #selector(resetSpheresButtonPressed(_:)), for: .touchUpInside)
             return cell
         }
     }
@@ -171,15 +179,34 @@ class SettingsTableViewController: ExpandableCellTableViewController {
 
     // MARK: - Actions
 
-    @objc private func resetButtonPressed(_ button: UIButton) {
-        let alertController = UIAlertController(title: NSLocalizedString("Reset Settings", comment: "The title text for the reset alert"),
+    @objc private func resetSettingsButtonPressed(_ button: UIButton) {
+        let alertController = UIAlertController(title: NSLocalizedString("Reset Settings", comment: "The title text for the reset settings alert"),
                                                 message: NSLocalizedString("Are you sure you want to reset ray tracing settings? This will not affect sphere data.", comment: "The subtitle text for the reset alert"),
                                                 preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Reset", comment: "The text for the reset button within the reset alert"), style: .destructive) { _ in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Reset", comment: "The text for the reset button within the reset settings alert"), style: .destructive) { _ in
             self.tracer.settings = RayTracerSettings()
             self.tableView.reloadData()
         })
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "The text for the cancel button within the reset alert"), style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "The text for the cancel button within the reset settings alert"), style: .cancel, handler: nil))
+        self.present(alertController, animated: true)
+    }
+
+    @objc private func resetSpheresButtonPressed(_ button: UIButton) {
+        let alertController = UIAlertController(title: NSLocalizedString("Reset Spheres", comment: "The title text for the reset spheres alert"),
+                                                message: NSLocalizedString("Are you sure you want to reset sphere data?", comment: "The subtitle text for the reset spheres alert"),
+                                                preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Reset", comment: "The text for the reset button within the reset spheres alert"), style: .destructive) { _ in
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let context = appDelegate.persistentContainer.viewContext
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: Sphere.fetchRequest())
+            let _ = try? context.execute(deleteRequest)
+            let tracer = RayTracer.shared
+            tracer.spheres.removeAll()
+            tracer.spheres.append(Sphere(string: "1.0 1.0 0.0 2.0 1.0 0.0 1.0 0.2 0.4 0.5 0.05", context: context)!)
+            tracer.spheres.append(Sphere(string: "8.0 -10.0 100.0 90.0 0.2 0.2 0.6 0.4 0.8 0.0 0.05", context: context)!)
+            appDelegate.saveContext()
+        })
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "The text for the cancel button within the reset spheres alert"), style: .cancel, handler: nil))
         self.present(alertController, animated: true)
     }
 }
