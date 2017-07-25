@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class AddEditSphereTableViewController: ExpandableCellTableViewController {
+final class AddEditSphereTableViewController: ExpandableCellTableViewController {
 
     var sphere: Sphere {
         get {
@@ -158,14 +158,14 @@ class AddEditSphereTableViewController: ExpandableCellTableViewController {
         let buffer = 1.0 / 20.0
         let minZ: Double
         let maxZ: Double
-        if tracer.settings.eyePoint.z < 0 {
+        if eyePointZ < 0 {
             minZ = ceil(eyePointZ - buffer * eyePointZ)
             let visibleSpheresZCoordinates = tracer.spheres
                 .map { $0.center.z }
                 .filter { $0 > minZ }
             maxZ = visibleSpheresZCoordinates.min() ?? maxPossibleZ
         } else {
-            maxZ = ceil(eyePointZ - buffer * eyePointZ)
+            maxZ = eyePointZ - buffer * eyePointZ
             let visibleSpheresZCoordinates = tracer.spheres
                 .map { $0.center.z }
                 .filter { $0 < maxZ }
@@ -182,8 +182,9 @@ class AddEditSphereTableViewController: ExpandableCellTableViewController {
         // Generate a random radius and scale it based on the center's distance to the eye point
         let maxBaseRadius = Int(min(sceneView.maxX - sceneView.minX, sceneView.maxY - sceneView.minY))
         let baseRadius = Double((1...maxBaseRadius).random())
+        let halfVisibleDistance = (abs(eyePointZ) + maxPossibleZ) / 2
         let centerToEyePointDistance = self.center.distance(from: tracer.settings.eyePoint)
-        self.radius = (baseRadius / (abs(eyePointZ) / centerToEyePointDistance)).roundedTo(decimalPlaces: 1)
+        self.radius = (baseRadius / (halfVisibleDistance / centerToEyePointDistance)).roundedTo(decimalPlaces: 1)
 
         // Generate a random color
         let colorRange = 0...1

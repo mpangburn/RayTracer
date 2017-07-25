@@ -28,5 +28,11 @@ class PointTests: XCTestCase {
     func testMath() {
         XCTAssert(point1.translate(by: Vector(x: 3, y: 4, z: 5)) == Point(x: 4, y: 6, z: 8))
         XCTAssert(point1.translate(by: Vector(from: point1, to: point2)) == point2)
+
+        XCTAssert(point1.distance(from: point2) == sqrt(2))
+        XCTAssert(point2.distance(from: point1) == sqrt(2))
+
+        XCTAssert(Point.zero.closest(of: [point1, point2]) == point1)
+        XCTAssert(Point.zero.closest(of: point1, point2) == point1)
     }
 }

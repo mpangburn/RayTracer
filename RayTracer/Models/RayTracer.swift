@@ -10,7 +10,7 @@ import Foundation
 
 
 /// Stores data for and performs ray tracing.
-class RayTracer {
+final class RayTracer {
 
     /// The shared RayTracer instance.
     static var shared = RayTracer()

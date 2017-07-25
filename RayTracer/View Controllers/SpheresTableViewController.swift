@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class SpheresTableViewController: UITableViewController {
+final class SpheresTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

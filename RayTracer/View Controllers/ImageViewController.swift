@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class ImageViewController: UIViewController {
+final class ImageViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     var spheresImageView: UIImageView!

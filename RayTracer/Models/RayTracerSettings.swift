@@ -9,6 +9,7 @@
 import Foundation
 
 
+/// Stores scene settings for ray tracing.
 struct RayTracerSettings {
 
     /// The point from which the scene is viewed.

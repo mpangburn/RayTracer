@@ -11,4 +11,4 @@ import CoreData
 
 
 @objc(Sphere)
-class Sphere: NSManagedObject { }
+final class Sphere: NSManagedObject { }

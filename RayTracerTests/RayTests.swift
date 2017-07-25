@@ -47,6 +47,7 @@ class RayTests: XCTestCase {
         for i in 0..<ray3Intersections.count {
             XCTAssert(ray3Intersections[i] == expectedIntersections[i])
         }
+        XCTAssert(ray3.closestIntersection(with: [sphere1, sphere2, sphere3])! == expectedIntersections[0])
 
         let ray4 = Ray(initial: Point(x: 0, y: -9, z: 0), direction: Vector(x: 0, y: 4, z: 0))
         let sphere4 = Sphere(center: Point.zero, radius: 5, context: context)
@@ -56,5 +57,4 @@ class RayTests: XCTestCase {
         let sphere5 = Sphere(center: Point.zero, radius: 5, context: context)
         XCTAssert(ray5.intersection(with: sphere5)! == Point(x: 0, y: -5, z: 0))
     }
-
 }

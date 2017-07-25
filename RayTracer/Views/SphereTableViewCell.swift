@@ -8,7 +8,8 @@
 
 import UIKit
 
-class SphereTableViewCell: UITableViewCell {
+
+final class SphereTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var colorView: UIView!

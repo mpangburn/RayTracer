@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SingleButtonTableViewCell: UITableViewCell {
+final class SingleButtonTableViewCell: UITableViewCell {
 
     @IBOutlet weak var button: UIButton!
 
