@@ -14,7 +14,7 @@ protocol FinishTableViewCellDelegate: class {
 }
 
 
-class FinishTableViewCell: ExpandableTableViewCell {
+final class FinishTableViewCell: ExpandableTableViewCell {
 
     weak var delegate: FinishTableViewCellDelegate?
 

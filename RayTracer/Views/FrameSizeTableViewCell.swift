@@ -15,7 +15,7 @@ protocol FrameSizeTableViewCellDelegate: class {
 }
 
 
-class FrameSizeTableViewCell: ExpandableTableViewCell {
+final class FrameSizeTableViewCell: ExpandableTableViewCell {
 
     weak var delegate: FrameSizeTableViewCellDelegate?
 

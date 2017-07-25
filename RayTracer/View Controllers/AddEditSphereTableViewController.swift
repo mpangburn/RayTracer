@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class AddEditSphereTableViewController: ExpandableCellTableViewController {
+final class AddEditSphereTableViewController: ExpandableCellTableViewController {
 
     var sphere: Sphere {
         get {
@@ -165,7 +165,7 @@ class AddEditSphereTableViewController: ExpandableCellTableViewController {
                 .filter { $0 > minZ }
             maxZ = visibleSpheresZCoordinates.min() ?? maxPossibleZ
         } else {
-            maxZ = ceil(eyePointZ - buffer * eyePointZ)
+            maxZ = eyePointZ - buffer * eyePointZ
             let visibleSpheresZCoordinates = tracer.spheres
                 .map { $0.center.z }
                 .filter { $0 < maxZ }
@@ -182,7 +182,7 @@ class AddEditSphereTableViewController: ExpandableCellTableViewController {
         // Generate a random radius and scale it based on the center's distance to the eye point
         let maxBaseRadius = Int(min(sceneView.maxX - sceneView.minX, sceneView.maxY - sceneView.minY))
         let baseRadius = Double((1...maxBaseRadius).random())
-        let halfVisibleDistance = (eyePointZ < 0 ? (maxPossibleZ - eyePointZ) : (eyePointZ - minPossibleZ)) / 2
+        let halfVisibleDistance = (abs(eyePointZ) + maxPossibleZ) / 2
         let centerToEyePointDistance = self.center.distance(from: tracer.settings.eyePoint)
         self.radius = (baseRadius / (halfVisibleDistance / centerToEyePointDistance)).roundedTo(decimalPlaces: 1)
 

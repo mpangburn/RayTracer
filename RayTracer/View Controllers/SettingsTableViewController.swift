@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class SettingsTableViewController: ExpandableCellTableViewController {
+final class SettingsTableViewController: ExpandableCellTableViewController {
 
     let tracer = RayTracer.shared
 

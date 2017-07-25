@@ -10,7 +10,7 @@ import Foundation
 
 
 /// Represents a point in 3D space.
-class Point: NSObject, NSCoding {
+final class Point: NSObject, NSCoding {
 
     /// The x-coordinate of the point.
     var x: Double
@@ -122,6 +122,10 @@ extension Point {
 
 extension Point {
     override var description: String {
+        return "(\(self.x), \(self.y), \(self.z))"
+    }
+
+    override var debugDescription: String {
         return "Point(x: \(self.x), y: \(self.y), z: \(self.z))"
     }
 }

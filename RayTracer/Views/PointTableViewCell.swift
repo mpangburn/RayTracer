@@ -14,7 +14,7 @@ protocol PointTableViewCellDelegate: class {
 }
 
 
-class PointTableViewCell: ExpandableTableViewCell {
+final class PointTableViewCell: ExpandableTableViewCell {
 
     weak var delegate: PointTableViewCellDelegate?
 

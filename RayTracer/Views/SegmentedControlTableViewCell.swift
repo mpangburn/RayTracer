@@ -14,7 +14,7 @@ protocol SegmentedControlTableViewCellDelegate: class {
 }
 
 
-class SegmentedControlTableViewCell: UITableViewCell {
+final class SegmentedControlTableViewCell: UITableViewCell {
 
     weak var delegate: SegmentedControlTableViewCellDelegate?
 

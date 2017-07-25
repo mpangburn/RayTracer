@@ -11,7 +11,7 @@ import Foundation
 
 /// Represents a color using the RGBA color space.
 /// Each of the color's components falls in the interval [0,1].
-class Color: NSObject, NSCoding {
+final class Color: NSObject, NSCoding {
 
     /// The color's red component.
     var red: Double

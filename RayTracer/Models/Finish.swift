@@ -10,7 +10,7 @@ import Foundation
 
 
 /// Describes how an object interacts with light.
-class Finish: NSObject, NSCoding {
+final class Finish: NSObject, NSCoding {
 
     /// The percentage of ambient light reflected by the finish.
     var ambient: Double

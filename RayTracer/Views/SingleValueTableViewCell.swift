@@ -15,7 +15,7 @@ protocol SingleValueTableViewCellDelegate: class {
 }
 
 
-class SingleValueTableViewCell: UITableViewCell, UITextFieldDelegate {
+final class SingleValueTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     weak var delegate: SingleValueTableViewCellDelegate?
 

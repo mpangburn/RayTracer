@@ -14,7 +14,7 @@ protocol ColorTableViewCellDelegate: class {
 }
 
 
-class ColorTableViewCell: ExpandableTableViewCell {
+final class ColorTableViewCell: ExpandableTableViewCell {
 
     weak var delegate: ColorTableViewCellDelegate?
 

@@ -64,9 +64,8 @@ extension Vector {
 // MARK: - Vector math
 extension Vector {
 
-    /**
-     Normalizes the vector.
-     */
+
+    /// Normalizes the vector.
     mutating func normalize() {
         self = self.normalized()
     }
@@ -191,10 +190,10 @@ func == (lhs: Vector, rhs: Vector) -> Bool {
 
 extension Vector: CustomStringConvertible, CustomDebugStringConvertible {
     var description: String {
-        return "Vector(x: \(self.x), y: \(self.y), z: \(self.z))"
+        return "<\(self.x), \(self.y), \(self.z)>"
     }
 
     var debugDescription: String {
-        return self.description
+        return "Vector(x: \(self.x), y: \(self.y), z: \(self.z))"
     }
 }
