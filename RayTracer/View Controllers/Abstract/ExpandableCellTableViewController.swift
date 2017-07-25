@@ -29,7 +29,9 @@ class ExpandableCellTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         tableView.beginUpdates()
 
-        guard let expandableCell = tableView.cellForRow(at: indexPath) as? ExpandableTableViewCell else { return indexPath }
+        guard let expandableCell = tableView.cellForRow(at: indexPath) as? ExpandableTableViewCell else {
+            return indexPath
+        }
         let cellRectInTableView = tableView.rectForRow(at: indexPath)
         if !expandableCell.isExpanded {
             // Ensure fully expanded cell is made visible when tapped near the bottom of the screen

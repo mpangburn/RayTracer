@@ -51,7 +51,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02h-Tf-Egl">
-                        <rect key="frame" x="30" y="46" width="260" height="124"/>
+                        <rect key="frame" x="30" y="44" width="260" height="124"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="PdY-cb-dt9">
                                 <rect key="frame" x="0.0" y="-5" width="260" height="124"/>
@@ -135,7 +135,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="02h-Tf-Egl" secondAttribute="bottom" priority="750" id="23c-Un-Uge"/>
-                    <constraint firstItem="02h-Tf-Egl" firstAttribute="top" secondItem="7aZ-fL-jgU" secondAttribute="bottom" constant="10" id="BI2-Jt-jcI"/>
+                    <constraint firstItem="02h-Tf-Egl" firstAttribute="top" secondItem="7aZ-fL-jgU" secondAttribute="bottom" constant="8" id="BI2-Jt-jcI"/>
                     <constraint firstItem="7aZ-fL-jgU" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="CO3-ZV-36y"/>
                     <constraint firstAttribute="trailing" secondItem="02h-Tf-Egl" secondAttribute="trailing" constant="30" id="VOG-uM-V09"/>
                     <constraint firstItem="7aZ-fL-jgU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="hrO-Ke-Ml5"/>
