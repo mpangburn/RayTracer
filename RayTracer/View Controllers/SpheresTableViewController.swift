@@ -55,7 +55,7 @@ class SpheresTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SphereTableViewCell.className, for: indexPath) as! SphereTableViewCell
         let sphere = RayTracer.shared.spheres[indexPath.row]
-        cell.titleLabel.text = "radius = \(sphere.radius.cleanValueString) at (\(sphere.center.x.cleanValueString), \(sphere.center.y.cleanValueString), \(sphere.center.z.cleanValueString))"
+        cell.titleLabel.text = "radius = \(sphere.radius.cleanValueString) at (\(sphere.center.x.cleanValueOrSingleDecimalString), \(sphere.center.y.cleanValueOrSingleDecimalString), \(sphere.center.z.cleanValueOrSingleDecimalString))"
         cell.colorView.backgroundColor = UIColor(sphere.color)
         return cell
     }
