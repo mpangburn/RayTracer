@@ -20,9 +20,9 @@ class PointTableViewCell: ExpandableTableViewCell {
 
     var point: Point {
         get {
-            return Point(x: Double(xSlider.value).roundTo(places: 1),
-                         y: Double(ySlider.value).roundTo(places: 1),
-                         z: Double(zSlider.value).roundTo(places: 1))
+            return Point(x: Double(xSlider.value).roundedTo(decimalPlaces: 1),
+                         y: Double(ySlider.value).roundedTo(decimalPlaces: 1),
+                         z: Double(zSlider.value).roundedTo(decimalPlaces: 1))
         }
         set {
             xSlider.value = Float(newValue.x)

@@ -136,7 +136,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hG4-nk-mVF">
-                                            <rect key="frame" x="0.0" y="0.0" width="35" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="35" height="44.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="35" id="L8z-ag-wHD"/>
@@ -156,7 +156,7 @@
                                         <constraint firstItem="9Px-7S-l8y" firstAttribute="top" secondItem="UZw-Zt-ISK" secondAttribute="topMargin" id="bvF-Y7-yF1"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="9Px-7S-l8y" secondAttribute="trailing" id="lSI-V1-caj"/>
                                         <constraint firstItem="hG4-nk-mVF" firstAttribute="top" secondItem="UZw-Zt-ISK" secondAttribute="top" id="nVi-Hd-Qc1"/>
-                                        <constraint firstAttribute="bottom" secondItem="hG4-nk-mVF" secondAttribute="bottom" id="zwg-Sm-fNq"/>
+                                        <constraint firstAttribute="bottom" secondItem="hG4-nk-mVF" secondAttribute="bottom" constant="-1" id="zwg-Sm-fNq"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

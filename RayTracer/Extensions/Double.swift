@@ -30,8 +30,8 @@ extension Double {
 extension Double {
 
     /// Rounds the value to the specified number of decimal places.
-    func roundTo(places: Int) -> Double {
-        let divisor = pow(10, Double(places))
+    func roundedTo(decimalPlaces: Int) -> Double {
+        let divisor = pow(10, Double(decimalPlaces))
         return (self * divisor).rounded() / divisor
     }
 
@@ -43,22 +43,33 @@ extension Double {
         case let value where value >= 1:
             return "100%"
         default:
-            return "\(Int(self.roundTo(places: 2) * 100))%"
+            return "\(Int(self.roundedTo(decimalPlaces: 2) * 100))%"
         }
     }
 
     /// Displays the value rounded to two decimal places.
     var twoDigitDecimalString: String {
-        return String(format: "%.2f", self.roundTo(places: 2))
+        return String(self.roundedTo(decimalPlaces: 2))
     }
 
     /// Displays the decimal point and the digits that follow only if they are nonzero.
+    /// e.g. `1.0` --> `"1"`, `1.25` --> `"1.25"`
     var cleanValueString: String {
         if self.truncatingRemainder(dividingBy: 1) == 0 {
             return String(format: "%.0f", self)
         }
         else {
             return String(self)
+        }
+    }
+
+    /// If the value ends in `.0`, returns the String containing value without the decimal place and zero.
+    /// Otherwise, returns the String with the value rounded to one decimal place.
+    var cleanValueOrSingleDecimalString: String {
+        if self.truncatingRemainder(dividingBy: 1) == 0 {
+            return String(format: "%.0f", self)
+        } else {
+            return String(self.roundedTo(decimalPlaces: 1))
         }
     }
 }
