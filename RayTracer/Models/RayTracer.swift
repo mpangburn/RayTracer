@@ -41,30 +41,39 @@ final class RayTracer {
 
         var pixels: [Color.PixelData] = []
         let frame = settings.sceneFrame
-        let xOffset = (frame.view.maxX - frame.view.minX) / Double(frame.width)
-        let yOffset = (frame.view.maxY - frame.view.minY) / Double(frame.height)
+        let view = frame.view
+        var width = frame.width
+        var height = frame.height
+        let dx = (view.maxX - view.minX) / Double(width)
+        let dy = (view.maxY - view.minY) / Double(height)
 
-        var y = frame.view.maxY
-        while y > frame.view.minY {
-            var x = frame.view.minX
-            while x < frame.view.maxX {
-                let direction = Vector(from: settings.eyePoint, to: Point(x: x, y: y, z: frame.view.zPlane))
+        var y = view.maxY
+        while y > view.minY {
+            var x = view.minX
+            while x < view.maxX {
+                let direction = Vector(from: settings.eyePoint, to: Point(x: x, y: y, z: view.zPlane))
                 let ray = Ray(initial: settings.eyePoint, direction: direction)
                 let pixelData = cast(ray: ray)
                 pixels.append(pixelData)
-                x += xOffset
+                x += dx
             }
-            y -= yOffset
+            y -= dy
         }
 
-//        pixels = Array(pixels.prefix(upTo: frame.width * frame.height))
-//        pixels = Array(pixels.suffix(frame.width * frame.height))
-        let areaDifference = pixels.count - (frame.width * frame.height)
-        let halfAreaDifference = areaDifference / 2
-        pixels = Array(pixels.dropFirst(halfAreaDifference))
-        pixels = Array(pixels.dropLast(areaDifference - halfAreaDifference))
+        // Accounting for rounding errors. Marginally affects image size.
+        let unadjustedNumberOfPixels = pixels.count
+        let area = width * height
+        let roundingError = unadjustedNumberOfPixels - area
+        if roundingError == width {
+            height += 1
+        } else if roundingError == height {
+            width += 1
+        } else if roundingError > 0 {
+            width += 1
+            height += 1
+        }
 
-        return Image(pixelData: pixels, width: frame.width, height: frame.height)
+        return Image(pixelData: pixels, width: width, height: height)
     }
 
     /**
