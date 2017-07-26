@@ -51,7 +51,7 @@ class ExpandableCellTableViewController: UITableViewController {
 //            let lastRow = tableView.numberOfRows(inSection: lastSection) - 1
 //            let lastIndexPath = IndexPath(row: lastRow, section: lastSection)
 //            if tableView.indexPathsForVisibleRows!.contains(lastIndexPath) {
-//                let adjustedInsets = UIEdgeInsets(top: originalContentInset.top, left: originalContentInset.left, bottom: expandableCell.expandedViewHeight, right: originalContentInset.right)
+//                let adjustedInsets = UIEdgeInsets(top: 0, left: 0, bottom: expandableCell.expandedViewHeight, right: 0)
 //                tableView.contentInset = adjustedInsets
 //            }
 //        }
