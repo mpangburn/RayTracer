@@ -15,15 +15,13 @@ final class ImageViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     var spheresImageView: UIImageView!
 
+    private let baseScrollViewScale: CGFloat = 1.0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Image", comment: "The title text for the ray-traced image screen")
         setupImageView()
         setupScrollView()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -38,10 +36,10 @@ final class ImageViewController: UIViewController {
 
                 // Bounce back to the main thread to update the UI
                 DispatchQueue.main.async {
+                    self.scrollView.zoomScale = self.scrollView.minimumZoomScale == self.baseScrollViewScale ? self.scrollView.minimumZoomScale : self.scrollView.maximumZoomScale
                     self.spheresImageView.frame.size.width = image.size.width
                     self.spheresImageView.frame.size.height = image.size.height
                     self.spheresImageView.image = image
-                    self.scrollView.zoomScale = 1.0
                     self.updateScrollView()
                     self.dismissLoadingView()
                 }
@@ -50,7 +48,7 @@ final class ImageViewController: UIViewController {
     }
 
     private func setupImageView() {
-        let image = UIImage(Image(pixelData: Array<Color.PixelData>(repeating: Color.white.pixelData, count: 1), width: 1, height: 1))
+        let image = UIImage(Image(pixelData: [Color.white.pixelData], width: 1, height: 1))
         spheresImageView = UIImageView(image: image)
         scrollView.addSubview(spheresImageView)
     }
@@ -58,7 +56,7 @@ final class ImageViewController: UIViewController {
     private func renderImage() -> UIImage {
         let image = RayTracer.shared.castAllRays()
         guard let renderedImage = UIImage(image) else {
-            fatalError("Failed to render image into UIImage")
+            fatalError("Failed to render image as UIImage")
         }
 
         return renderedImage
@@ -97,16 +95,15 @@ final class ImageViewController: UIViewController {
         let heightScale = scrollViewSize.height / imageViewSize.height
 
         let minScale = min(widthScale, heightScale)
-        let baseScale: CGFloat = 1.0
-        if minScale < baseScale {
+        if minScale < baseScrollViewScale {
             scrollView.minimumZoomScale = minScale
-            scrollView.maximumZoomScale = baseScale
+            scrollView.maximumZoomScale = baseScrollViewScale
         } else {
-            scrollView.minimumZoomScale = baseScale
+            scrollView.minimumZoomScale = baseScrollViewScale
             scrollView.maximumZoomScale = minScale
         }
 
-        scrollView.zoomScale = baseScale
+        scrollView.zoomScale = baseScrollViewScale
     }
 
     fileprivate func centerScrollViewContents() {
@@ -124,15 +121,16 @@ final class ImageViewController: UIViewController {
     }
 
     // MARK: - Debugging
-    private func printFramesInfo() {
+    fileprivate func printFramesInfo() {
+        print("\n=====FRAME INFO=====")
         print("Settings Frame: \(RayTracer.shared.settings.sceneFrame)")
         print("ImageView Frame: \(spheresImageView.frame)")
         print("ImageView Bounds: \(spheresImageView.bounds)")
         print("Image Size: \(spheresImageView.image!.size)")
     }
 
-    private func printScrollViewInfo() {
-        print("=====SCROLL VIEW =====")
+    fileprivate func printScrollViewInfo() {
+        print("\n=====SCROLL VIEW INFO=====")
         print("Frame: \(scrollView.frame)")
         print("Bounds: \(scrollView.bounds)")
         print("Content Inset: \(scrollView.contentInset)")
