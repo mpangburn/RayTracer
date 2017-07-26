@@ -150,22 +150,22 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
     @objc private func generateRandomSphere() {
         let tracer = RayTracer.shared
         let sceneView = tracer.settings.sceneFrame.view
+        let eyePoint = tracer.settings.eyePoint
 
         // Generate a random z coordinate for the center between the eye point and the existing sphere z coordinate closest to it
-        let eyePointZ = tracer.settings.eyePoint.z
         let maxPossibleZ = 100.0
         let minPossibleZ = -100.0
         let buffer = 1.0 / 20.0
         let minZ: Double
         let maxZ: Double
-        if eyePointZ < 0 {
-            minZ = ceil(eyePointZ - buffer * eyePointZ)
+        if eyePoint.z < 0 {
+            minZ = ceil(eyePoint.z - buffer * eyePoint.z)
             let visibleSpheresZCoordinates = tracer.spheres
                 .map { $0.center.z }
                 .filter { $0 > minZ }
             maxZ = visibleSpheresZCoordinates.min() ?? maxPossibleZ
         } else {
-            maxZ = eyePointZ - buffer * eyePointZ
+            maxZ = eyePoint.z - buffer * eyePoint.z
             let visibleSpheresZCoordinates = tracer.spheres
                 .map { $0.center.z }
                 .filter { $0 < maxZ }
@@ -174,15 +174,15 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
         let z = (Int(minZ)...Int(maxZ)).random(decimalPlaces: 1)
 
         // Generate random x and y coordinates within the scene view and scale them based on z distance to the eye point
-        let scaleFactor = abs(eyePointZ) / abs(eyePointZ - z)
-        let x = ((Int(sceneView.minX)...Int(sceneView.maxX)).random(decimalPlaces: 1) / scaleFactor).roundedTo(decimalPlaces: 1)
-        let y = ((Int(sceneView.minY)...Int(sceneView.maxY)).random(decimalPlaces: 1) / scaleFactor).roundedTo(decimalPlaces: 1)
+        let zDistanceScaleFactor = abs(eyePoint.z) / abs(eyePoint.z - z)
+        let x = ((Int(sceneView.minX)...Int(sceneView.maxX)).random(decimalPlaces: 1) / zDistanceScaleFactor).roundedTo(decimalPlaces: 1)
+        let y = ((Int(sceneView.minY)...Int(sceneView.maxY)).random(decimalPlaces: 1) / zDistanceScaleFactor).roundedTo(decimalPlaces: 1)
         self.center = Point(x: x, y: y, z: z)
 
         // Generate a random radius and scale it based on the center's distance to the eye point
         let maxBaseRadius = Int(min(sceneView.maxX - sceneView.minX, sceneView.maxY - sceneView.minY))
         let baseRadius = Double((1...maxBaseRadius).random())
-        let halfVisibleDistance = (abs(eyePointZ) + maxPossibleZ) / 2
+        let halfVisibleDistance = (abs(eyePoint.z) + maxPossibleZ) / 2
         let centerToEyePointDistance = self.center.distance(from: tracer.settings.eyePoint)
         self.radius = (baseRadius / (halfVisibleDistance / centerToEyePointDistance)).roundedTo(decimalPlaces: 2)
 
