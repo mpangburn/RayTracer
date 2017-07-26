@@ -36,10 +36,10 @@ extension CompleteRange where Self: Collection, Bound == Int {
         let min = minimum ?? Double(self.lowerBound)
         assert(min < Double(self.upperBound))
         
-        let divisor = pow(10, Double(decimalPlaces))
         let countValue: Int = numericCast(self.count)
         let count = (self.upperBound - self.lowerBound == countValue) ? countValue : (countValue - 1)
-        let scaledCount = numericCast(count) * Int(divisor)
+        let divisor = pow(10, Double(decimalPlaces))
+        let scaledCount = count * Int(divisor)
 
         var value: Double
         repeat {
