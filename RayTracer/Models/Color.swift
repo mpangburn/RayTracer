@@ -83,7 +83,7 @@ extension Color {
 }
 
 
-// MARK: - Color constants
+// MARK: - Color constants and utilities
 extension Color {
 
     /// The color black.
@@ -94,6 +94,15 @@ extension Color {
     /// The color white.
     static var white: Color {
         return Color(red: 1.0, green: 1.0, blue: 1.0)
+    }
+
+    /// Returns a random color.
+    static func random() -> Color {
+        let colorRange = 0...1
+        let red = colorRange.random(decimalPlaces: 2)
+        let green = colorRange.random(decimalPlaces: 2)
+        let blue = colorRange.random(decimalPlaces: 2)
+        return Color(red: red, green: green, blue: blue)
     }
 }
 

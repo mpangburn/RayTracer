@@ -60,12 +60,22 @@ final class Finish: NSObject, NSCoding {
 }
 
 
-// MARK: - Finish constants
+// MARK: - Finish constants and utilities
 extension Finish {
 
     /// No finish.
     static var none: Finish {
         return Finish(ambient: 0, diffuse: 0, specular: 0, roughness: 0)
+    }
+
+    /// Returns a random finish, ensuring that at least some light is reflected.
+    static func random() -> Finish {
+        let finishRange = 0...1
+        let ambient = finishRange.random(decimalPlaces: 2, above: 0.01)
+        let diffuse = finishRange.random(decimalPlaces: 2, above: 0.01)
+        let specular = finishRange.random(decimalPlaces: 2, above: 0.01)
+        let roughness = finishRange.random(decimalPlaces: 2, above: 0.01)
+        return Finish(ambient: ambient, diffuse: diffuse, specular: specular, roughness: roughness)
     }
 }
 

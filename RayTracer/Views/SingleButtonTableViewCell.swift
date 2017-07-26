@@ -12,4 +12,7 @@ final class SingleButtonTableViewCell: UITableViewCell {
 
     @IBOutlet weak var button: UIButton!
 
+    override func prepareForReuse() {
+        button.removeTarget(nil, action: nil, for: .touchUpInside)
+    }
 }

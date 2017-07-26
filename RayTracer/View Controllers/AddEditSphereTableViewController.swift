@@ -129,7 +129,7 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
         case .attributes:
             return NSLocalizedString("The sphere's finish consists of four components. Ambient, diffuse, and specular refer to the percentages of respective light reflected by the finish. Roughness is the modeled roughness of the sphere, which affects the spread of specular light across the surface.", comment: "The description of a sphere's finish")
         case .randomButton:
-            return NSLocalizedString("Attempts to generate a sphere in the scene frame. Increasing the magnitude of the eye point's z-coordinate will allow more spheres to fit in the frame.", comment: "The description for the effect of the random sphere button")
+            return NSLocalizedString("Attempts to generate a sphere visible in the scene frame.", comment: "The description for the effect of the random sphere button")
         }
     }
 
@@ -184,22 +184,11 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
         let baseRadius = Double((1...maxBaseRadius).random())
         let halfVisibleDistance = (abs(eyePointZ) + maxPossibleZ) / 2
         let centerToEyePointDistance = self.center.distance(from: tracer.settings.eyePoint)
-        self.radius = (baseRadius / (halfVisibleDistance / centerToEyePointDistance)).roundedTo(decimalPlaces: 1)
+        self.radius = (baseRadius / (halfVisibleDistance / centerToEyePointDistance)).roundedTo(decimalPlaces: 2)
 
-        // Generate a random color
-        let colorRange = 0...1
-        let red = colorRange.random(decimalPlaces: 2)
-        let green = colorRange.random(decimalPlaces: 2)
-        let blue = colorRange.random(decimalPlaces: 2)
-        self.color = Color(red: red, green: green, blue: blue)
-
-        // Generate a random finish, ensuring the sphere reflects at least a little bit of light
-        let finishRange = 0...1
-        let ambient = finishRange.random(decimalPlaces: 2, above: 0.01)
-        let diffuse = finishRange.random(decimalPlaces: 2, above: 0.01)
-        let specular = finishRange.random(decimalPlaces: 2, above: 0.01)
-        let roughness = finishRange.random(decimalPlaces: 2, above: 0.01)
-        self.finish = Finish(ambient: ambient, diffuse: diffuse, specular: specular, roughness: roughness)
+        // Generate a random color and finish
+        self.color = Color.random()
+        self.finish = Finish.random()
         
         tableView.reloadData()
     }
