@@ -16,16 +16,18 @@ final class SpheresTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = NSLocalizedString("Spheres", comment: "The title text for sphere list screen")
         tableView.tableFooterView = UIView()
+        loadSpheres()
+    }
 
+    private func loadSpheres() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
         let dateSortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
         fetchRequest.sortDescriptors = [dateSortDescriptor]
-        let tracer = RayTracer.shared
 
         do {
-            tracer.spheres = try context.fetch(fetchRequest)
+            RayTracer.shared.spheres = try context.fetch(fetchRequest)
         } catch {
             print("Error fetching sphere data")
         }

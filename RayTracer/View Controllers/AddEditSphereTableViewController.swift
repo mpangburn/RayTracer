@@ -187,7 +187,7 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
         let maxBaseRadius = Int(min(sceneView.maxX - sceneView.minX, sceneView.maxY - sceneView.minY))
         let baseRadius = Double((1...maxBaseRadius).random())
         let halfVisibleDistance = (abs(eyePoint.z) + maxPossibleZ) / 2
-        let centerToEyePointDistance = self.center.distance(from: tracer.settings.eyePoint)
+        let centerToEyePointDistance = self.center.distance(from: eyePoint)
         self.radius = (baseRadius / (halfVisibleDistance / centerToEyePointDistance)).roundedTo(decimalPlaces: 2)
 
         // Generate a random color and finish

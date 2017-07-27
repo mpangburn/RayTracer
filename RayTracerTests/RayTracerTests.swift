@@ -34,7 +34,6 @@ class RayTracerTests: XCTestCase {
         let y = settings.sceneFrame.view.maxY
         let direction = Vector(from: settings.eyePoint, to: Point(x: x, y: y, z: settings.sceneFrame.view.zPlane))
         let ray = Ray(initial: settings.eyePoint, direction: direction)
-        print(tracer.cast(ray: ray), Color(red: 0.27, green: 0.28, blue: 0.93, alpha: 1.0).pixelData)
         XCTAssert(tracer.cast(ray: ray) == (red: 80, green: 80, blue: 240, alpha: 255))
     }
 }
