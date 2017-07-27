@@ -110,10 +110,10 @@ extension Vector {
      - Returns: The cross product of the vectors.
      */
     func cross(with other: Vector) -> Vector {
-        let xComponent = self.y * other.z - self.z * other.y
-        let yComponent = -(self.x * other.z - self.z * other.x)
-        let zComponent = self.x * other.y - self.y * other.x
-        return Vector(x: xComponent, y: yComponent, z: zComponent)
+        let x = self.y * other.z - self.z * other.y
+        let y = -(self.x * other.z - self.z * other.x)
+        let z = self.x * other.y - self.y * other.x
+        return Vector(x: x, y: y, z: z)
     }
 }
 

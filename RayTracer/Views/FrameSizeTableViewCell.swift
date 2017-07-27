@@ -47,6 +47,21 @@ final class FrameSizeTableViewCell: ExpandableTableViewCell {
 
     @IBOutlet weak var sizeLabel: UILabel!
 
+    @IBOutlet weak var widthLabel: UILabel! {
+        didSet {
+            widthLabel.text = NSLocalizedString("width", comment: "The text for the frame width slider label")
+        }
+    }
+
+    @IBOutlet weak var heightLabel: UILabel! {
+        didSet {
+            heightLabel.text = NSLocalizedString("height", comment: "The text for the frame height slider label")
+        }
+    }
+
+    @IBOutlet weak var widthSlider: UISlider!
+    @IBOutlet weak var heightSlider: UISlider!
+
     @IBOutlet weak var slidersWrapperView: UIView! {
         didSet {
             expandableView = slidersWrapperView
@@ -59,10 +74,7 @@ final class FrameSizeTableViewCell: ExpandableTableViewCell {
         }
     }
 
-    @IBOutlet weak var widthSlider: UISlider!
-    @IBOutlet weak var heightSlider: UISlider!
-
-    func updateSizeLabel() {
+    private func updateSizeLabel() {
         sizeLabel.text = "\(width) × \(height)"
     }
 

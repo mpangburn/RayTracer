@@ -154,12 +154,16 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="ambientLabel" destination="V90-Ig-R1s" id="JTz-0y-yeM"/>
                 <outlet property="ambientSlider" destination="Q5r-c7-HXC" id="Mpu-ZV-Rfd"/>
                 <outlet property="componentsLabel" destination="lXu-DX-RLr" id="BZt-If-dLs"/>
+                <outlet property="diffuseLabel" destination="hoI-C3-WxX" id="b6h-jd-klu"/>
                 <outlet property="diffuseSlider" destination="UDa-Rs-OPw" id="PD2-iA-xG9"/>
+                <outlet property="roughnessLabel" destination="8BN-fM-M6e" id="U2q-XC-K9Y"/>
                 <outlet property="roughnessSlider" destination="Sag-4T-JfZ" id="wEz-NC-CCD"/>
                 <outlet property="slidersWrapperView" destination="CZN-3t-i5c" id="2xN-jY-F7E"/>
                 <outlet property="slidersWrapperViewHeightConstraint" destination="dXB-3o-avN" id="Umx-WT-LAA"/>
+                <outlet property="specularLabel" destination="6kv-fy-4l3" id="hkQ-8f-ZV2"/>
                 <outlet property="specularSlider" destination="7hL-nu-zRt" id="nfG-Tb-KvM"/>
                 <outlet property="titleLabel" destination="s8V-wk-INs" id="hUk-VQ-WSC"/>
             </connections>

@@ -44,6 +44,42 @@ final class FrameViewTableViewCell: ExpandableTableViewCell {
 
     @IBOutlet weak var measurementsLabel: UILabel!
 
+    @IBOutlet weak var minXLabel: UILabel! {
+        didSet {
+            minXLabel.text = NSLocalizedString("min x", comment: "The text for the frame view's minimum x coordinate slider label")
+        }
+    }
+
+    @IBOutlet weak var maxXLabel: UILabel! {
+        didSet {
+            maxXLabel.text = NSLocalizedString("max x", comment: "The text for the frame view's maximum x coordinate slider label")
+        }
+    }
+
+    @IBOutlet weak var minYLabel: UILabel! {
+        didSet {
+            minYLabel.text = NSLocalizedString("min y", comment: "The text for the frame view's minimum y coordinate slider label")
+        }
+    }
+
+    @IBOutlet weak var maxYLabel: UILabel! {
+        didSet {
+            maxYLabel.text = NSLocalizedString("max y", comment: "The text for the frame view's maximum y coordinate slider label")
+        }
+    }
+
+    @IBOutlet weak var zPlaneLabel: UILabel! {
+        didSet {
+            zPlaneLabel.text = NSLocalizedString("z-plane", comment: "The text for the frame view's z-plane coordinate slider label")
+        }
+    }
+
+    @IBOutlet weak var minXSlider: UISlider!
+    @IBOutlet weak var maxXSlider: UISlider!
+    @IBOutlet weak var minYSlider: UISlider!
+    @IBOutlet weak var maxYSlider: UISlider!
+    @IBOutlet weak var zPlaneSlider: UISlider!
+
     @IBOutlet weak var slidersWrapperView: UIView! {
         didSet {
             expandableView = slidersWrapperView
@@ -56,15 +92,10 @@ final class FrameViewTableViewCell: ExpandableTableViewCell {
         }
     }
 
-    @IBOutlet weak var minXSlider: UISlider!
-    @IBOutlet weak var maxXSlider: UISlider!
-    @IBOutlet weak var minYSlider: UISlider!
-    @IBOutlet weak var maxYSlider: UISlider!
-    @IBOutlet weak var zPlaneSlider: UISlider!
-
     private func updateMeasurementsLabel() {
         let frameView = self.frameView
-        measurementsLabel.text = "(\(frameView.minX.cleanValueOrSingleDecimalString), \(frameView.maxX.cleanValueOrSingleDecimalString)) × (\(frameView.minY.cleanValueOrSingleDecimalString), \(frameView.maxY.cleanValueOrSingleDecimalString)) on z = \(frameView.zPlane.cleanValueOrSingleDecimalString)"
+        let localizedZPlaneString = NSLocalizedString("on z = \(frameView.zPlane.cleanValueOrSingleDecimalString)", comment: "The text describing the frame view's z-plane")
+        measurementsLabel.text = "(\(frameView.minX.cleanValueOrSingleDecimalString), \(frameView.maxX.cleanValueOrSingleDecimalString)) × (\(frameView.minY.cleanValueOrSingleDecimalString), \(frameView.maxY.cleanValueOrSingleDecimalString)) \(localizedZPlaneString)"
     }
 
     @IBAction func sliderValueChanged(_ sender: UISlider) {

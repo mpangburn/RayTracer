@@ -35,5 +35,4 @@ extension Sphere {
         super.awakeFromInsert()
         creationDate = NSDate()
     }
-
 }

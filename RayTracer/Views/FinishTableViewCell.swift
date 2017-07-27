@@ -42,6 +42,35 @@ final class FinishTableViewCell: ExpandableTableViewCell {
 
     @IBOutlet weak var componentsLabel: UILabel!
 
+    @IBOutlet weak var ambientLabel: UILabel! {
+        didSet {
+            ambientLabel.text = NSLocalizedString("ambient", comment: "The text for the ambient finish component slider label")
+        }
+    }
+
+    @IBOutlet weak var diffuseLabel: UILabel! {
+        didSet {
+            diffuseLabel.text = NSLocalizedString("diffuse", comment: "The text for the diffuse finish component slider label")
+        }
+    }
+
+    @IBOutlet weak var specularLabel: UILabel! {
+        didSet {
+            specularLabel.text = NSLocalizedString("specular", comment: "The text for the specular finish component slider label")
+        }
+    }
+
+    @IBOutlet weak var roughnessLabel: UILabel! {
+        didSet {
+            roughnessLabel.text = NSLocalizedString("roughness", comment: "The text for the roughness finish component slider label")
+        }
+    }
+
+    @IBOutlet weak var ambientSlider: UISlider!
+    @IBOutlet weak var diffuseSlider: UISlider!
+    @IBOutlet weak var specularSlider: UISlider!
+    @IBOutlet weak var roughnessSlider: UISlider!
+
     @IBOutlet weak var slidersWrapperView: UIView! {
         didSet {
             expandableView = slidersWrapperView
@@ -53,11 +82,6 @@ final class FinishTableViewCell: ExpandableTableViewCell {
             expandableViewHeightConstraint = slidersWrapperViewHeightConstraint
         }
     }
-
-    @IBOutlet weak var ambientSlider: UISlider!
-    @IBOutlet weak var diffuseSlider: UISlider!
-    @IBOutlet weak var specularSlider: UISlider!
-    @IBOutlet weak var roughnessSlider: UISlider!
 
     private func updateComponentsLabel() {
         let finish = self.finish

@@ -75,9 +75,9 @@ struct Frame {
             case .freeform:
                 return 0
             case .fourThree:
-                return 1.333
+                return 4.0 / 3.0
             case .sixteenNine:
-                return 1.777
+                return 16.0 / 9.0
             }
         }
     }

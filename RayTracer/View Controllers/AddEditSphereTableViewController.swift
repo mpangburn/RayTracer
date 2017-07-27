@@ -110,7 +110,7 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
         case .randomButton:
             let cell = tableView.dequeueReusableCell(withIdentifier: SingleButtonTableViewCell.className, for: indexPath) as! SingleButtonTableViewCell
             cell.button.setTitle(NSLocalizedString("Random Sphere", comment: "The button text for the random sphere button"), for: .normal)
-            cell.button.addTarget(nil, action: #selector(generateRandomSphere), for: .touchUpInside)
+            cell.button.addTarget(self, action: #selector(generateRandomSphere(_:)), for: .touchUpInside)
             return cell
         }
     }
@@ -147,7 +147,8 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
 
     // MARK: - Actions
 
-    @objc private func generateRandomSphere() {
+    // How can this better accommodate eye points with different x and y values?
+    @objc private func generateRandomSphere(_ button: UIButton) {
         let tracer = RayTracer.shared
         let sceneView = tracer.settings.sceneFrame.view
         let eyePoint = tracer.settings.eyePoint
@@ -174,9 +175,12 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
         let z = (Int(minZ)...Int(maxZ)).random(decimalPlaces: 1)
 
         // Generate random x and y coordinates within the scene view and scale them based on z distance to the eye point
+        let baseX = (Int(sceneView.minX)...Int(sceneView.maxX)).random(decimalPlaces: 1)
+        let baseY = (Int(sceneView.minY)...Int(sceneView.maxY)).random(decimalPlaces: 1)
         let zDistanceScaleFactor = abs(eyePoint.z) / abs(eyePoint.z - z)
-        let x = ((Int(sceneView.minX)...Int(sceneView.maxX)).random(decimalPlaces: 1) / zDistanceScaleFactor).roundedTo(decimalPlaces: 1)
-        let y = ((Int(sceneView.minY)...Int(sceneView.maxY)).random(decimalPlaces: 1) / zDistanceScaleFactor).roundedTo(decimalPlaces: 1)
+        let possibleXorYRange = -100.0...100.0
+        let x = (baseX / zDistanceScaleFactor).roundedTo(decimalPlaces: 1).clamped(to: possibleXorYRange)
+        let y = (baseY / zDistanceScaleFactor).roundedTo(decimalPlaces: 1).clamped(to: possibleXorYRange)
         self.center = Point(x: x, y: y, z: z)
 
         // Generate a random radius and scale it based on the center's distance to the eye point
