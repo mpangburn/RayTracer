@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="222.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7K-Uz-C7T">
@@ -172,14 +172,19 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="maxXLabel" destination="EIk-Tq-GIz" id="wtL-Nw-fNF"/>
                 <outlet property="maxXSlider" destination="JgG-Wm-wIR" id="x6t-Z1-gvU"/>
+                <outlet property="maxYLabel" destination="7DY-m5-K4i" id="0Wi-cc-LMG"/>
                 <outlet property="maxYSlider" destination="aE4-lE-nC3" id="t1y-Il-Jaa"/>
                 <outlet property="measurementsLabel" destination="sym-qa-jU5" id="NrV-iA-KjM"/>
+                <outlet property="minXLabel" destination="Uxu-f9-M83" id="T9c-e4-vQ9"/>
                 <outlet property="minXSlider" destination="fOp-Kg-5Dr" id="nYT-Ff-8V5"/>
+                <outlet property="minYLabel" destination="Uwf-Zf-dHf" id="ziL-sv-Mea"/>
                 <outlet property="minYSlider" destination="JIh-Bd-M92" id="abm-vU-T47"/>
                 <outlet property="slidersWrapperView" destination="iCY-aM-UaC" id="ynu-Yo-Qa0"/>
                 <outlet property="slidersWrapperViewHeightConstraint" destination="dQa-24-NIx" id="7SL-om-jE7"/>
                 <outlet property="titleLabel" destination="PgV-zK-R65" id="kdI-pO-s9a"/>
+                <outlet property="zPlaneLabel" destination="bHJ-eD-SRe" id="HHY-NY-TM1"/>
                 <outlet property="zPlaneSlider" destination="O00-lJ-QvX" id="10y-Yh-z6m"/>
             </connections>
             <point key="canvasLocation" x="8" y="-10.5"/>

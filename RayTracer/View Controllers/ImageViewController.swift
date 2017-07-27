@@ -28,7 +28,7 @@ final class ImageViewController: UIViewController {
         super.viewDidAppear(animated)
 
         if RayTracer.shared.sceneNeedsRendering {
-            presentLoadingView(message: "Rendering image...")
+            presentLoadingView(message: NSLocalizedString("Rendering image...", comment: "The loading text displayed when rendering the image"))
 
             // Move to a background thread to render the image
             DispatchQueue.global(qos: .userInteractive).async {

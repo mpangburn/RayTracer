@@ -40,6 +40,28 @@ final class PointTableViewCell: ExpandableTableViewCell {
 
     @IBOutlet weak var coordinatesLabel: UILabel!
 
+    @IBOutlet weak var xLabel: UILabel! {
+        didSet {
+            xLabel.text = NSLocalizedString("x", comment: "The text for the point's x coordinate slider label")
+        }
+    }
+
+    @IBOutlet weak var yLabel: UILabel! {
+        didSet {
+            yLabel.text = NSLocalizedString("y", comment: "The text for the point's y coordinate slider label")
+        }
+    }
+
+    @IBOutlet weak var zLabel: UILabel! {
+        didSet {
+            zLabel.text = NSLocalizedString("z", comment: "The text for the point's z coordinate slider label")
+        }
+    }
+
+    @IBOutlet weak var xSlider: UISlider!
+    @IBOutlet weak var ySlider: UISlider!
+    @IBOutlet weak var zSlider: UISlider!
+
     @IBOutlet weak var slidersWrapperView: UIView! {
         didSet {
             expandableView = slidersWrapperView
@@ -52,10 +74,7 @@ final class PointTableViewCell: ExpandableTableViewCell {
         }
     }
 
-    @IBOutlet weak var xSlider: UISlider!
-    @IBOutlet weak var ySlider: UISlider!
-    @IBOutlet weak var zSlider: UISlider!
-    
+
     private func updateCoordinatesLabel() {
         let point = self.point
         coordinatesLabel.text = "(\(point.x), \(point.y), \(point.z))"

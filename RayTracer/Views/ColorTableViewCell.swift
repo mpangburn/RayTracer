@@ -44,6 +44,28 @@ final class ColorTableViewCell: ExpandableTableViewCell {
         }
     }
 
+    @IBOutlet weak var redLabel: UILabel! {
+        didSet {
+            redLabel.text = NSLocalizedString("R", comment: "The text for the red color component slider label")
+        }
+    }
+
+    @IBOutlet weak var greenLabel: UILabel! {
+        didSet {
+            greenLabel.text = NSLocalizedString("G", comment: "The text for the green color component slider label")
+        }
+    }
+
+    @IBOutlet weak var blueLabel: UILabel! {
+        didSet {
+            blueLabel.text = NSLocalizedString("B", comment: "The text for the blue color component slider label")
+        }
+    }
+
+    @IBOutlet weak var redSlider: UISlider!
+    @IBOutlet weak var greenSlider: UISlider!
+    @IBOutlet weak var blueSlider: UISlider!
+
     @IBOutlet weak var colorSliderWrapperView: UIView! {
         didSet {
             expandableView = colorSliderWrapperView
@@ -55,10 +77,6 @@ final class ColorTableViewCell: ExpandableTableViewCell {
             expandableViewHeightConstraint = colorSliderWrapperViewHeightConstraint
         }
     }
-
-    @IBOutlet weak var redSlider: UISlider!
-    @IBOutlet weak var greenSlider: UISlider!
-    @IBOutlet weak var blueSlider: UISlider!
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

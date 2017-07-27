@@ -25,19 +25,17 @@ struct Light {
         case high
 
         var value: Double {
-            switch self {
-            case .low:
-                return 0.5
-            case .medium:
-                return 1.0
-            case .high:
-                return 1.5
-            }
+            return Double(self.rawValue + 1) / 2
         }
     }
 
     /// The intensity of the light.
     var intensity: Intensity
+}
+
+
+// MARK: Light properties
+extension Light {
 
     /// The effective color of the light, factoring in intensity.
     var effectiveColor: Color {
@@ -49,7 +47,9 @@ struct Light {
 extension Light: Equatable { }
 
 func == (lhs: Light, rhs: Light) -> Bool {
-    return lhs.position == rhs.position && lhs.color == rhs.color
+    return lhs.position == rhs.position &&
+        lhs.color == rhs.color &&
+        lhs.intensity == rhs.intensity
 }
 
 

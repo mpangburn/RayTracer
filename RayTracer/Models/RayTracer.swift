@@ -61,9 +61,7 @@ final class RayTracer {
         }
 
         // Accounting for rounding errors. Marginally affects image size.
-        let unadjustedNumberOfPixels = pixels.count
-        let area = width * height
-        let roundingError = unadjustedNumberOfPixels - area
+        let roundingError = pixels.count - (width * height)
         if roundingError == width {
             height += 1
         } else if roundingError == height {

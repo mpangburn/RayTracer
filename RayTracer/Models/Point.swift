@@ -34,6 +34,8 @@ final class Point: NSObject, NSCoding {
         self.z = z
     }
 
+    // MARK: - NSCoding
+
     private enum CodingKey: String {
         case x, y, z
     }

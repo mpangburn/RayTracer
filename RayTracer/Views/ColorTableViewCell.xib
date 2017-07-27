@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="169.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rhk-nq-18j">
@@ -145,11 +145,14 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="blueLabel" destination="3Qi-j7-HZ4" id="hAw-31-MJP"/>
                 <outlet property="blueSlider" destination="Kva-m3-g2H" id="qsX-V7-DWg"/>
                 <outlet property="colorSliderWrapperView" destination="XhJ-g5-FHw" id="PTG-hO-xx7"/>
                 <outlet property="colorSliderWrapperViewHeightConstraint" destination="nAI-mM-Qf0" id="JcQ-Fg-wzu"/>
                 <outlet property="colorView" destination="Eh7-cz-gfz" id="BRP-QN-uQc"/>
+                <outlet property="greenLabel" destination="zvo-Ov-viW" id="MgN-tx-zkw"/>
                 <outlet property="greenSlider" destination="0bD-5m-Tg5" id="yY3-Ae-lYq"/>
+                <outlet property="redLabel" destination="ZaM-JT-hwE" id="UbU-Df-uMU"/>
                 <outlet property="redSlider" destination="qd1-fh-O5t" id="KUg-mM-nhX"/>
                 <outlet property="titleLabel" destination="c9V-RN-lCB" id="TBV-ob-nvw"/>
             </connections>

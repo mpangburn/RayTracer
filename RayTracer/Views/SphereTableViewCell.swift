@@ -29,5 +29,4 @@ final class SphereTableViewCell: UITableViewCell {
             colorView.backgroundColor = color
         }
     }
-
 }

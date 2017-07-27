@@ -40,6 +40,8 @@ final class Color: NSObject, NSCoding {
         self.alpha = alpha
     }
 
+    // MARK: NSCoding
+
     private enum CodingKey: String {
         case red, green, blue, alpha
     }
@@ -58,6 +60,11 @@ final class Color: NSObject, NSCoding {
         aCoder.encode(self.blue, forKey: CodingKey.blue.rawValue)
         aCoder.encode(self.alpha, forKey: CodingKey.alpha.rawValue)
     }
+}
+
+
+// MARK: - Color methods
+extension Color {
 
     /**
      Returns the color with each of its components multiplied by the scalar.

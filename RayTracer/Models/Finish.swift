@@ -39,6 +39,8 @@ final class Finish: NSObject, NSCoding {
         self.roughness = roughness
     }
 
+    // MARK: - NSCoding
+
     private enum CodingKey: String {
         case ambient, diffuse, specular, roughness
     }
