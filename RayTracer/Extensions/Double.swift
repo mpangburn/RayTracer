@@ -26,7 +26,7 @@ extension Double {
 }
 
 
-// MARK: - Double formatting utilties
+// MARK: - Double math utilities
 extension Double {
 
     /// Rounds the value to the specified number of decimal places.
@@ -34,6 +34,16 @@ extension Double {
         let divisor = pow(10, Double(decimalPlaces))
         return (self * divisor).rounded() / divisor
     }
+
+    /// Clamps the value to the range.
+    func clamped(to range: ClosedRange<Double>) -> Double {
+        return min(max(self, range.lowerBound), range.upperBound)
+    }
+}
+
+
+// MARK: - Double formatting utilties
+extension Double {
 
     /// Displays the whole number percentage of the value.
     var integerPercentage: String {

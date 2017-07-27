@@ -36,7 +36,7 @@ final class ImageViewController: UIViewController {
 
                 // Bounce back to the main thread to update the UI
                 DispatchQueue.main.async {
-                    self.scrollView.zoomScale = self.scrollView.minimumZoomScale == self.baseScrollViewScale ? self.scrollView.minimumZoomScale : self.scrollView.maximumZoomScale
+                    self.scrollView.zoomScale = self.baseScrollViewScale
                     self.spheresImageView.frame.size.width = image.size.width
                     self.spheresImageView.frame.size.height = image.size.height
                     self.spheresImageView.image = image
@@ -73,7 +73,7 @@ final class ImageViewController: UIViewController {
     }
 
     private func setupTapToZoomGestureRecognizer() {
-        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(ImageViewController.handleDoubleTap(recognizer:)))
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(recognizer:)))
         doubleTap.numberOfTapsRequired = 2
         scrollView.addGestureRecognizer(doubleTap)
     }
