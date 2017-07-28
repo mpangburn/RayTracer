@@ -14,10 +14,7 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
 
     var sphere: Sphere {
         get {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                fatalError("Failed to access AppDelegate")
-            }
-            let context = appDelegate.persistentContainer.viewContext
+            let context = PersistenceManager.shared.persistentContainer.viewContext
             return Sphere(center: self.center, radius: self.radius, color: self.color, finish: self.finish, context: context)
         }
         set {
@@ -187,7 +184,7 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
         let maxBaseRadius = Int(min(sceneView.maxX - sceneView.minX, sceneView.maxY - sceneView.minY))
         let baseRadius = Double((1...maxBaseRadius).random())
         let halfVisibleDistance = (abs(eyePoint.z) + maxPossibleZ) / 2
-        let centerToEyePointDistance = self.center.distance(from: tracer.settings.eyePoint)
+        let centerToEyePointDistance = self.center.distance(from: eyePoint)
         self.radius = (baseRadius / (halfVisibleDistance / centerToEyePointDistance)).roundedTo(decimalPlaces: 2)
 
         // Generate a random color and finish

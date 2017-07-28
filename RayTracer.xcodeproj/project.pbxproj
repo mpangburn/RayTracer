@@ -57,6 +57,8 @@
 		8961BC1E1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC1D1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift */; };
 		8961BC211F1950A40004DCD5 /* ExpandableCellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC201F1950A40004DCD5 /* ExpandableCellTableViewController.swift */; };
 		8961BC231F19A47E0004DCD5 /* CompleteRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC221F19A47E0004DCD5 /* CompleteRange.swift */; };
+		8966DE811F2AE944006865E4 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE801F2AE944006865E4 /* PersistenceManager.swift */; };
+		8966DE831F2AF7A1006865E4 /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE821F2AF7A1006865E4 /* NSNotification.swift */; };
 		89CEA6DB1F1203040008B05B /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */; };
 		89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */; };
 		89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */; };
@@ -133,6 +135,8 @@
 		8961BC1D1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegmentedControlTableViewCell.swift; path = Views/SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		8961BC201F1950A40004DCD5 /* ExpandableCellTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableCellTableViewController.swift; path = Abstract/ExpandableCellTableViewController.swift; sourceTree = "<group>"; };
 		8961BC221F19A47E0004DCD5 /* CompleteRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteRange.swift; sourceTree = "<group>"; };
+		8966DE801F2AE944006865E4 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		8966DE821F2AF7A1006865E4 /* NSNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
 		89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewCell.swift; path = Views/ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleValueTableViewCell.swift; path = Views/SingleValueTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SingleValueTableViewCell.xib; path = Views/SingleValueTableViewCell.xib; sourceTree = "<group>"; };
@@ -183,15 +187,16 @@
 		8958562B1F116A2B00BEB595 /* RayTracer */ = {
 			isa = PBXGroup;
 			children = (
+				8958562C1F116A2B00BEB595 /* AppDelegate.swift */,
+				895856361F116A2B00BEB595 /* Assets.xcassets */,
+				8958563B1F116A2B00BEB595 /* Info.plist */,
+				895856381F116A2B00BEB595 /* LaunchScreen.storyboard */,
+				895856301F116A2B00BEB595 /* Main.storyboard */,
+				8958564F1F116B2D00BEB595 /* Extensions */,
+				8966DE7F1F2AE944006865E4 /* Managers */,
+				895856521F116B2D00BEB595 /* Models */,
 				895856601F116B2D00BEB595 /* View Controllers */,
 				8958568A1F11760000BEB595 /* Views */,
-				895856521F116B2D00BEB595 /* Models */,
-				8958564F1F116B2D00BEB595 /* Extensions */,
-				8958562C1F116A2B00BEB595 /* AppDelegate.swift */,
-				895856301F116A2B00BEB595 /* Main.storyboard */,
-				895856361F116A2B00BEB595 /* Assets.xcassets */,
-				895856381F116A2B00BEB595 /* LaunchScreen.storyboard */,
-				8958563B1F116A2B00BEB595 /* Info.plist */,
 			);
 			path = RayTracer;
 			sourceTree = "<group>";
@@ -199,13 +204,13 @@
 		895856431F116A2B00BEB595 /* RayTracerTests */ = {
 			isa = PBXGroup;
 			children = (
-				895856441F116A2B00BEB595 /* RayTracerTests.swift */,
+				895856771F116E3C00BEB595 /* CoreDataHelpers.swift */,
 				8958567A1F116E3C00BEB595 /* PointTests.swift */,
 				8958567B1F116E3C00BEB595 /* RayTests.swift */,
+				895856441F116A2B00BEB595 /* RayTracerTests.swift */,
 				8958567C1F116E3C00BEB595 /* SphereTests.swift */,
 				8958567D1F116E3C00BEB595 /* UtilitiesTests.swift */,
 				8958567E1F116E3C00BEB595 /* VectorTests.swift */,
-				895856771F116E3C00BEB595 /* CoreDataHelpers.swift */,
 				895856781F116E3C00BEB595 /* Extensions */,
 				895856461F116A2B00BEB595 /* Info.plist */,
 			);
@@ -216,9 +221,10 @@
 			isa = PBXGroup;
 			children = (
 				895856501F116B2D00BEB595 /* Double.swift */,
+				8961BC221F19A47E0004DCD5 /* CompleteRange.swift */,
 				8958568B1F11794000BEB595 /* IdentifiableClass.swift */,
 				895856951F11A2D900BEB595 /* NibLoadable.swift */,
-				8961BC221F19A47E0004DCD5 /* CompleteRange.swift */,
+				8966DE821F2AF7A1006865E4 /* NSNotification.swift */,
 				895856861F1173E300BEB595 /* UIColor.swift */,
 				895856511F116B2D00BEB595 /* UIImage.swift */,
 				8958568D1F11795100BEB595 /* UITableViewCell.swift */,
@@ -301,6 +307,14 @@
 				8961BC201F1950A40004DCD5 /* ExpandableCellTableViewController.swift */,
 			);
 			name = Abstract;
+			sourceTree = "<group>";
+		};
+		8966DE7F1F2AE944006865E4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8966DE801F2AE944006865E4 /* PersistenceManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +432,7 @@
 			files = (
 				8958568E1F11795100BEB595 /* UITableViewCell.swift in Sources */,
 				895856691F116B2D00BEB595 /* Light.swift in Sources */,
+				8966DE811F2AE944006865E4 /* PersistenceManager.swift in Sources */,
 				8961BC101F159FB00004DCD5 /* UIViewController.swift in Sources */,
 				89CEA6DB1F1203040008B05B /* ExpandableTableViewCell.swift in Sources */,
 				89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */,
@@ -440,6 +455,7 @@
 				895856721F116B2D00BEB595 /* ImageViewController.swift in Sources */,
 				895856631F116B2D00BEB595 /* Double.swift in Sources */,
 				891E7E691F145F7D007D2AA2 /* FrameViewTableViewCell.swift in Sources */,
+				8966DE831F2AF7A1006865E4 /* NSNotification.swift in Sources */,
 				8958566D1F116B2D00BEB595 /* Sphere+CoreDataClass.swift in Sources */,
 				8961BC0E1F15368E0004DCD5 /* RayTracerSettings.swift in Sources */,
 				8958566A1F116B2D00BEB595 /* Point.swift in Sources */,

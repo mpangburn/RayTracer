@@ -17,27 +17,9 @@ final class SpheresTableViewController: UITableViewController {
         self.title = NSLocalizedString("Spheres", comment: "The title text for sphere list screen")
         tableView.tableFooterView = UIView()
 
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
-        let dateSortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
-        fetchRequest.sortDescriptors = [dateSortDescriptor]
-        let tracer = RayTracer.shared
-
-        do {
-            tracer.spheres = try context.fetch(fetchRequest)
-        } catch {
-            print("Error fetching sphere data")
+        NotificationCenter.default.addObserver(forName: .SphereDataDidReset, object: nil, queue: nil) { _ in
+            self.tableView.reloadData()
         }
-
-        appDelegate.saveContext()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        // Accounts for resetting sphere data
-        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -67,20 +49,17 @@ final class SpheresTableViewController: UITableViewController {
     }
 
     private func deleteSphereData(at indexPath: IndexPath) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let context = appDelegate.persistentContainer.viewContext
+        let context = PersistenceManager.shared.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "creationDate == %@", RayTracer.shared.spheres[indexPath.row].creationDate)
         let sphereToDelete = try! context.fetch(fetchRequest).first!
         context.delete(sphereToDelete)
-        appDelegate.saveContext()
+        PersistenceManager.shared.saveContext()
     }
 
     // MARK: - Navigation
 
     @IBAction func unwindToSpheresTableViewController(sender: UIStoryboardSegue) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
         if let sourceViewController = sender.source as? AddEditSphereTableViewController {
             let tracer = RayTracer.shared
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
@@ -95,7 +74,7 @@ final class SpheresTableViewController: UITableViewController {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
 
-            appDelegate.saveContext()
+            PersistenceManager.shared.saveContext()
         }
     }
 
