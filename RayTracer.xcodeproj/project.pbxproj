@@ -57,7 +57,7 @@
 		8961BC1E1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC1D1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift */; };
 		8961BC211F1950A40004DCD5 /* ExpandableCellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC201F1950A40004DCD5 /* ExpandableCellTableViewController.swift */; };
 		8961BC231F19A47E0004DCD5 /* CompleteRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC221F19A47E0004DCD5 /* CompleteRange.swift */; };
-		8966DE7E1F2AD910006865E4 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE7D1F2AD910006865E4 /* PersistenceController.swift */; };
+		8966DE811F2AE944006865E4 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE801F2AE944006865E4 /* PersistenceManager.swift */; };
 		89CEA6DB1F1203040008B05B /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */; };
 		89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */; };
 		89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */; };
@@ -134,7 +134,7 @@
 		8961BC1D1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegmentedControlTableViewCell.swift; path = Views/SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		8961BC201F1950A40004DCD5 /* ExpandableCellTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableCellTableViewController.swift; path = Abstract/ExpandableCellTableViewController.swift; sourceTree = "<group>"; };
 		8961BC221F19A47E0004DCD5 /* CompleteRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteRange.swift; sourceTree = "<group>"; };
-		8966DE7D1F2AD910006865E4 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		8966DE801F2AE944006865E4 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewCell.swift; path = Views/ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleValueTableViewCell.swift; path = Views/SingleValueTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SingleValueTableViewCell.xib; path = Views/SingleValueTableViewCell.xib; sourceTree = "<group>"; };
@@ -187,6 +187,7 @@
 			children = (
 				895856601F116B2D00BEB595 /* View Controllers */,
 				8958568A1F11760000BEB595 /* Views */,
+				8966DE7F1F2AE944006865E4 /* Managers */,
 				895856521F116B2D00BEB595 /* Models */,
 				8958564F1F116B2D00BEB595 /* Extensions */,
 				8958562C1F116A2B00BEB595 /* AppDelegate.swift */,
@@ -238,7 +239,6 @@
 				895856551F116B2D00BEB595 /* Frame.swift */,
 				895856561F116B2D00BEB595 /* Image.swift */,
 				895856571F116B2D00BEB595 /* Light.swift */,
-				8966DE7D1F2AD910006865E4 /* PersistenceController.swift */,
 				895856581F116B2D00BEB595 /* Point.swift */,
 				895856591F116B2D00BEB595 /* Ray.swift */,
 				8958565A1F116B2D00BEB595 /* RayTracer.swift */,
@@ -304,6 +304,14 @@
 				8961BC201F1950A40004DCD5 /* ExpandableCellTableViewController.swift */,
 			);
 			name = Abstract;
+			sourceTree = "<group>";
+		};
+		8966DE7F1F2AE944006865E4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8966DE801F2AE944006865E4 /* PersistenceManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,6 +429,7 @@
 			files = (
 				8958568E1F11795100BEB595 /* UITableViewCell.swift in Sources */,
 				895856691F116B2D00BEB595 /* Light.swift in Sources */,
+				8966DE811F2AE944006865E4 /* PersistenceManager.swift in Sources */,
 				8961BC101F159FB00004DCD5 /* UIViewController.swift in Sources */,
 				89CEA6DB1F1203040008B05B /* ExpandableTableViewCell.swift in Sources */,
 				89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */,
@@ -438,7 +447,6 @@
 				895856661F116B2D00BEB595 /* Finish.swift in Sources */,
 				895856961F11A2D900BEB595 /* NibLoadable.swift in Sources */,
 				89FF80601F12FD9800A9F4AB /* UserDefaults.swift in Sources */,
-				8966DE7E1F2AD910006865E4 /* PersistenceController.swift in Sources */,
 				8961BC231F19A47E0004DCD5 /* CompleteRange.swift in Sources */,
 				8958566E1F116B2D00BEB595 /* Sphere+CoreDataProperties.swift in Sources */,
 				895856721F116B2D00BEB595 /* ImageViewController.swift in Sources */,

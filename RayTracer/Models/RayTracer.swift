@@ -18,7 +18,7 @@ final class RayTracer {
 
     /// The spheres to cast rays on.
     var spheres: [Sphere] = {
-        let context = PersistenceController.shared.persistentContainer.viewContext
+        let context = PersistenceManager.shared.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
         let dateSortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
         fetchRequest.sortDescriptors = [dateSortDescriptor]

@@ -52,12 +52,12 @@ final class SpheresTableViewController: UITableViewController {
     }
 
     private func deleteSphereData(at indexPath: IndexPath) {
-        let context = PersistenceController.shared.persistentContainer.viewContext
+        let context = PersistenceManager.shared.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "creationDate == %@", RayTracer.shared.spheres[indexPath.row].creationDate)
         let sphereToDelete = try! context.fetch(fetchRequest).first!
         context.delete(sphereToDelete)
-        PersistenceController.shared.saveContext()
+        PersistenceManager.shared.saveContext()
     }
 
     // MARK: - Navigation
@@ -77,7 +77,7 @@ final class SpheresTableViewController: UITableViewController {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
 
-            PersistenceController.shared.saveContext()
+            PersistenceManager.shared.saveContext()
         }
     }
 

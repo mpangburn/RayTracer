@@ -14,7 +14,7 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
 
     var sphere: Sphere {
         get {
-            let context = PersistenceController.shared.persistentContainer.viewContext
+            let context = PersistenceManager.shared.persistentContainer.viewContext
             return Sphere(center: self.center, radius: self.radius, color: self.color, finish: self.finish, context: context)
         }
         set {

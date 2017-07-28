@@ -1,5 +1,5 @@
 //
-//  PersistenceController.swift
+//  PersistenceManager.swift
 //  RayTracer
 //
 //  Created by Michael Pangburn on 7/27/17.
@@ -11,10 +11,10 @@ import CoreData
 
 
 /// Manages the Core Data stack.
-class PersistenceController {
+class PersistenceManager {
 
     /// The shared persistence controller instance.
-    static let shared = PersistenceController()
+    static let shared = PersistenceManager()
 
     // Prevents access to any persistence controller other than the shared instance.
     private init() { }
