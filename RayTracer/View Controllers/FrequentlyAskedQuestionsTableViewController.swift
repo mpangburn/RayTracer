@@ -20,9 +20,10 @@ final class FrequentlyAskedQuestionsTableViewController: InformationTableViewCon
         case longRenderingTime
         case invisibleSphere
         case blackSphere
+        case frameSlidersMoving
         case skewedImage
 
-        static let count = 4
+        static let count = 5
     }
 
     enum Row: Int {
@@ -81,6 +82,13 @@ final class FrequentlyAskedQuestionsTableViewController: InformationTableViewCon
                 text += NSLocalizedString("Why is my sphere black?", comment: "The text for the question regarding spheres appearing black")
             case .answer:
                 text += NSLocalizedString("A sphere will appear black if the ambient component of its finish is zero, i.e. the sphere reflects no ambient light.", comment: "The answer to the question regarding spheres appearing black")
+            }
+        case .frameSlidersMoving:
+            switch row {
+            case .question:
+                text += NSLocalizedString("Why are the frame sliders moving together?", comment: "The text for the question regarding frame sliders moving together")
+            case .answer:
+                text += NSLocalizedString("When the frame's aspect ratio is set to a value other than freeform, the frame's coordinate bounds and size are automatically adjusted to fit that aspect ratio when their values are changed.", comment: "The answer to the question regarding frame sliders moving together")
             }
         case .skewedImage:
             switch row {

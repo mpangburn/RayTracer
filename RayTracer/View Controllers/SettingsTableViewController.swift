@@ -135,7 +135,12 @@ final class SettingsTableViewController: ExpandableCellTableViewController {
             switch FrameRow(rawValue: indexPath.row)! {
             case .view:
                 let cell = tableView.dequeueReusableCell(withIdentifier: FrameViewTableViewCell.className, for: indexPath) as! FrameViewTableViewCell
-                cell.frameView = tracer.settings.sceneFrame.view
+                let frame = tracer.settings.sceneFrame
+                cell.minX = frame.minX
+                cell.maxX = frame.maxX
+                cell.minY = frame.minY
+                cell.maxY = frame.maxY
+                cell.zPlane = frame.zPlane
                 cell.delegate = self
                 return cell
             case .size:
@@ -249,21 +254,114 @@ extension SettingsTableViewController: SegmentedControlTableViewCellDelegate {
         case .aspectRatio:
             tracer.settings.sceneFrame.aspectRatio = cell.aspectRatio!
 
-            let sizeCell = tableView.cellForRow(at: IndexPath(row: FrameRow.size.rawValue, section: Section.frame.rawValue)) as! FrameSizeTableViewCell
-            let minHeightSliderValue = Int(sizeCell.heightSlider.minimumValue)
-            if sizeCell.height == minHeightSliderValue || tracer.settings.sceneFrame.height < minHeightSliderValue {
+            let frameViewCell = tableView.cellForRow(at: IndexPath(row: FrameRow.view.rawValue, section: Section.frame.rawValue)) as! FrameViewTableViewCell
+            let maxMinYSliderValue = Double(frameViewCell.minYSlider.maximumValue)
+            if frameViewCell.minY == maxMinYSliderValue || tracer.settings.sceneFrame.minY > maxMinYSliderValue {
+                tracer.settings.sceneFrame.minY = maxMinYSliderValue
+            }
+
+            frameViewCell.minX = tracer.settings.sceneFrame.minX
+            frameViewCell.maxX = tracer.settings.sceneFrame.maxX
+            frameViewCell.minY = tracer.settings.sceneFrame.minY
+            frameViewCell.maxY = tracer.settings.sceneFrame.maxY
+
+            let frameSizeCell = tableView.cellForRow(at: IndexPath(row: FrameRow.size.rawValue, section: Section.frame.rawValue)) as! FrameSizeTableViewCell
+            let minHeightSliderValue = Int(frameSizeCell.heightSlider.minimumValue)
+            if frameSizeCell.height == minHeightSliderValue || tracer.settings.sceneFrame.height < minHeightSliderValue {
                 tracer.settings.sceneFrame.height = minHeightSliderValue
             }
 
-            sizeCell.width = tracer.settings.sceneFrame.width
-            sizeCell.height = tracer.settings.sceneFrame.height
+            frameSizeCell.width = tracer.settings.sceneFrame.width
+            frameSizeCell.height = tracer.settings.sceneFrame.height
         }
     }
 }
 
 extension SettingsTableViewController: FrameViewTableViewCellDelegate {
-    func frameViewTableViewCellFrameViewDidChange(_ cell: FrameViewTableViewCell) {
-        tracer.settings.sceneFrame.view = cell.frameView
+    func frameViewTableViewCellMinXDidChange(_ cell: FrameViewTableViewCell) {
+        guard tracer.settings.sceneFrame.aspectRatio != .freeform else {
+            tracer.settings.sceneFrame.minX = cell.minX
+            return
+        }
+
+        let maxMinYSliderValue = Double(cell.minYSlider.maximumValue)
+        let minYIsAtMaxAndMinXIsIncreasing = cell.minY == maxMinYSliderValue && cell.minX > tracer.settings.sceneFrame.minX
+        let minXSliderValueWasIncreasedQuickly = tracer.settings.sceneFrame.minY > maxMinYSliderValue && cell.minX == Double(cell.minXSlider.maximumValue)
+        if minYIsAtMaxAndMinXIsIncreasing || minXSliderValueWasIncreasedQuickly {
+            tracer.settings.sceneFrame.minY = maxMinYSliderValue
+        } else {
+            tracer.settings.sceneFrame.minX = cell.minX
+            cell.minY = tracer.settings.sceneFrame.minY
+            cell.maxY = tracer.settings.sceneFrame.maxY
+        }
+
+        cell.minX = tracer.settings.sceneFrame.minX
+        cell.maxX = tracer.settings.sceneFrame.maxX
+    }
+
+    func frameViewTableViewCellMaxXDidChange(_ cell: FrameViewTableViewCell) {
+        guard tracer.settings.sceneFrame.aspectRatio != .freeform else {
+            tracer.settings.sceneFrame.maxX = cell.maxX
+            return
+        }
+
+        let maxMinYSliderValue = Double(cell.minYSlider.maximumValue)
+        let minYIsAtMaxAndMaxXIsDecreasing = cell.minY == maxMinYSliderValue && cell.maxX < tracer.settings.sceneFrame.maxX
+        let maxXSliderValueWasDecreasedQuickly = tracer.settings.sceneFrame.minY > maxMinYSliderValue && cell.maxX == Double(cell.maxXSlider.minimumValue)
+        if minYIsAtMaxAndMaxXIsDecreasing || maxXSliderValueWasDecreasedQuickly {
+            tracer.settings.sceneFrame.minY = maxMinYSliderValue
+        } else {
+            tracer.settings.sceneFrame.maxX = cell.maxX
+            cell.minY = tracer.settings.sceneFrame.minY
+            cell.maxY = tracer.settings.sceneFrame.maxY
+        }
+
+        cell.minX = tracer.settings.sceneFrame.minX
+        cell.maxX = tracer.settings.sceneFrame.maxX
+    }
+
+    func frameViewTableViewCellMinYDidChange(_ cell: FrameViewTableViewCell) {
+        guard tracer.settings.sceneFrame.aspectRatio != .freeform else {
+            tracer.settings.sceneFrame.minY = cell.minY
+            return
+        }
+
+        let minMinXSliderValue = Double(cell.minXSlider.minimumValue)
+        let minXIsAtMinAndMinYIsDecreasing = cell.minX == minMinXSliderValue && cell.minY < tracer.settings.sceneFrame.minY
+        if minXIsAtMinAndMinYIsDecreasing {
+            tracer.settings.sceneFrame.minX = minMinXSliderValue
+        } else {
+            tracer.settings.sceneFrame.minY = cell.minY
+            cell.minX = tracer.settings.sceneFrame.minX
+            cell.maxX = tracer.settings.sceneFrame.maxX
+        }
+
+        cell.minY = tracer.settings.sceneFrame.minY
+        cell.maxY = tracer.settings.sceneFrame.maxY
+    }
+
+    func frameViewTableViewCellMaxYDidChange(_ cell: FrameViewTableViewCell) {
+        guard tracer.settings.sceneFrame.aspectRatio != .freeform else {
+            tracer.settings.sceneFrame.maxY = cell.maxY
+            return
+        }
+
+        let minMinXSliderValue = Double(cell.minXSlider.minimumValue)
+        let minXIsAtMinAndMaxYIsIncreasing = cell.minX == minMinXSliderValue && cell.maxY > tracer.settings.sceneFrame.maxY
+        if minXIsAtMinAndMaxYIsIncreasing {
+            tracer.settings.sceneFrame.minX = minMinXSliderValue
+        } else {
+            tracer.settings.sceneFrame.maxY = cell.maxY
+            cell.minX = tracer.settings.sceneFrame.minX
+            cell.maxX = tracer.settings.sceneFrame.maxX
+        }
+
+        cell.minY = tracer.settings.sceneFrame.minY
+        cell.maxY = tracer.settings.sceneFrame.maxY
+    }
+
+    func frameViewTableViewCellZPlaneDidChange(_ cell: FrameViewTableViewCell) {
+        tracer.settings.sceneFrame.zPlane = cell.zPlane
     }
 }
 
@@ -276,8 +374,8 @@ extension SettingsTableViewController: FrameSizeTableViewCellDelegate {
 
         let minHeightSliderValue = Int(cell.heightSlider.minimumValue)
         let heightIsAtMinAndWidthIsDecreasing = cell.height == minHeightSliderValue && cell.width < tracer.settings.sceneFrame.width
-        let widthSliderWasDecreasedQuickly = tracer.settings.sceneFrame.height < minHeightSliderValue && cell.width == Int(cell.widthSlider.minimumValue)
-        if heightIsAtMinAndWidthIsDecreasing || widthSliderWasDecreasedQuickly {
+        let widthSliderValueWasDecreasedQuickly = tracer.settings.sceneFrame.height < minHeightSliderValue && cell.width == Int(cell.widthSlider.minimumValue)
+        if heightIsAtMinAndWidthIsDecreasing || widthSliderValueWasDecreasedQuickly {
             tracer.settings.sceneFrame.height = minHeightSliderValue
         } else {
             tracer.settings.sceneFrame.width = cell.width

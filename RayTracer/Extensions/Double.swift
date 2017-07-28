@@ -57,6 +57,11 @@ extension Double {
         }
     }
 
+    /// Displays the value rounded to one decimal place.
+    var singleDigitDecimalString: String {
+        return String(self.roundedTo(decimalPlaces: 1))
+    }
+
     /// Displays the value rounded to two decimal places.
     var twoDigitDecimalString: String {
         return String(self.roundedTo(decimalPlaces: 2))
@@ -78,7 +83,7 @@ extension Double {
         if self.truncatingRemainder(dividingBy: 1) == 0 {
             return String(format: "%.0f", self)
         } else {
-            return String(self.roundedTo(decimalPlaces: 1))
+            return singleDigitDecimalString
         }
     }
 }

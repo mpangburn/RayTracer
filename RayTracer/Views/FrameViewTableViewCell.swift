@@ -10,7 +10,11 @@ import UIKit
 
 
 protocol FrameViewTableViewCellDelegate: class {
-    func frameViewTableViewCellFrameViewDidChange(_ cell: FrameViewTableViewCell)
+    func frameViewTableViewCellMinXDidChange(_ cell: FrameViewTableViewCell)
+    func frameViewTableViewCellMaxXDidChange(_ cell: FrameViewTableViewCell)
+    func frameViewTableViewCellMinYDidChange(_ cell: FrameViewTableViewCell)
+    func frameViewTableViewCellMaxYDidChange(_ cell: FrameViewTableViewCell)
+    func frameViewTableViewCellZPlaneDidChange(_ cell: FrameViewTableViewCell)
 }
 
 
@@ -18,21 +22,53 @@ final class FrameViewTableViewCell: ExpandableTableViewCell {
 
     weak var delegate: FrameViewTableViewCellDelegate?
 
-    var frameView: Frame.View {
+    var minX: Double {
         get {
-            return Frame.View(minX: Double(minXSlider.value),
-                         maxX: Double(maxXSlider.value),
-                         minY: Double(minYSlider.value),
-                         maxY: Double(maxYSlider.value),
-                         zPlane: Double(zPlaneSlider.value))
+            return Double(minXSlider.value)
         }
         set {
-            minXSlider.value = Float(newValue.minX)
-            maxXSlider.value = Float(newValue.maxX)
-            minYSlider.value = Float(newValue.minY)
-            maxYSlider.value = Float(newValue.maxY)
-            zPlaneSlider.value = Float(newValue.zPlane)
-            updateMeasurementsLabel()
+            minXSlider.value = Float(newValue)
+            updateCoordinatesLabel()
+        }
+    }
+
+    var maxX: Double {
+        get {
+            return Double(maxXSlider.value)
+        }
+        set {
+            maxXSlider.value = Float(newValue)
+            updateCoordinatesLabel()
+        }
+    }
+
+    var minY: Double {
+        get {
+            return Double(minYSlider.value)
+        }
+        set {
+            minYSlider.value = Float(newValue)
+            updateCoordinatesLabel()
+        }
+    }
+
+    var maxY: Double {
+        get {
+            return Double(maxYSlider.value)
+        }
+        set {
+            maxYSlider.value = Float(newValue)
+            updateCoordinatesLabel()
+        }
+    }
+
+    var zPlane: Double {
+        get {
+            return Double(zPlaneSlider.value)
+        }
+        set {
+            zPlaneSlider.value = Float(newValue)
+            updateCoordinatesLabel()
         }
     }
 
@@ -92,14 +128,27 @@ final class FrameViewTableViewCell: ExpandableTableViewCell {
         }
     }
 
-    private func updateMeasurementsLabel() {
-        let frameView = self.frameView
-        let localizedZPlaneString = NSLocalizedString("on z = \(frameView.zPlane.cleanValueOrSingleDecimalString)", comment: "The text describing the frame view's z-plane")
-        measurementsLabel.text = "(\(frameView.minX.cleanValueOrSingleDecimalString), \(frameView.maxX.cleanValueOrSingleDecimalString)) × (\(frameView.minY.cleanValueOrSingleDecimalString), \(frameView.maxY.cleanValueOrSingleDecimalString)) \(localizedZPlaneString)"
+    private func updateCoordinatesLabel() {
+        let localizedZPlaneString = NSLocalizedString("on z = ", comment: "The text describing the frame view's z-plane")
+        measurementsLabel.text = "(\(minX.cleanValueOrSingleDecimalString), \(maxX.cleanValueOrSingleDecimalString)) × (\(minY.cleanValueOrSingleDecimalString), \(maxY.cleanValueOrSingleDecimalString)) \(localizedZPlaneString)\(zPlane.cleanValueOrSingleDecimalString)"
     }
 
     @IBAction func sliderValueChanged(_ sender: UISlider) {
-        updateMeasurementsLabel()
-        delegate?.frameViewTableViewCellFrameViewDidChange(self)
+        updateCoordinatesLabel()
+
+        switch sender {
+        case minXSlider:
+            delegate?.frameViewTableViewCellMinXDidChange(self)
+        case maxXSlider:
+            delegate?.frameViewTableViewCellMaxXDidChange(self)
+        case minYSlider:
+            delegate?.frameViewTableViewCellMinYDidChange(self)
+        case maxYSlider:
+            delegate?.frameViewTableViewCellMaxYDidChange(self)
+        case zPlaneSlider:
+            delegate?.frameViewTableViewCellZPlaneDidChange(self)
+        default:
+            break
+        }
     }
 }

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="222.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7K-Uz-C7T">
@@ -97,7 +97,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="B5a-G1-dLa">
                                         <rect key="frame" x="80" y="0.0" width="187" height="175"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-50" minValue="-100" maxValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="fOp-Kg-5Dr">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-50.5" minValue="-100" maxValue="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fOp-Kg-5Dr">
                                                 <rect key="frame" x="-2" y="0.0" width="191" height="36"/>
                                                 <connections>
                                                     <action selector="sliderValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="QV5-Kv-FEg"/>
@@ -109,7 +109,7 @@
                                                     <action selector="sliderValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="91U-N7-Aj1"/>
                                                 </connections>
                                             </slider>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-50" minValue="-100" maxValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="JIh-Bd-M92">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-50.5" minValue="-100" maxValue="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JIh-Bd-M92">
                                                 <rect key="frame" x="-2" y="70" width="191" height="36"/>
                                                 <connections>
                                                     <action selector="sliderValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="imY-mS-Dcz"/>
