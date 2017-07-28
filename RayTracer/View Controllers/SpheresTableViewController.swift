@@ -16,13 +16,10 @@ final class SpheresTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = NSLocalizedString("Spheres", comment: "The title text for sphere list screen")
         tableView.tableFooterView = UIView()
-    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        // Accounts for resetting sphere data
-        tableView.reloadData()
+        NotificationCenter.default.addObserver(forName: .SphereDataDidReset, object: nil, queue: nil) { _ in
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source

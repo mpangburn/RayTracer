@@ -203,6 +203,7 @@ final class SettingsTableViewController: ExpandableCellTableViewController {
             tracer.spheres.removeAll()
             tracer.spheres.append(Sphere(string: "1.0 1.0 0.0 2.0 1.0 0.0 1.0 0.2 0.4 0.5 0.05", context: context)!)
             tracer.spheres.append(Sphere(string: "8.0 -10.0 100.0 90.0 0.2 0.2 0.6 0.4 0.8 0.0 0.05", context: context)!)
+            NotificationCenter.default.post(name: .SphereDataDidReset, object: nil)
             PersistenceManager.shared.saveContext()
         })
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "The text for the cancel button within the reset spheres alert"), style: .cancel, handler: nil))

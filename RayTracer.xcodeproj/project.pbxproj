@@ -58,6 +58,7 @@
 		8961BC211F1950A40004DCD5 /* ExpandableCellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC201F1950A40004DCD5 /* ExpandableCellTableViewController.swift */; };
 		8961BC231F19A47E0004DCD5 /* CompleteRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC221F19A47E0004DCD5 /* CompleteRange.swift */; };
 		8966DE811F2AE944006865E4 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE801F2AE944006865E4 /* PersistenceManager.swift */; };
+		8966DE831F2AF7A1006865E4 /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE821F2AF7A1006865E4 /* NSNotification.swift */; };
 		89CEA6DB1F1203040008B05B /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */; };
 		89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */; };
 		89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */; };
@@ -135,6 +136,7 @@
 		8961BC201F1950A40004DCD5 /* ExpandableCellTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableCellTableViewController.swift; path = Abstract/ExpandableCellTableViewController.swift; sourceTree = "<group>"; };
 		8961BC221F19A47E0004DCD5 /* CompleteRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteRange.swift; sourceTree = "<group>"; };
 		8966DE801F2AE944006865E4 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		8966DE821F2AF7A1006865E4 /* NSNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
 		89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewCell.swift; path = Views/ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleValueTableViewCell.swift; path = Views/SingleValueTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SingleValueTableViewCell.xib; path = Views/SingleValueTableViewCell.xib; sourceTree = "<group>"; };
@@ -219,9 +221,10 @@
 			isa = PBXGroup;
 			children = (
 				895856501F116B2D00BEB595 /* Double.swift */,
+				8961BC221F19A47E0004DCD5 /* CompleteRange.swift */,
 				8958568B1F11794000BEB595 /* IdentifiableClass.swift */,
 				895856951F11A2D900BEB595 /* NibLoadable.swift */,
-				8961BC221F19A47E0004DCD5 /* CompleteRange.swift */,
+				8966DE821F2AF7A1006865E4 /* NSNotification.swift */,
 				895856861F1173E300BEB595 /* UIColor.swift */,
 				895856511F116B2D00BEB595 /* UIImage.swift */,
 				8958568D1F11795100BEB595 /* UITableViewCell.swift */,
@@ -452,6 +455,7 @@
 				895856721F116B2D00BEB595 /* ImageViewController.swift in Sources */,
 				895856631F116B2D00BEB595 /* Double.swift in Sources */,
 				891E7E691F145F7D007D2AA2 /* FrameViewTableViewCell.swift in Sources */,
+				8966DE831F2AF7A1006865E4 /* NSNotification.swift in Sources */,
 				8958566D1F116B2D00BEB595 /* Sphere+CoreDataClass.swift in Sources */,
 				8961BC0E1F15368E0004DCD5 /* RayTracerSettings.swift in Sources */,
 				8958566A1F116B2D00BEB595 /* Point.swift in Sources */,
