@@ -25,7 +25,7 @@ struct RayTracerSettings {
     var backgroundColor: Color = Color.white
 
     /// The frame for the scene.
-    var sceneFrame = Frame(view: Frame.View(minX: -10, maxX: 10, minY: -7.5, maxY: 7.5, zPlane: 0), width: 512, height: 384, aspectRatio: .fourThree)
+    var sceneFrame = Frame(minX: -10, maxX: 10, minY: -7.5, maxY: 7.5, zPlane: 0, width: 512, height: 384, aspectRatio: .fourThree)
 }
 
 
@@ -73,7 +73,7 @@ extension RayTracerSettings: RawRepresentable {
             let aspectRatioRawValue = sceneFrameDict["aspectRatio"] as? Int,
             let aspectRatio = Frame.AspectRatio(rawValue: aspectRatioRawValue) {
 
-            self.sceneFrame = Frame(view: Frame.View(minX: minX, maxX: maxX, minY: minY, maxY: maxY, zPlane: zPlane), width: width, height: height, aspectRatio: aspectRatio)
+            self.sceneFrame = Frame(minX: minX, maxX: maxX, minY: minY, maxY: maxY, zPlane: zPlane, width: width, height: height, aspectRatio: aspectRatio)
         }
     }
 
@@ -93,11 +93,11 @@ extension RayTracerSettings: RawRepresentable {
         raw["backgroundColor"] = NSKeyedArchiver.archivedData(withRootObject: backgroundColor)
 
         raw["sceneFrame"] = [
-            "minX": sceneFrame.view.minX,
-            "maxX": sceneFrame.view.maxX,
-            "minY": sceneFrame.view.minY,
-            "maxY": sceneFrame.view.maxY,
-            "zPlane": sceneFrame.view.zPlane,
+            "minX": sceneFrame.minX,
+            "maxX": sceneFrame.maxX,
+            "minY": sceneFrame.minY,
+            "maxY": sceneFrame.maxY,
+            "zPlane": sceneFrame.zPlane,
             "width": sceneFrame.width,
             "height": sceneFrame.height,
             "aspectRatio": sceneFrame.aspectRatio.rawValue

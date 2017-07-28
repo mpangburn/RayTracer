@@ -59,6 +59,11 @@
 		8961BC231F19A47E0004DCD5 /* CompleteRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8961BC221F19A47E0004DCD5 /* CompleteRange.swift */; };
 		8966DE811F2AE944006865E4 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE801F2AE944006865E4 /* PersistenceManager.swift */; };
 		8966DE831F2AF7A1006865E4 /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE821F2AF7A1006865E4 /* NSNotification.swift */; };
+		8966DE851F2B01D7006865E4 /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE841F2B01D7006865E4 /* AboutTableViewController.swift */; };
+		8966DE8D1F2B0826006865E4 /* HowItWorksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE8C1F2B0826006865E4 /* HowItWorksTableViewController.swift */; };
+		8966DE8F1F2B1033006865E4 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE8E1F2B1033006865E4 /* InformationTableViewController.swift */; };
+		8966DE911F2B1112006865E4 /* TipsAndTricksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE901F2B1112006865E4 /* TipsAndTricksTableViewController.swift */; };
+		8966DE931F2B132D006865E4 /* FrequentlyAskedQuestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE921F2B132D006865E4 /* FrequentlyAskedQuestionsTableViewController.swift */; };
 		89CEA6DB1F1203040008B05B /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */; };
 		89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */; };
 		89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */; };
@@ -137,6 +142,11 @@
 		8961BC221F19A47E0004DCD5 /* CompleteRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteRange.swift; sourceTree = "<group>"; };
 		8966DE801F2AE944006865E4 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		8966DE821F2AF7A1006865E4 /* NSNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
+		8966DE841F2B01D7006865E4 /* AboutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
+		8966DE8C1F2B0826006865E4 /* HowItWorksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowItWorksTableViewController.swift; sourceTree = "<group>"; };
+		8966DE8E1F2B1033006865E4 /* InformationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InformationTableViewController.swift; path = Abstract/InformationTableViewController.swift; sourceTree = "<group>"; };
+		8966DE901F2B1112006865E4 /* TipsAndTricksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsAndTricksTableViewController.swift; sourceTree = "<group>"; };
+		8966DE921F2B132D006865E4 /* FrequentlyAskedQuestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequentlyAskedQuestionsTableViewController.swift; sourceTree = "<group>"; };
 		89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewCell.swift; path = Views/ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleValueTableViewCell.swift; path = Views/SingleValueTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SingleValueTableViewCell.xib; path = Views/SingleValueTableViewCell.xib; sourceTree = "<group>"; };
@@ -260,10 +270,14 @@
 			isa = PBXGroup;
 			children = (
 				8961BC1F1F19507B0004DCD5 /* Abstract */,
+				8966DE841F2B01D7006865E4 /* AboutTableViewController.swift */,
 				8958568F1F11A02B00BEB595 /* AddEditSphereTableViewController.swift */,
+				8966DE921F2B132D006865E4 /* FrequentlyAskedQuestionsTableViewController.swift */,
+				8966DE8C1F2B0826006865E4 /* HowItWorksTableViewController.swift */,
 				895856611F116B2D00BEB595 /* ImageViewController.swift */,
 				89FF805D1F12FBAB00A9F4AB /* SettingsTableViewController.swift */,
 				895856621F116B2D00BEB595 /* SpheresTableViewController.swift */,
+				8966DE901F2B1112006865E4 /* TipsAndTricksTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -305,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				8961BC201F1950A40004DCD5 /* ExpandableCellTableViewController.swift */,
+				8966DE8E1F2B1033006865E4 /* InformationTableViewController.swift */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -444,9 +459,12 @@
 				89FF80631F13105400A9F4AB /* SingleButtonTableViewCell.swift in Sources */,
 				895856871F1173E300BEB595 /* UIColor.swift in Sources */,
 				8961BC171F15F6F00004DCD5 /* FrameSizeTableViewCell.swift in Sources */,
+				8966DE931F2B132D006865E4 /* FrequentlyAskedQuestionsTableViewController.swift in Sources */,
 				8961BC1E1F1684A50004DCD5 /* SegmentedControlTableViewCell.swift in Sources */,
+				8966DE851F2B01D7006865E4 /* AboutTableViewController.swift in Sources */,
 				895856711F116B2D00BEB595 /* Vector.swift in Sources */,
 				895856701F116B2D00BEB595 /* Utilities.swift in Sources */,
+				8966DE8D1F2B0826006865E4 /* HowItWorksTableViewController.swift in Sources */,
 				895856661F116B2D00BEB595 /* Finish.swift in Sources */,
 				895856961F11A2D900BEB595 /* NibLoadable.swift in Sources */,
 				89FF80601F12FD9800A9F4AB /* UserDefaults.swift in Sources */,
@@ -455,6 +473,7 @@
 				895856721F116B2D00BEB595 /* ImageViewController.swift in Sources */,
 				895856631F116B2D00BEB595 /* Double.swift in Sources */,
 				891E7E691F145F7D007D2AA2 /* FrameViewTableViewCell.swift in Sources */,
+				8966DE8F1F2B1033006865E4 /* InformationTableViewController.swift in Sources */,
 				8966DE831F2AF7A1006865E4 /* NSNotification.swift in Sources */,
 				8958566D1F116B2D00BEB595 /* Sphere+CoreDataClass.swift in Sources */,
 				8961BC0E1F15368E0004DCD5 /* RayTracerSettings.swift in Sources */,
@@ -464,6 +483,7 @@
 				895856651F116B2D00BEB595 /* Color.swift in Sources */,
 				895856931F11A21000BEB595 /* PointTableViewCell.swift in Sources */,
 				8958566B1F116B2D00BEB595 /* Ray.swift in Sources */,
+				8966DE911F2B1112006865E4 /* TipsAndTricksTableViewController.swift in Sources */,
 				895856761F116DA700BEB595 /* RayTracer.xcdatamodeld in Sources */,
 				895856891F1175F300BEB595 /* SphereTableViewCell.swift in Sources */,
 				895856991F11CF5E00BEB595 /* ColorTableViewCell.swift in Sources */,

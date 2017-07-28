@@ -147,7 +147,7 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
     // How can this better accommodate eye points with different x and y values?
     @objc private func generateRandomSphere(_ button: UIButton) {
         let tracer = RayTracer.shared
-        let sceneView = tracer.settings.sceneFrame.view
+        let sceneFrame = tracer.settings.sceneFrame
         let eyePoint = tracer.settings.eyePoint
 
         // Generate a random z coordinate for the center between the eye point and the existing sphere z coordinate closest to it
@@ -172,8 +172,8 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
         let z = (Int(minZ)...Int(maxZ)).random(decimalPlaces: 1)
 
         // Generate random x and y coordinates within the scene view and scale them based on z distance to the eye point
-        let baseX = (Int(sceneView.minX)...Int(sceneView.maxX)).random(decimalPlaces: 1)
-        let baseY = (Int(sceneView.minY)...Int(sceneView.maxY)).random(decimalPlaces: 1)
+        let baseX = (Int(sceneFrame.minX)...Int(sceneFrame.maxX)).random(decimalPlaces: 1)
+        let baseY = (Int(sceneFrame.minY)...Int(sceneFrame.maxY)).random(decimalPlaces: 1)
         let zDistanceScaleFactor = abs(eyePoint.z) / abs(eyePoint.z - z)
         let possibleXorYRange = -100.0...100.0
         let x = (baseX / zDistanceScaleFactor).roundedTo(decimalPlaces: 1).clamped(to: possibleXorYRange)
@@ -181,7 +181,7 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
         self.center = Point(x: x, y: y, z: z)
 
         // Generate a random radius and scale it based on the center's distance to the eye point
-        let maxBaseRadius = Int(min(sceneView.maxX - sceneView.minX, sceneView.maxY - sceneView.minY))
+        let maxBaseRadius = Int(min(sceneFrame.maxX - sceneFrame.minX, sceneFrame.maxY - sceneFrame.minY))
         let baseRadius = Double((1...maxBaseRadius).random())
         let halfVisibleDistance = (abs(eyePoint.z) + maxPossibleZ) / 2
         let centerToEyePointDistance = self.center.distance(from: eyePoint)

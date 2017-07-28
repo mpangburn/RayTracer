@@ -51,17 +51,16 @@ final class RayTracer {
 
         var pixels: [Color.PixelData] = []
         let frame = settings.sceneFrame
-        let view = frame.view
         var width = frame.width
         var height = frame.height
-        let dx = (view.maxX - view.minX) / Double(width)
-        let dy = (view.maxY - view.minY) / Double(height)
+        let dx = (frame.maxX - frame.minX) / Double(width)
+        let dy = (frame.maxY - frame.minY) / Double(height)
 
-        var y = view.maxY
-        while y > view.minY {
-            var x = view.minX
-            while x < view.maxX {
-                let direction = Vector(from: settings.eyePoint, to: Point(x: x, y: y, z: view.zPlane))
+        var y = frame.maxY
+        while y > frame.minY {
+            var x = frame.minX
+            while x < frame.maxX {
+                let direction = Vector(from: settings.eyePoint, to: Point(x: x, y: y, z: frame.zPlane))
                 let ray = Ray(initial: settings.eyePoint, direction: direction)
                 let pixelData = cast(ray: ray)
                 pixels.append(pixelData)

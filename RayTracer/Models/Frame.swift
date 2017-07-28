@@ -12,27 +12,65 @@ import Foundation
 /// Represents the view frame for a ray tracing scene.
 struct Frame {
 
-    /// The view for the frame.
-    var view: View
-
-    /// Represents the coordinate view for the frame.
-    struct View {
-
-        /// The lower x-bound of the view.
-        var minX: Double
-
-        /// The upper x-bound of the view.
-        var maxX: Double
-
-        /// The lower y-bound of the view.
-        var minY: Double
-
-        /// The upper y-bound of the view.
-        var maxY: Double
-
-        /// The z-plane on which the view is seen.
-        var zPlane: Double
+    /// The lower x-bound of the view.
+    var minX: Double {
+        didSet {
+            freeMaxX = maxX
+            freeMinY = minY
+            freeMaxY = maxY
+        }
     }
+
+    /// The upper x-bound of the view.
+    var maxX: Double {
+        get {
+            return aspectRatio == .freeform ? freeMaxX : -minX
+        }
+        set {
+            if aspectRatio != .freeform {
+                minX = -newValue
+            }
+            freeMaxX = newValue
+        }
+    }
+
+    /// The max x value to be used with the freeform aspect ratio.
+    private var freeMaxX: Double
+
+    /// The lower y-bound of the view.
+    var minY: Double {
+        get {
+            return aspectRatio == .freeform ? freeMinY : minX / aspectRatio.ratio
+        }
+        set {
+            if aspectRatio != .freeform {
+                minX = newValue * aspectRatio.ratio
+            }
+            freeMinY = newValue
+        }
+    }
+
+    /// The min y value to be used with the freeform aspect ratio.
+    private var freeMinY: Double
+
+    /// The upper y-bound of the view.
+    var maxY: Double {
+        get {
+            return aspectRatio == .freeform ? freeMaxY : -minY
+        }
+        set {
+            if aspectRatio != .freeform {
+                minX = -newValue * aspectRatio.ratio
+            }
+            freeMaxY = newValue
+        }
+    }
+
+    /// The max y value to be used with the freeform aspect ratio.
+    private var freeMaxY: Double
+
+    /// The z-plane on which the view is seen.
+    var zPlane: Double
 
     /// The width of the frame.
     var width: Int {
@@ -57,13 +95,6 @@ struct Frame {
     /// The height of the frame to be used with the freeform aspect ratio.
     private var freeHeight: Int
 
-    /// The enforced aspect ratio of the frame.
-    var aspectRatio: AspectRatio {
-        didSet {
-            freeHeight = height
-        }
-    }
-
     /// Describes options for the width to height ratio of the frame.
     enum AspectRatio: Int {
         case freeform
@@ -82,12 +113,25 @@ struct Frame {
         }
     }
 
-    fileprivate var actualAspectRatio: Double {
-        return (Double(width) / Double(height))
+    /// The enforced aspect ratio of the frame.
+    var aspectRatio: AspectRatio {
+        didSet {
+            freeMaxX = maxX
+            freeMinY = minY
+            freeMaxY = maxY
+            freeHeight = height
+        }
     }
 
-    init(view: View, width: Int, height: Int, aspectRatio: AspectRatio) {
-        self.view = view
+    init(minX: Double, maxX: Double, minY: Double, maxY: Double, zPlane: Double, width: Int, height: Int, aspectRatio: AspectRatio) {
+        assert(minX < maxX)
+        assert(minY < maxY)
+        
+        self.minX = minX
+        self.freeMaxX = maxX
+        self.freeMinY = minY
+        self.freeMaxY = maxY
+        self.zPlane = zPlane
         self.width = width
         self.freeHeight = height
         self.aspectRatio = aspectRatio
@@ -97,7 +141,7 @@ struct Frame {
 
 extension Frame: CustomStringConvertible, CustomDebugStringConvertible {
     var description: String {
-        return "Frame(minX: \(self.view.minX), maxX: \(self.view.maxX), minY: \(self.view.minY), maxY: \(self.view.maxY), zPlane: \(self.view.zPlane), width: \(self.width), height: \(self.height), aspectRatio: \(self.aspectRatio.ratio), actualAspectRatio: \(self.actualAspectRatio))"
+        return "Frame(minX: \(self.minX), maxX: \(self.maxX), minY: \(self.minY), maxY: \(self.maxY), zPlane: \(self.zPlane), width: \(self.width), height: \(self.height), aspectRatio: \(self.aspectRatio.ratio))"
     }
 
     var debugDescription: String {
