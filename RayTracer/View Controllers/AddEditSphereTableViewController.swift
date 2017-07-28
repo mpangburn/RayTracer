@@ -14,10 +14,7 @@ final class AddEditSphereTableViewController: ExpandableCellTableViewController 
 
     var sphere: Sphere {
         get {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                fatalError("Failed to access AppDelegate")
-            }
-            let context = appDelegate.persistentContainer.viewContext
+            let context = PersistenceController.shared.persistentContainer.viewContext
             return Sphere(center: self.center, radius: self.radius, color: self.color, finish: self.finish, context: context)
         }
         set {

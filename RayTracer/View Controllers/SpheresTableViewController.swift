@@ -16,23 +16,6 @@ final class SpheresTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = NSLocalizedString("Spheres", comment: "The title text for sphere list screen")
         tableView.tableFooterView = UIView()
-        loadSpheres()
-    }
-
-    private func loadSpheres() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
-        let dateSortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
-        fetchRequest.sortDescriptors = [dateSortDescriptor]
-
-        do {
-            RayTracer.shared.spheres = try context.fetch(fetchRequest)
-        } catch {
-            print("Error fetching sphere data")
-        }
-
-        appDelegate.saveContext()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -69,20 +52,17 @@ final class SpheresTableViewController: UITableViewController {
     }
 
     private func deleteSphereData(at indexPath: IndexPath) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let context = appDelegate.persistentContainer.viewContext
+        let context = PersistenceController.shared.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "creationDate == %@", RayTracer.shared.spheres[indexPath.row].creationDate)
         let sphereToDelete = try! context.fetch(fetchRequest).first!
         context.delete(sphereToDelete)
-        appDelegate.saveContext()
+        PersistenceController.shared.saveContext()
     }
 
     // MARK: - Navigation
 
     @IBAction func unwindToSpheresTableViewController(sender: UIStoryboardSegue) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
         if let sourceViewController = sender.source as? AddEditSphereTableViewController {
             let tracer = RayTracer.shared
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
@@ -97,7 +77,7 @@ final class SpheresTableViewController: UITableViewController {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
 
-            appDelegate.saveContext()
+            PersistenceController.shared.saveContext()
         }
     }
 

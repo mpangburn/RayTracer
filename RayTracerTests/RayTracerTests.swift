@@ -11,7 +11,7 @@ import XCTest
 
 class RayTracerTests: XCTestCase {
 
-    let tracer = RayTracer()
+    let tracer = RayTracer.shared
     let context = setUpInMemoryManagedObjectContext()
     
     override func setUp() {

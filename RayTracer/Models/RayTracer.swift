@@ -7,16 +7,23 @@
 //
 
 import Foundation
+import CoreData
 
 
 /// Stores data for and performs ray tracing.
 final class RayTracer {
 
     /// The shared RayTracer instance.
-    static var shared = RayTracer()
+    static let shared = RayTracer()
 
     /// The spheres to cast rays on.
-    var spheres: [Sphere] = [] {
+    var spheres: [Sphere] = {
+        let context = PersistenceController.shared.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
+        let dateSortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
+        fetchRequest.sortDescriptors = [dateSortDescriptor]
+        return (try? context.fetch(fetchRequest)) ?? []
+        }() {
         didSet {
             sceneNeedsRendering = true
         }
@@ -30,7 +37,10 @@ final class RayTracer {
     }
 
     /// Represents whether changes have been made to the scene since its last render.
-    var sceneNeedsRendering = false
+    var sceneNeedsRendering = true
+
+    // Prevents access to any tracer other than the shared instance.
+    private init() { }
 
     /**
      Casts all rays on the scene.
