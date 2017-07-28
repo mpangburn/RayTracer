@@ -185,16 +185,16 @@
 		8958562B1F116A2B00BEB595 /* RayTracer */ = {
 			isa = PBXGroup;
 			children = (
-				895856601F116B2D00BEB595 /* View Controllers */,
-				8958568A1F11760000BEB595 /* Views */,
+				8958562C1F116A2B00BEB595 /* AppDelegate.swift */,
+				895856361F116A2B00BEB595 /* Assets.xcassets */,
+				8958563B1F116A2B00BEB595 /* Info.plist */,
+				895856381F116A2B00BEB595 /* LaunchScreen.storyboard */,
+				895856301F116A2B00BEB595 /* Main.storyboard */,
+				8958564F1F116B2D00BEB595 /* Extensions */,
 				8966DE7F1F2AE944006865E4 /* Managers */,
 				895856521F116B2D00BEB595 /* Models */,
-				8958564F1F116B2D00BEB595 /* Extensions */,
-				8958562C1F116A2B00BEB595 /* AppDelegate.swift */,
-				895856301F116A2B00BEB595 /* Main.storyboard */,
-				895856361F116A2B00BEB595 /* Assets.xcassets */,
-				895856381F116A2B00BEB595 /* LaunchScreen.storyboard */,
-				8958563B1F116A2B00BEB595 /* Info.plist */,
+				895856601F116B2D00BEB595 /* View Controllers */,
+				8958568A1F11760000BEB595 /* Views */,
 			);
 			path = RayTracer;
 			sourceTree = "<group>";
@@ -202,13 +202,13 @@
 		895856431F116A2B00BEB595 /* RayTracerTests */ = {
 			isa = PBXGroup;
 			children = (
-				895856441F116A2B00BEB595 /* RayTracerTests.swift */,
+				895856771F116E3C00BEB595 /* CoreDataHelpers.swift */,
 				8958567A1F116E3C00BEB595 /* PointTests.swift */,
 				8958567B1F116E3C00BEB595 /* RayTests.swift */,
+				895856441F116A2B00BEB595 /* RayTracerTests.swift */,
 				8958567C1F116E3C00BEB595 /* SphereTests.swift */,
 				8958567D1F116E3C00BEB595 /* UtilitiesTests.swift */,
 				8958567E1F116E3C00BEB595 /* VectorTests.swift */,
-				895856771F116E3C00BEB595 /* CoreDataHelpers.swift */,
 				895856781F116E3C00BEB595 /* Extensions */,
 				895856461F116A2B00BEB595 /* Info.plist */,
 			);
