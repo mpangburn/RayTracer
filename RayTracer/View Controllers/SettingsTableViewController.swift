@@ -55,9 +55,9 @@ final class SettingsTableViewController: ExpandableCellTableViewController {
     }
 
     fileprivate enum FrameRow: Int {
+        case aspectRatio
         case view
         case size
-        case aspectRatio
 
         static let count = 3
     }
@@ -134,6 +134,12 @@ final class SettingsTableViewController: ExpandableCellTableViewController {
             return cell
         case .frame:
             switch FrameRow(rawValue: indexPath.row)! {
+            case .aspectRatio:
+                let cell = tableView.dequeueReusableCell(withIdentifier: SegmentedControlTableViewCell.className, for: indexPath) as! SegmentedControlTableViewCell
+                cell.valueType = .aspectRatio
+                cell.aspectRatio = tracer.settings.sceneFrame.aspectRatio
+                cell.delegate = self
+                return cell
             case .view:
                 let cell = tableView.dequeueReusableCell(withIdentifier: FrameViewTableViewCell.className, for: indexPath) as! FrameViewTableViewCell
                 let frame = tracer.settings.sceneFrame
@@ -148,12 +154,6 @@ final class SettingsTableViewController: ExpandableCellTableViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: FrameSizeTableViewCell.className, for: indexPath) as! FrameSizeTableViewCell
                 cell.width = tracer.settings.sceneFrame.width
                 cell.height = tracer.settings.sceneFrame.height
-                cell.delegate = self
-                return cell
-            case .aspectRatio:
-                let cell = tableView.dequeueReusableCell(withIdentifier: SegmentedControlTableViewCell.className, for: indexPath) as! SegmentedControlTableViewCell
-                cell.valueType = .aspectRatio
-                cell.aspectRatio = tracer.settings.sceneFrame.aspectRatio
                 cell.delegate = self
                 return cell
             }

@@ -21,9 +21,8 @@ final class FrequentlyAskedQuestionsTableViewController: InformationTableViewCon
         case invisibleSphere
         case blackSphere
         case frameSlidersMoving
-        case skewedImage
 
-        static let count = 5
+        static let count = 4
     }
 
     enum Row: Int {
@@ -74,7 +73,7 @@ final class FrequentlyAskedQuestionsTableViewController: InformationTableViewCon
             case .question:
                 text += NSLocalizedString("Why can't I see my sphere?", comment: "The text for the question regarding an invisible sphere")
             case .answer:
-                text += NSLocalizedString("A sphere's visibility depends on its position and radius relative to the other spheres in addition to the scene's eye point and frame. See tips and tricks for suggestions on making your spheres visible in the scene.", comment: "The answer to the question regarding an invisible sphere")
+                text += NSLocalizedString("Many factors affect a sphere's visibility in the scene: its position, its radius, the other spheres in the scene, the eye point, and the view frame.", comment: "The answer to the question regarding an invisible sphere")
             }
         case .blackSphere:
             switch row {
@@ -89,13 +88,6 @@ final class FrequentlyAskedQuestionsTableViewController: InformationTableViewCon
                 text += NSLocalizedString("Why are the frame sliders moving together?", comment: "The text for the question regarding frame sliders moving together")
             case .answer:
                 text += NSLocalizedString("When the frame's aspect ratio is set to a value other than freeform, the frame's coordinate bounds and size are automatically adjusted to fit that aspect ratio when their values are changed.", comment: "The answer to the question regarding frame sliders moving together")
-            }
-        case .skewedImage:
-            switch row {
-            case .question:
-                text += NSLocalizedString("Why does my image appear skewed?", comment: "The text for the question regarding image skew")
-            case .answer:
-                text += NSLocalizedString("See tips and tricks: eye point & frame", comment: "The answer to the question regarding image skew")
             }
         }
 

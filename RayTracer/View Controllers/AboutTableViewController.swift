@@ -20,10 +20,10 @@ final class AboutTableViewController: UITableViewController {
 
     enum Row: Int {
         case howItWorks
-        case tipsAndTricks
+//        case tipsAndTricks
         case frequentlyAskedQuestions
 
-        static let count = 3
+        static let count = 2
     }
 
     // MARK: - Table view data source
@@ -43,8 +43,8 @@ final class AboutTableViewController: UITableViewController {
         switch Row(rawValue: indexPath.row)! {
         case .howItWorks:
             cell.textLabel?.text = NSLocalizedString("How It Works", comment: "The title text for the cell describing how ray tracing works")
-        case .tipsAndTricks:
-            cell.textLabel?.text = NSLocalizedString("Tips and Tricks", comment: "The title text for the cell describing tips and tricks for using the application")
+//        case .tipsAndTricks:
+//            cell.textLabel?.text = NSLocalizedString("Tips and Tricks", comment: "The title text for the cell describing tips and tricks for using the application")
         case .frequentlyAskedQuestions:
             cell.textLabel?.text = NSLocalizedString("Frequently Asked Questions (FAQs)", comment: "The title text the cell describing frequently asked questions in using the application")
         }
@@ -58,8 +58,8 @@ final class AboutTableViewController: UITableViewController {
         switch Row(rawValue: indexPath.row)! {
         case .howItWorks:
             self.show(HowItWorksTableViewController(), sender: sender)
-        case .tipsAndTricks:
-            self.show(TipsAndTricksTableViewController(), sender: sender)
+//        case .tipsAndTricks:
+//            self.show(TipsAndTricksTableViewController(), sender: sender)
         case .frequentlyAskedQuestions:
             self.show(FrequentlyAskedQuestionsTableViewController(), sender: sender)
         }
