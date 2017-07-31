@@ -64,6 +64,8 @@
 		8966DE8F1F2B1033006865E4 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE8E1F2B1033006865E4 /* InformationTableViewController.swift */; };
 		8966DE911F2B1112006865E4 /* TipsAndTricksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE901F2B1112006865E4 /* TipsAndTricksTableViewController.swift */; };
 		8966DE931F2B132D006865E4 /* FrequentlyAskedQuestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8966DE921F2B132D006865E4 /* FrequentlyAskedQuestionsTableViewController.swift */; };
+		89B3A66E1F2ED78B00632CB9 /* EyePointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B3A66C1F2ED78B00632CB9 /* EyePointTableViewCell.swift */; };
+		89B3A66F1F2ED78B00632CB9 /* EyePointTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89B3A66D1F2ED78B00632CB9 /* EyePointTableViewCell.xib */; };
 		89CEA6DB1F1203040008B05B /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */; };
 		89CEA6DE1F1210F70008B05B /* SingleValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */; };
 		89CEA6DF1F1210F70008B05B /* SingleValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */; };
@@ -147,6 +149,8 @@
 		8966DE8E1F2B1033006865E4 /* InformationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InformationTableViewController.swift; path = Abstract/InformationTableViewController.swift; sourceTree = "<group>"; };
 		8966DE901F2B1112006865E4 /* TipsAndTricksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsAndTricksTableViewController.swift; sourceTree = "<group>"; };
 		8966DE921F2B132D006865E4 /* FrequentlyAskedQuestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequentlyAskedQuestionsTableViewController.swift; sourceTree = "<group>"; };
+		89B3A66C1F2ED78B00632CB9 /* EyePointTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EyePointTableViewCell.swift; path = Views/EyePointTableViewCell.swift; sourceTree = "<group>"; };
+		89B3A66D1F2ED78B00632CB9 /* EyePointTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EyePointTableViewCell.xib; path = Views/EyePointTableViewCell.xib; sourceTree = "<group>"; };
 		89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewCell.swift; path = Views/ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DC1F1210F70008B05B /* SingleValueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleValueTableViewCell.swift; path = Views/SingleValueTableViewCell.swift; sourceTree = "<group>"; };
 		89CEA6DD1F1210F70008B05B /* SingleValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SingleValueTableViewCell.xib; path = Views/SingleValueTableViewCell.xib; sourceTree = "<group>"; };
@@ -295,6 +299,8 @@
 			children = (
 				895856971F11CF5E00BEB595 /* ColorTableViewCell.swift */,
 				895856981F11CF5E00BEB595 /* ColorTableViewCell.xib */,
+				89B3A66C1F2ED78B00632CB9 /* EyePointTableViewCell.swift */,
+				89B3A66D1F2ED78B00632CB9 /* EyePointTableViewCell.xib */,
 				89CEA6DA1F1203040008B05B /* ExpandableTableViewCell.swift */,
 				89CEA6E01F12BC1A0008B05B /* FinishTableViewCell.swift */,
 				89CEA6E11F12BC1A0008B05B /* FinishTableViewCell.xib */,
@@ -427,6 +433,7 @@
 				895856321F116A2B00BEB595 /* Main.storyboard in Resources */,
 				8958569A1F11CF5E00BEB595 /* ColorTableViewCell.xib in Resources */,
 				891E7E6A1F145F7D007D2AA2 /* FrameViewTableViewCell.xib in Resources */,
+				89B3A66F1F2ED78B00632CB9 /* EyePointTableViewCell.xib in Resources */,
 				8961BC181F15F6F00004DCD5 /* FrameSizeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +490,7 @@
 				895856651F116B2D00BEB595 /* Color.swift in Sources */,
 				895856931F11A21000BEB595 /* PointTableViewCell.swift in Sources */,
 				8958566B1F116B2D00BEB595 /* Ray.swift in Sources */,
+				89B3A66E1F2ED78B00632CB9 /* EyePointTableViewCell.swift in Sources */,
 				8966DE911F2B1112006865E4 /* TipsAndTricksTableViewController.swift in Sources */,
 				895856761F116DA700BEB595 /* RayTracer.xcdatamodeld in Sources */,
 				895856891F1175F300BEB595 /* SphereTableViewCell.swift in Sources */,
