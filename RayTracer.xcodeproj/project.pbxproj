@@ -388,7 +388,7 @@
 				TargetAttributes = {
 					895856281F116A2B00BEB595 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 5Q5Q8W9ATZ;
+						DevelopmentTeam = K4DT4VMXMJ;
 						ProvisioningStyle = Automatic;
 					};
 					8958563F1F116A2B00BEB595 = {
@@ -647,10 +647,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5Q5Q8W9ATZ;
+				DEVELOPMENT_TEAM = K4DT4VMXMJ;
 				INFOPLIST_FILE = RayTracer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pangburn.RayTracer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mpangburn.RayTracer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -660,10 +660,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5Q5Q8W9ATZ;
+				DEVELOPMENT_TEAM = K4DT4VMXMJ;
 				INFOPLIST_FILE = RayTracer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pangburn.RayTracer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mpangburn.RayTracer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
