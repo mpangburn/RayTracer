@@ -18,6 +18,7 @@ final class SettingsTableViewController: ExpandableCellTableViewController {
         super.viewDidLoad()
         self.title = NSLocalizedString("Settings", comment: "The title text for the settings screen")
 
+        tableView.register(EyePointTableViewCell.nib(), forCellReuseIdentifier: EyePointTableViewCell.className)
         tableView.register(PointTableViewCell.nib(), forCellReuseIdentifier: PointTableViewCell.className)
         tableView.register(ColorTableViewCell.nib(), forCellReuseIdentifier: ColorTableViewCell.className)
         tableView.register(SegmentedControlTableViewCell.nib(), forCellReuseIdentifier: SegmentedControlTableViewCell.className)
@@ -98,8 +99,8 @@ final class SettingsTableViewController: ExpandableCellTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch Section(rawValue: indexPath.section)! {
         case .eyePoint:
-            let cell = tableView.dequeueReusableCell(withIdentifier: PointTableViewCell.className, for: indexPath) as! PointTableViewCell
-            cell.point = tracer.settings.eyePoint
+            let cell = tableView.dequeueReusableCell(withIdentifier: EyePointTableViewCell.className, for: indexPath) as! EyePointTableViewCell
+            cell.zCoordinate = tracer.settings.eyePoint.z
             cell.delegate = self
             return cell
         case .light:
@@ -216,12 +217,16 @@ final class SettingsTableViewController: ExpandableCellTableViewController {
     }
 }
 
+extension SettingsTableViewController: EyePointTableViewCellDelegate {
+    func eyePointTableViewCellEyePointDidChange(_ cell: EyePointTableViewCell) {
+        tracer.settings.eyePoint = Point(x: 0, y: 0, z: cell.zCoordinate)
+    }
+}
+
 extension SettingsTableViewController: PointTableViewCellDelegate {
     func pointTableViewCellPointDidChange(_ cell: PointTableViewCell) {
         let indexPath = tableView.indexPath(for: cell)!
         switch Section(rawValue: indexPath.section)! {
-        case .eyePoint:
-            tracer.settings.eyePoint = cell.point
         case .light:
             tracer.settings.light.position = cell.point
         default:
