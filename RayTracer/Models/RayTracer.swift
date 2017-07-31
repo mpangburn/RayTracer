@@ -22,7 +22,12 @@ final class RayTracer {
         let fetchRequest: NSFetchRequest<Sphere> = Sphere.fetchRequest()
         let dateSortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
         fetchRequest.sortDescriptors = [dateSortDescriptor]
-        return (try? context.fetch(fetchRequest)) ?? []
+        var spheres = (try? context.fetch(fetchRequest)) ?? []
+        if spheres.isEmpty {
+            spheres.append(Sphere(string: "1.0 1.0 0.0 2.0 1.0 0.0 1.0 0.2 0.4 0.5 0.05", context: context)!)
+            spheres.append(Sphere(string: "8.0 -10.0 100.0 90.0 0.2 0.2 0.6 0.4 0.8 0.0 0.05", context: context)!)
+        }
+        return spheres
         }() {
         didSet {
             sceneNeedsRendering = true

@@ -40,7 +40,7 @@ final class HowItWorksTableViewController: InformationTableViewController {
 
         switch Section(rawValue: indexPath.section)! {
         case .rayTracing:
-            cell.textLabel?.text = NSLocalizedString("Ray tracing pixel-by-pixel renders an image, taking into account the spheres present, these spheres' interactions with the scene's light and ambient color, the eye point from which the scene is viewed, and the frame dictating the visible coordinates. This process involves a lot of vector math.", comment: "The text describing how ray tracing works")
+            cell.textLabel?.text = NSLocalizedString("Ray tracing pixel-by-pixel renders an image, taking into account the spheres present, these spheres' interactions with the scene's light and ambient color, the eye point from which the scene is viewed, and the frame dictating the visible coordinates. More advanced graphics processors also factor in light reflection off other objects.", comment: "The text describing how ray tracing works")
         case .randomSphereGeneration:
             cell.textLabel?.text = NSLocalizedString("In generating a random sphere visible in the scene, the center's z-coordinate is randomized within the bounds of the eye point and the existing (visible) sphere closest to the eyepoint. Its x- and y-coordinates are randomized within the scene frame's view, then scaled based on the distance between the eyepoint's z-coordinate and the randomly generated z-coordinate. The sphere's radius is randomized based on the range of visible x- and y-coordinates in the scene, then scaled based on the center's distance from the eyepoint. Finally, a random color and finish are generated.", comment: "The text describing how random sphere generation works")
         }
